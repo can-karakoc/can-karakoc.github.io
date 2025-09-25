@@ -205,61 +205,6 @@ HEADER STYLES
     }
 }
 
-/* Theme toggle */
-.theme-toggle {
-    margin-left: var(--spacing-md);
-    display: flex;
-    align-items: center;
-}
-
-#themeToggle {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.5rem;
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: var(--border-radius-round);
-    transition: background-color var(--transition-fast), color var(--transition-fast);
-    padding: 0;
-    background-color: transparent;
-}
-
-#themeToggle:hover {
-    background-color: var(--bg-color-alt);
-}
-
-/* Theme icon display */
-#themeToggle .fa-moon,
-#themeToggle .fa-sun {
-    font-size: 1.5rem;
-    transition: opacity var(--transition-fast);
-}
-
-#themeToggle .fa-moon {
-    display: block;
-    opacity: 1;
-}
-
-#themeToggle .fa-sun {
-    display: none;
-    opacity: 0;
-}
-
-body.dark-theme #themeToggle .fa-moon {
-    display: none;
-    opacity: 0;
-}
-
-body.dark-theme #themeToggle .fa-sun {
-    display: block;
-    opacity: 1;
-}
-
 /* Mobile specific styles */
 @media screen and (max-width: 768px) {
     .header {
@@ -274,21 +219,6 @@ body.dark-theme #themeToggle .fa-sun {
     
     .logo {
         margin-left: 1rem;
-    }
-    
-    .theme-toggle {
-        margin-right: 1rem;
-    }
-    
-    #themeToggle {
-        width: 2.25rem;
-        height: 2.25rem;
-        background-color: var(--bg-color-alt);
-    }
-    
-    #themeToggle .fa-moon,
-    #themeToggle .fa-sun {
-        font-size: 1.25rem;
     }
 
     /* Hamburger menu button */

@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // DOM Elements - access these after components are loaded
         const body = document.querySelector('body');
-        const themeToggle = document.getElementById('themeToggle');
         const navToggle = document.getElementById('navToggle');
         const navMenu = document.querySelector('.nav-menu');
         const navLinks = document.querySelectorAll('.nav-link');
@@ -281,7 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initialize Functions
-    initTheme(); 
     setupIntersectionObserver();
 
     // Event Listeners

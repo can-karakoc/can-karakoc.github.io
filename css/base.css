@@ -4,11 +4,9 @@ Base Styles:
 - Reset
 - Typography
 - Base layout
-- Dark/light theme variables
 **/
 
 :root {
-    /* Light Theme Colors */
     --bg-color: #F5F5F5;
     --text-color: #020001;
     --text-color-light: #FFFFFF;
