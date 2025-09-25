@@ -54,6 +54,23 @@
     filter: drop-shadow(12px 16px 4px rgba(124, 32, 7, 0.40));
 }
 
+.hero .right-container, .hero .container {
+    transition: all var(--transition-fast);
+    cursor: pointer;
+}
+
+.hero .right-container:hover, .hero .container:hover {
+    transform: translateY(-12px);
+}
+
+.hero .container:hover {
+    filter: drop-shadow(-36px 40px 12px rgba(31, 73, 81, 0.40));
+}
+
+.hero .right-container:hover {
+    filter: drop-shadow(36px 40px 4px rgba(124, 32, 7, 0.40));
+}
+
 .right-container img:nth-child(1) {
     position: absolute;
     width: 80%;
