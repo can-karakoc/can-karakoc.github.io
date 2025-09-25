@@ -22,42 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentYearSpan.textContent = new Date().getFullYear();
     }
 
-    // Theme Switcher
-    function initTheme() {
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        // Remove existing theme classes to start clean
-        body.classList.remove('dark-theme', 'light-theme');
-
-        if (savedTheme === 'dark') {
-            body.classList.add('dark-theme');
-        } else if (savedTheme === 'light') {
-            body.classList.add('light-theme');
-        } else if (prefersDarkScheme) {
-            body.classList.add('dark-theme');
-        } else {
-            body.classList.add('light-theme'); // Default to light theme
-        }
-    }
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            // Determine the new theme by checking if dark-theme is currently active *before* toggling
-            const isCurrentlyDark = body.classList.contains('dark-theme');
-            if (isCurrentlyDark) {
-                body.classList.remove('dark-theme');
-                body.classList.add('light-theme');
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.classList.remove('light-theme');
-                body.classList.add('dark-theme');
-                localStorage.setItem('theme', 'dark');
-            }
-            // console.log('Theme toggled. Current theme:', body.classList.contains('dark-theme') ? 'dark' : 'light');
-        });
-    }
-
     // Mobile Navigation
     if (navToggle) {
         navToggle.addEventListener('click', () => {
