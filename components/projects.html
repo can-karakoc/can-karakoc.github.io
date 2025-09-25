@@ -1,0 +1,105 @@
+<!-- Projects Section -->
+<section class="projects section horizontal-scroll-enabled" id="projects">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Projects</h2>
+        </div>
+        <div class="project-filters">
+            <button class="filter-button active" data-filter="all">All Projects</button>
+            <button class="filter-button" data-filter="sde">Software Development</button>
+            <button class="filter-button" data-filter="dsml">Data Science & ML</button>
+        </div>
+        <div class="scroll-arrow-container">
+           <button class="scroll-arrow prev-arrow" aria-label="Previous items">
+               <i class="fas fa-chevron-left"></i>
+           </button>
+           <button class="scroll-arrow next-arrow" aria-label="Next items">
+               <i class="fas fa-chevron-right"></i>
+           </button>
+       </div>
+        <div class="horizontal-scroll-wrapper">
+            <div class="scroll-content projects-grid"> <!-- SDE Project 1 -->
+            <div class="project-card" data-category="dsml">
+                <div class="project-image">
+                    <img src="assets/projects/Energy-production-and-cardbon-emissions.jpg">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Energy Production and Carbon Emissions</h3>
+                    <p class="project-description">Analyzed state-level renewable energy adoption and carbon emissions by:
+                        (1) Predicting renewable energy production using Gaussian GLM, Random Forest, and KNN based on state characteristics;
+                        (2) Estimating the causal impact of electricity prices on carbon emissions using Stabilized Inverse Propensity Weighting with bootstrapped scores.</p>                    
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Seaborn</span>
+                        <span class="tech-tag">Matplotlib</span>
+                        <span class="tech-tag">Jupyter</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/can-karakoc/data102-final-proj" class="project-link" target="_blank"><i class="fab fa-github"></i>Source Code</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SDE Project 2 -->
+            <div class="project-card" data-category="sde">
+                <div class="project-image">
+                    <img src="assets/projects/lentivirus.jpg">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Lentivirus Gene Search Tool</h3>
+                    <p class="project-description">Developed an interactive genome browser to analyze HIV-1, HIV-2, and SIV genomes, providing gene annotations, conserved region comparisons, and protein sequence alignments. Integrated 3D protein models to explore structural variation and potential drug targets. Delivered as a static website and GitHub-hosted resource, enabling reproducible and accessible lentivirus research.</p>                    
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">JBrowse2</span>
+                        <span class="tech-tag">Clustal Omega</span>
+                        <span class="tech-tag">GitHub</span>
+                    </div>
+                    <div class="project-links">
+                       <a href="https://github.com/JORDANKLANFER/jbrowse2_project" class="project-link" target="_blank"><i class="fab fa-github"></i>Source Code</a>
+                       <a href="https://jordanklanfer.github.io/static_jbrowse/" class="project-link" target="_blank"><i class="fa fa-laptop"></i>Static Website</a>
+                    </div>
+                </div>
+            </div>
+              <!-- DSML Project 1 -->
+            <div class="project-card" data-category="dsml">
+                <div class="project-image">
+                    <img src="assets/projects/email-classification.jpg">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Email Classification</h3>
+                    <p class="project-description">Built a Logistic Regression Model to classify emails as “ham” (not spam) or spam; identified 40+ features through feature engineering and performed
+cross-validation with L1 and L2 regularization to tune hyperparameters.</p>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Matplotlib</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/can-karakoc/spam-ham.git" class="project-link" target="_blank"><i class="fab fa-github"></i> Source Code</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- DSML Project 2 -->
+            <div class="project-card" data-category="sde">
+                <div class="project-image">
+                    <img src="assets/projects/game-design.jpg">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">World Game Design</h3>
+                    <p class="project-description">Built a Java program that generates an interactive pseudo-random world with creative gameplay involving mini-worlds and persistent game states with saving,
+quitting, and loading options to ensure long-term engagement and continuity of the gameplay.</p>
+                    <div class="project-tech-stack">
+                        <span class="tech-tag">Java</span>
+                    </div>                    
+                    <div class="project-links">
+                        <a href="https://youtu.be/xaQWofbBags" class="project-link" target="_blank"><i class="fas fa-circle-play"></i>Gameplay Video</a>
+                    </div>
+                </div>
+            </div>
+            </div> <!-- Closing scroll-content -->
+        </div> <!-- Closing horizontal-scroll-wrapper -->
+    </div>
+</section>
