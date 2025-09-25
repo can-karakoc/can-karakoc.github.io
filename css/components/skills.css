@@ -7,8 +7,6 @@ SKILLS COMPONENT STYLING
     padding: var(--spacing-xl) 0;
     position: relative;
     overflow: hidden;
-    height: 85vh;
-    width: 100vw;
     display: flex;
     flex-direction: column;
     border-radius: 0;
