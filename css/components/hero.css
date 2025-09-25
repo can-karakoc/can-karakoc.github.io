@@ -78,6 +78,7 @@
     bottom: 0%;
     right: 0%;
     color: var(--dark--orange);
+    animation: fadeIn 0.8s ease-out;
 }
 
 /* Ribbon on top-left */
@@ -86,6 +87,7 @@
     width: 60%;
     top: 0%;
     left: 5%;
+    animation: fadeIn 0.8s ease-out;
 }
 
 /* Monogram B on top-right */
@@ -94,6 +96,7 @@
     width: 8%;
     top: 5%;
     right: 8%;
+    animation: fadeIn 0.8s ease-out;
 }
 
 /* CONTENT */
