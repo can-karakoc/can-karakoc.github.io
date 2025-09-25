@@ -51,21 +51,6 @@ Base Styles:
     --transition-slow: 0.5s ease;
 }
 
-/* ======= Dark Theme Variables ======= */
-.dark-theme {
-    --primary-color: #4895ef; /* Lighter Desaturated Blue */
-    --primary-color-rgb: 72, 149, 239; /* RGB for Lighter Desaturated Blue */
-    --secondary-color: #3f8efc; /* Darker Desaturated Blue */
-    --accent-color: #5390d9; /* Even Darker Desaturated Blue */
-    --text-color: #e0e0e0; /* Light Gray */
-    --text-color-light: #b0b0b0; /* Medium-Dark Gray */
-    --bg-color: #121212; /* Very Dark Desaturated Blue/Gray */
-    --bg-color-alt: #1e1e1e; /* Darker Gray */
-    --card-bg: #2a2a2a; /* Dark Gray */
-    --border-color: #444444; /* Medium-Dark Gray */
-    --shadow-color: rgba(0, 0, 0, 0.5); /* Darker Shadow */
-}
-
 /* ======= Reset ======= */
 * {
     margin: 0;
