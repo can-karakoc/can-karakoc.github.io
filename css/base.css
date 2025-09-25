@@ -75,6 +75,7 @@ body {
   src: url('../fonts/BinomaTrial-Bold.woff2') format('woff2'),
        url('../fonts/BinomaTrial-Bold.woff') format('woff');
   font-style: normal;
+  font-display: swap;
 }
 
 h1, h2, h3, h4, h5, h6 {
