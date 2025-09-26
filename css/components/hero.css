@@ -59,6 +59,12 @@
     cursor: pointer;
 }
 
+.hero .container,
+.hero .right-container {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
 .hero .right-container:hover, .hero .container:hover {
     transform: translateY(-12px);
 }

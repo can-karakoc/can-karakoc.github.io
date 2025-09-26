@@ -19,7 +19,8 @@ HEADER STYLES
     justify-content: space-between;
     align-items: center;
     padding: 1rem 0;
-    font-family: 'BinomaTrial-Bold', sans-serif;
+    font-family: 'BinomaTrial', sans-serif;
+    font-weight: 700;
 }
 
 /* Logo */
@@ -27,7 +28,7 @@ HEADER STYLES
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--dark-blue);
-    font-family: "Lexend Deca";
+    font-family: "Lexend Deca", sans-serif;
     text-decoration: none;
 }
 
@@ -47,7 +48,8 @@ HEADER STYLES
 
 .nav-link {
     color: var(--text-color);
-    font-weight: 500;
+    font-family: "BinomaTrial", sans-serif;
+    font-weight: 700;
     padding: 0.5rem;
     position: relative;
     text-decoration: none;
@@ -287,17 +289,20 @@ HEADER STYLES
     .nav-menu.active {
         left: 0;
         box-shadow: 0 5px 15px var(--shadow-color);
+        font-family: 'BinomaTrial-Bold', sans-serif;
     }
     
     .nav-item {
         margin: 0.5rem 0;
         width: 100%;
+        font-family: 'BinomaTrial-Bold', sans-serif;
     }
     
     .nav-link {
         width: 100%;
         display: block;
         padding: 0.75rem 0;
+        font-family: 'BinomaTrial-Bold', sans-serif;
     }
     
     /* Mobile dropdown styles */

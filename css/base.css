@@ -72,10 +72,24 @@ body {
 /* ======= Typography ======= */
 @font-face {
   font-family: 'BinomaTrial-Bold', sans-serif;
-  src: url('../fonts/BinomaTrial-Bold.woff2') format('woff2'),
-       url('../fonts/BinomaTrial-Bold.woff') format('woff');
+  src: url('../assets/fonts/BinomaTrial-Bold.woff2') format('woff2'),
+       url('../assets/fonts/BinomaTrial-Bold.woff') format('woff'),
+       url('../assets/fonts/BinomaTrial-Bold.ttf') format('truetype');
   font-style: normal;
   font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BinomaTrial-Regular', sans-serif;
+  src: url('../assets/fonts/BinomaTrial-Regular.woff2') format('woff2'),
+       url('../assets/fonts/BinomaTrial-Regular.woff') format('woff'),
+       url('../assets/fonts/BinomaTrial-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -151,7 +165,6 @@ p {
     transition: all var(--transition-fast);
     border: none;
     cursor: pointer;
-    font-family: 'Poppins', sans-serif;
     gap: 0.5rem;
 }
 
