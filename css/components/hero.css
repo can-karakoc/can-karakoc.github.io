@@ -382,7 +382,7 @@
     
     .hero .container {
         width: 100%;
-        max-height: 550px;
+        max-height: 100%;
     }
 
     .hero-content {
@@ -390,7 +390,7 @@
     }
 
     .hero-inner {
-        gap: 1.5rem;
+        gap: 1rem;
         align-items: center;
     }
 
@@ -464,5 +464,11 @@
     
     .scroll-down {
         bottom: 130px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .scroll-down {
+        bottom: 40px;
     }
 }
