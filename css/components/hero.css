@@ -63,6 +63,9 @@
 .hero .right-container {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   will-change: transform, box-shadow;
+  flex: 1 1 400px;
+  max-width: 600px;
+  box-sizing: border-box;
 }
 
 .hero .right-container:hover, .hero .container:hover {
@@ -350,6 +353,7 @@
     .hero-inner {
         display: flex;
         flex-direction: row;
+        padding: 3rem;
     }
 
     .hero .right-container {
@@ -357,13 +361,13 @@
     }
 }
 
-@media screen and (max-width: 1220px) {
+@media screen and (max-width: 900px) {
     .hero .right-container {
         display: none;
     }
 
     .hero .container {
-        max-width: 800px;
+        max-width: 100%;   
     }
 }
 
@@ -373,7 +377,7 @@
     }
     
     .hero .container {
-        max-width: 500px;
+        width: 100%;
         max-height: 550px;
     }
 
@@ -387,7 +391,7 @@
     }
 
     .hero .container {
-        width: 100%;
+        width: 500px;
         padding: 40px 20px;
     }
 
@@ -401,7 +405,7 @@
     }
 
     .hero-greeting {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
     
     .hero-name {
@@ -409,7 +413,7 @@
     }
 
     .hero-title, .hero-description {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 
     .social-links {
@@ -418,14 +422,34 @@
 }
 
 @media screen and (max-width: 480px) {
+    .hero-inner {
+        padding: 1.5rem;
+    }
+
     .hero-cta .btn {
-        width: 100%;
         font-size: 1rem;
         padding: 0.6rem 1.5rem;
     }
     
     .hero .container {
         width: 500px;
-        max-height: 500px;
+        max-height: none;
+        padding: 1.2rem;
+    }
+
+    .hero-greeting {
+        font-size: 1rem;
+    }
+    
+    .hero-name {
+        font-size: 2.2rem;
+    }
+
+    .hero-title, .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-cta .btn-primary, .hero-cta .btn-secondary  {
+        font-size: 1rem;
     }
 }
