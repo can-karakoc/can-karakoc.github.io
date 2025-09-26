@@ -125,7 +125,8 @@
 /* Text styling improvements */
 .hero-greeting {
     color: var(--dark-green);
-    font-family: 'BinomaTrial-Bold', sans-serif;
+    font-family: 'BinomaTrial', sans-serif;
+    font-weight: 700;
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
     display: block;
@@ -134,7 +135,8 @@
 
 .hero-name {
     font-size: 3.5rem;
-    font-family: 'BinomaTrial-Bold', sans-serif;
+    font-family: 'BinomaTrial', sans-serif;
+    font-weight: 700;
     color: var(--dark-green);
     margin-bottom: 0.5rem;
     line-height: 1.2;
@@ -143,7 +145,8 @@
 
 .hero-title {
     font-size: 1.25rem;
-    font-family: 'BinomaTrial-Bold', sans-serif;
+    font-family: 'BinomaTrial', sans-serif;
+    font-weight: 700;
     color: var(--dark-green);
     margin-bottom: 1.5rem;
     line-height: 1.4;
@@ -178,7 +181,7 @@
 .hero-cta .btn-primary {
     background-color: var(--dark-green);
     color: var(--bright-green);
-    font-family: 'BinomaTrial-Regular', sans-serif;
+    font-family: 'BinomaTrial', sans-serif;
 }
 
 .hero-cta .btn-primary:hover {
@@ -190,7 +193,7 @@
 
 .hero-cta .btn-secondary {
     background-color: transparent;
-    font-family: 'BinomaTrial-Regular', sans-serif;
+    font-family: 'BinomaTrial', sans-serif;
     color: var(--dark-green);
     border: 2px solid var(--dark-green);
 }
