@@ -377,6 +377,7 @@
 @media screen and (max-width: 768px) {
     .hero {
         padding-top: 2rem;
+        height: 100vh;
     }
     
     .hero .container {
@@ -425,8 +426,13 @@
 }
 
 @media screen and (max-width: 480px) {
+    .hero {
+        padding-top: 0;
+    }
+
     .hero-inner {
         padding: 1.5rem;
+        padding-top: 0;
     }
 
     .hero-cta .btn {
@@ -454,5 +460,9 @@
 
     .hero-cta .btn-primary, .hero-cta .btn-secondary  {
         font-size: 1rem;
+    }
+    
+    .scroll-down {
+        bottom: 80px;
     }
 }
