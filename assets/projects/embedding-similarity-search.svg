@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Embedding-Based Similarity Search System</title>
+  <desc id="desc">A pink project header with microscope, search, and language icons.</desc>
+  <rect width="1024" height="1024" fill="#f47eab"/>
+  <g fill="none" stroke="#1f5159" stroke-width="28" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(75 365)">
+      <path d="M35 220h210"/>
+      <path d="M78 172h80"/>
+      <path d="M95 40h42v118H95z" fill="#1f5159"/>
+      <path d="M140 102h48a82 82 0 0 1 82 82v36"/>
+      <path d="M0 220h262"/>
+    </g>
+    <g transform="translate(420 390)">
+      <circle cx="74" cy="74" r="58"/>
+      <path d="M116 116l62 62"/>
+    </g>
+    <g transform="translate(730 365)">
+      <path d="M8 50h122"/>
+      <path d="M70 22v28"/>
+      <path d="M100 50c-10 48-48 88-100 112"/>
+      <path d="M32 95c20 33 52 55 90 72"/>
+      <path d="M118 210l58-118 58 118"/>
+      <path d="M145 160h62"/>
+    </g>
+  </g>
+</svg>
