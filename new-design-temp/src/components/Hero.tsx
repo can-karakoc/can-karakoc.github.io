@@ -1,9 +1,16 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import HeroGrid from "./HeroGrid";
 
-// Edit these anytime — they cycle under your name.
+// Edit freely — these cycle under the name.
 const VERBS = ["researches", "designs", "builds", "ships"];
+
+// TODO: confirm location before shipping.
+const SPECS: [string, string][] = [
+  ["Location", "California, USA"],
+  ["Focus", "ML · Backend · Frontend · Product"],
+  ["Shipped", "6 projects, end to end"],
+  ["Stack", "Python · React · TypeScript · PyTorch"],
+];
 
 function useReducedMotion() {
   const [reduced, setReduced] = useState(false);
@@ -25,6 +32,7 @@ function RotatingVerb({ reduced }: { reduced: boolean }) {
     return () => clearInterval(t);
   }, [reduced]);
 
+  // aria-live keeps the rotation announced once, not on every tick.
   return (
     <span className="relative inline-flex overflow-hidden align-baseline text-lime">
       <AnimatePresence mode="wait">
@@ -51,92 +59,114 @@ export default function Hero() {
       id="top"
       className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden bg-ink pt-24 text-paper"
     >
-      <HeroGrid />
-
+      {/* Hard-edged cobalt block, not a soft blur. Swap for the grid later. */}
       <div
         aria-hidden
-        className="absolute inset-0 z-[1]"
+        className="absolute right-0 top-0 -z-0 h-full w-1/2"
         style={{
           background:
-            "linear-gradient(90deg, rgba(17,16,22,0.94), rgba(17,16,22,0.55) 42%, transparent 78%), linear-gradient(0deg, rgba(17,16,22,0.9), transparent 42%)",
+            "linear-gradient(180deg, rgba(43,52,255,0.18), rgba(43,52,255,0.04))",
+          clipPath: "polygon(18% 0, 100% 0, 100% 100%, 0 100%)",
         }}
       />
 
-      <div className="shell relative z-10">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-7 flex items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.22em] text-paper/60"
-        >
-          <span className="inline-block h-2 w-2 rounded-full bg-lime" />
-          Recent Graduate in Data Science & Computer Science
-        </motion.p>
-
-        <h1 className="font-display font-extrabold lowercase leading-[0.82] tracking-[-0.03em]">
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
+      <div className="shell relative z-10 grid gap-16 lg:grid-cols-12 lg:items-end">
+        {/* Left: the claim */}
+        <div className="lg:col-span-7">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="block text-mega"
+            transition={{ duration: 0.6 }}
+            className="mb-7 flex items-center gap-2 font-mono text-[0.7rem] font-medium uppercase tracking-[0.22em] text-paper/60"
           >
-            can
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, y: 20 }}
+            <span className="inline-block h-2 w-2 rounded-full bg-lime" />
+            Product Engineer
+          </motion.p>
+
+          <h1 className="font-display font-extrabold lowercase leading-[0.82] tracking-[-0.03em]">
+            {["can", "karakoc"].map((word, i) => (
+              <motion.span
+                key={word}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.7,
+                  delay: i * 0.06,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="block text-mega"
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mt-8 font-display text-[clamp(1.5rem,2.6vw,2rem)] font-semibold leading-tight tracking-[-0.01em]"
+          >
+            Someone who <RotatingVerb reduced={reduced} /> products.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="mt-6 max-w-lg text-base text-paper/70 leading-relaxed"
+          >
+            Berkeley CS + Data Science. I take an idea from research to shipped code.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-            className="block text-mega"
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="mt-10 flex flex-wrap items-center gap-4"
           >
-            karakoc
-          </motion.span>
-        </h1>
+            <a
+              href="#work"
+              className="group inline-flex items-center gap-2 rounded-full bg-lime px-7 py-3.5 font-semibold text-ink transition-transform duration-300 hover:-translate-y-0.5"
+            >
+              See the work
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center rounded-full border border-paper/25 px-7 py-3.5 font-medium transition-colors duration-300 hover:bg-paper hover:text-ink"
+            >
+              Get in touch
+            </a>
+          </motion.div>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="mt-8 max-w-xl font-display text-2xl font-semibold sm:text-3xl"
-        >
-          Interested in data-driven research in computational biology and product innovation through human-centered design.
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-4 max-w-md text-paper/65"
-        >
-          Bridging data-driven computational approaches with biological research, with emphasis on machine learning and statistical modeling to explore complex biological systems.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
+        {/* Right: the receipt */}
+        <motion.dl
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-10 flex flex-wrap items-center gap-4"
+          transition={{ duration: 0.7, delay: 0.55 }}
+          className="font-mono text-xs lg:col-span-5 lg:pb-4"
         >
-          <a
-            href="#work"
-            className="group inline-flex items-center gap-2 rounded-full bg-lime px-7 py-3.5 font-semibold text-ink transition-transform duration-300 ease-spring hover:-translate-y-0.5"
-          >
-            See the work
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
-              →
-            </span>
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center rounded-full border border-paper/25 px-7 py-3.5 font-medium text-paper transition-colors duration-300 hover:bg-paper hover:text-ink"
-          >
-            Get in touch
-          </a>
-        </motion.div>
+          {SPECS.map(([label, value]) => (
+            <div
+              key={label}
+              className="flex justify-between gap-6 border-t border-paper/12 py-3"
+            >
+              <dt className="uppercase tracking-[0.22em] text-paper/45">
+                {label}
+              </dt>
+              <dd className="text-right text-paper/85">{value}</dd>
+            </div>
+          ))}
+        </motion.dl>
       </div>
 
       <div className="shell relative z-10 mt-16 flex items-center justify-between font-mono text-[0.7rem] uppercase tracking-[0.22em] text-paper/45">
-        <span className="animate-pulse">Scroll ↓</span>
-        <span>Based in London, UK</span>
+        <span>Scroll ↓</span>
+        <span>Based in California, USA</span>
       </div>
     </section>
   );

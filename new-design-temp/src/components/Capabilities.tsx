@@ -5,18 +5,31 @@ export default function Capabilities() {
   return (
     <section className="border-t border-ink/10">
       <div className="shell py-24">
-        <p className="eyebrow mb-12">(What I bring end-to-end)</p>
+        <motion.p
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ type: "spring", stiffness: 100, damping: 20 }}
+          className="eyebrow mb-12"
+        >
+          (What I bring end-to-end)
+        </motion.p>
         <div className="divide-y divide-ink/10">
           {capabilities.map((c, i) => (
             <motion.div
               key={c.n}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
+              viewport={{ once: true, margin: "-100px" }}
+              whileHover={{
+                x: 8,
+                transition: { type: "spring", stiffness: 300, damping: 20 }
+              }}
               transition={{
-                duration: 0.6,
-                delay: i * 0.05,
-                ease: [0.16, 1, 0.3, 1],
+                type: "spring",
+                stiffness: 100,
+                damping: 25,
+                delay: i * 0.1,
               }}
               className="group grid grid-cols-1 gap-4 py-8 sm:grid-cols-12 sm:items-baseline"
             >
@@ -30,13 +43,22 @@ export default function Capabilities() {
                 {c.line}
               </p>
               <ul className="flex flex-wrap gap-2 sm:col-span-4 sm:justify-end">
-                {c.items.map((it) => (
-                  <li
+                {c.items.map((it, idx) => (
+                  <motion.li
                     key={it}
-                    className="rounded-full border border-ink/15 px-3 py-1 font-mono text-xs text-ink/70 transition-colors group-hover:border-cobalt/50"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 20,
+                      delay: i * 0.1 + idx * 0.03,
+                    }}
+                    className="rounded-full border border-ink/15 px-3 py-1 font-mono text-xs text-ink/70 transition-all duration-300 group-hover:border-cobalt/50 group-hover:scale-105"
                   >
                     {it}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>
