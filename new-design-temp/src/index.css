@@ -18,7 +18,7 @@
   }
 
   ::selection {
-    background: theme("colors.cobalt");
+    background: rgba(43, 52, 255, 0.3);
     color: theme("colors.paper");
   }
 
