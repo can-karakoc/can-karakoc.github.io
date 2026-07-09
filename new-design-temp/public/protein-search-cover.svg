@@ -1,0 +1,37 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Pink background matching the screenshot -->
+  <rect width="1200" height="630" fill="#E8A3BE"/>
+
+  <!-- Icon 1: DNA/Protein Helix (left) -->
+  <g transform="translate(200, 215)">
+    <!-- Helix structure -->
+    <path d="M40 0 Q60 40 40 80 Q20 120 40 160 Q60 200 40 200" stroke="#3A4550" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M80 0 Q60 40 80 80 Q100 120 80 160 Q60 200 80 200" stroke="#3A4550" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <!-- Connecting bars -->
+    <line x1="40" y1="40" x2="80" y2="40" stroke="#3A4550" stroke-width="8" stroke-linecap="round"/>
+    <line x1="40" y1="100" x2="80" y2="100" stroke="#3A4550" stroke-width="8" stroke-linecap="round"/>
+    <line x1="40" y1="160" x2="80" y2="160" stroke="#3A4550" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Icon 2: Search/Magnifying Glass (center) -->
+  <g transform="translate(540, 215)">
+    <circle cx="70" cy="70" r="55" stroke="#3A4550" stroke-width="14" fill="none"/>
+    <line x1="115" y1="115" x2="170" y2="170" stroke="#3A4550" stroke-width="14" stroke-linecap="round"/>
+  </g>
+
+  <!-- Icon 3: Vector/Embedding arrows (right) -->
+  <g transform="translate(880, 215)">
+    <!-- Multiple arrows representing vectors -->
+    <path d="M20 100 L140 30" stroke="#3A4550" stroke-width="12" stroke-linecap="round"/>
+    <path d="M135 35 L140 30 L135 25" stroke="#3A4550" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <path d="M20 100 L140 100" stroke="#3A4550" stroke-width="12" stroke-linecap="round"/>
+    <path d="M135 105 L140 100 L135 95" stroke="#3A4550" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <path d="M20 100 L140 170" stroke="#3A4550" stroke-width="12" stroke-linecap="round"/>
+    <path d="M135 165 L140 170 L135 175" stroke="#3A4550" stroke-width="12" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Origin point -->
+    <circle cx="20" cy="100" r="12" fill="#3A4550"/>
+  </g>
+</svg>
