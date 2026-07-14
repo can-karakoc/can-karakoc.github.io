@@ -1,0 +1,311 @@
+@import "tailwindcss";
+
+/* ===================== FRUTIGER AERO DESIGN TOKENS ===================== */
+
+@theme inline {
+  /* === COLORS === */
+  /* Ink / Text */
+  --color-ink: #0A2540;
+  --color-ink-muted: #3A567A;
+
+  /* Cobalt Blues */
+  --color-cobalt: #1D4ED8;
+  --color-cobalt-bright: #2249B8;
+  --color-cobalt-deep: #1746B8;
+  --color-cobalt-darker: #122E8C;
+
+  /* Aqua / Cyan */
+  --color-aqua: #38BDF8;
+  --color-aqua-light: #7fd0f5;
+  --color-aqua-mid: #2b8fe0;
+  --color-aqua-teal: #0891B2;
+
+  /* Teal / Green */
+  --color-teal: #0D9488;
+  --color-green: #16A34A;
+  --color-green-bright: #22b573;
+
+  /* Indigo (project accents) */
+  --color-indigo: #4f7dff;
+  --color-indigo-purple: #6d5ef0;
+
+  /* Lime Spark */
+  --color-lime: #C6F135;
+
+  /* Surface Gradients */
+  --color-surface-white: #ffffff;
+  --color-surface-sky: #eef5ff;
+  --color-surface-blue: #e6f0fb;
+  --color-surface-projects: #e8eef7;
+
+  /* Browser Frame Darks */
+  --color-frame-dark: #0a1e3d;
+  --color-frame-darker: #0b1f3f;
+  --color-frame-chrome: #193565;
+  --color-frame-chrome-dark: #0f254a;
+
+  /* Glass Surfaces */
+  --color-glass-55: rgba(255, 255, 255, 0.55);
+  --color-glass-60: rgba(255, 255, 255, 0.6);
+  --color-glass-70: rgba(255, 255, 255, 0.7);
+  --color-glass-border: rgba(255, 255, 255, 0.9);
+
+  /* === TYPOGRAPHY === */
+  /* Fonts are loaded in layout.tsx */
+  --font-jakarta: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-plex: 'IBM Plex Mono', monospace;
+
+  /* === BORDER RADIUS === */
+  --radius-pill: 100px;
+  --radius-card: 26px;
+  --radius-panel: 32px;
+  --radius-browser: 11px;
+  --radius-lg: 28px;
+
+  /* === SHADOWS === */
+  /* Glass shadows */
+  --shadow-glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --shadow-glass-drop: 0 12px 30px -16px rgba(23, 70, 184, 0.4);
+  --shadow-glass-card: 0 34px 70px -46px rgba(23, 70, 184, 0.5);
+  --shadow-glass-card-hover: 0 62px 116px -52px rgba(23, 70, 184, 0.68);
+
+  /* Browser frame shadow */
+  --shadow-browser: 0 44px 60px -26px rgba(9, 22, 54, 0.62), 0 0 0 1px rgba(255, 255, 255, 0.55);
+
+  /* Button shadows */
+  --shadow-button-inset: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  --shadow-button-drop: 0 6px 16px -6px rgba(15, 40, 120, 0.85);
+
+  /* === ANIMATIONS / KEYFRAMES === */
+
+  /* Orb splash */
+  --animate-splash: splash 0.5s ease-out;
+
+  /* Aurora drift animations */
+  --animate-drift1: drift1 22s ease-in-out infinite;
+  --animate-drift2: drift2 26s ease-in-out infinite;
+  --animate-drift3: drift3 24s ease-in-out infinite;
+  --animate-drift4: drift1 28s ease-in-out infinite;
+
+  /* Decorative animations */
+  --animate-bob: bob 3s ease-in-out infinite;
+  --animate-shimmer: shimmer 4s ease-in-out infinite;
+  --animate-rise: rise 8s ease-in-out infinite;
+  --animate-glint: glint 2s ease-in-out infinite;
+  --animate-sheen: sheen 3s ease-in-out infinite;
+
+  /* CTA flowing gradient */
+  --animate-ctaflow: ctaflow 6s ease-in-out infinite;
+
+  /* Headline word entrance */
+  --animate-hword: hword 0.75s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+
+  /* === MOTION EASINGS === */
+  --ease-reveal: cubic-bezier(0.16, 0.8, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring-strong: cubic-bezier(0.34, 1.9, 0.5, 1);
+}
+
+/* ===================== KEYFRAME ANIMATIONS ===================== */
+
+@keyframes splash {
+  0% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(0.78);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.9);
+  }
+}
+
+@keyframes drift1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -26px) scale(1.14);
+  }
+}
+
+@keyframes drift2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-44px, 22px) scale(1.1);
+  }
+}
+
+@keyframes drift3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(26px, 34px) scale(1.18);
+  }
+}
+
+@keyframes bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-11px);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(30px) scale(0.5);
+    opacity: 0;
+  }
+  14% {
+    opacity: 0.9;
+  }
+  86% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateY(-320px) scale(1.12);
+    opacity: 0;
+  }
+}
+
+@keyframes glint {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sheen {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  55%, 100% {
+    transform: translateX(380%) skewX(-20deg);
+  }
+}
+
+@keyframes ctaflow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes hword {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ===================== GLOBAL STYLES ===================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #ffffff, #eef5ff 60%, #e6f0fb);
+  font-family: var(--font-jakarta);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===================== UTILITY CLASSES ===================== */
+
+/* Aero grid texture */
+.aero-grid {
+  background-image:
+    linear-gradient(rgba(29, 78, 216, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 78, 216, 0.09) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(
+    circle at 40% 42%,
+    transparent 22%,
+    rgba(0, 0, 0, 0.5) 58%,
+    #000 85%
+  );
+  mask-image: radial-gradient(
+    circle at 40% 42%,
+    transparent 22%,
+    rgba(0, 0, 0, 0.5) 58%,
+    #000 85%
+  );
+}
+
+/* Grain texture overlay */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Scroll reveal system */
+.reveal {
+  transition: opacity 0.7s var(--ease-reveal), transform 0.7s var(--ease-reveal);
+}
+
+html.armed .reveal:not(.in) {
+  opacity: 0.55;
+  transform: translateY(26px) scale(0.995);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Headline word entrance */
+.hword {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px) rotate(2deg);
+  animation: var(--animate-hword);
+}
+
+/* Springy hover effect (.mag) */
+.mag {
+  transition: transform 0.45s var(--ease-spring), box-shadow 0.3s ease;
+}
+
+.mag:hover {
+  transform: translateY(-4px) scale(1.06);
+}
+
+.mag:active {
+  transform: translateY(-1px) scale(0.98);
+  transition: transform 0.12s ease;
+}
+
+/* No-JS fallback - ensure content is always visible */
+html:not(.armed) .reveal {
+  opacity: 1;
+  transform: none;
+}
