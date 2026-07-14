@@ -6,7 +6,7 @@ import { LinkedInIcon, GitHubIcon } from '@/components/ui/SocialIcon';
 
 export function Contact() {
   return (
-    <section id="contact" className="relative z-10 px-6 py-20">
+    <section id="contact" className="relative px-6 py-20">
       <div className="max-w-[1160px] mx-auto">
         <ScrollReveal>
           <div

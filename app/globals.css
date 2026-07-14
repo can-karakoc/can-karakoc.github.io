@@ -228,7 +228,7 @@
 
 body {
   margin: 0;
-  background: linear-gradient(180deg, #ffffff, #eef5ff 60%, #e6f0fb);
+  background: #f5f7fa;
   font-family: var(--font-jakarta);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;

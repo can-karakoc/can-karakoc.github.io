@@ -51,7 +51,7 @@ export function Projects() {
   return (
     <section
       id="work"
-      className="relative z-10 py-20 pb-32"
+      className="relative py-20 pb-32"
       style={{
         background: 'var(--color-surface-projects)',
       }}

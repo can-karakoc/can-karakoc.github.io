@@ -5,7 +5,7 @@ import { ScrollReveal } from '@/components/animations';
 
 export function Resume() {
   return (
-    <section id="resume" className="relative z-10 px-6 py-5 pb-16">
+    <section id="resume" className="relative px-6 py-5 pb-16">
       <div className="max-w-[1160px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[22px] items-stretch">
           {/* Education Card */}

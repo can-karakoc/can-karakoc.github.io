@@ -16,7 +16,11 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative overflow-hidden px-6 pt-[158px] pb-[120px]"
+      className="relative overflow-hidden px-6 pt-[80px] pb-[120px] mb-12"
+      style={{
+        background: 'linear-gradient(180deg, #ffffff, #eef5ff 60%, #e6f0fb)',
+        boxShadow: '0 20px 40px -20px rgba(23, 70, 184, 0.15)',
+      }}
     >
       {/* Decorative Background Layers */}
       <div
@@ -25,7 +29,7 @@ export function Hero() {
       >
         {/* Blue wash gradient at top */}
         <div
-          className="absolute inset-x-0 top-0 h-[600px]"
+          className="absolute inset-x-0 top-0 bottom-0"
           style={{
             background:
               'linear-gradient(180deg, rgba(29,78,216,0.14), rgba(56,189,248,0.05) 40%, transparent 62%)',
@@ -36,7 +40,7 @@ export function Hero() {
         <div
           className="absolute opacity-50"
           style={{
-            top: '120px',
+            top: '20%',
             left: '50%',
             transform: 'translateX(-50%)',
             width: '800px',
@@ -60,7 +64,7 @@ export function Hero() {
           }}
         />
 
-        {/* Aero grid overlay */}
+        {/* Aero grid overlay - FULL COVERAGE */}
         <div className="absolute inset-0 aero-grid" />
 
         {/* Grain overlay */}
@@ -68,9 +72,10 @@ export function Hero() {
 
         {/* Diagonal shimmer animation */}
         <div
-          className="absolute w-32 h-[800px] opacity-0"
+          className="absolute w-32 opacity-0"
           style={{
-            top: '-200px',
+            top: '0',
+            bottom: '0',
             left: '30%',
             background:
               'linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.6) 50%, transparent 100%)',
