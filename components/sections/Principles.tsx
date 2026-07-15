@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { ScrollReveal } from '@/components/animations';
 import { Badge } from '@/components/ui';
@@ -48,17 +48,21 @@ export function Principles() {
   };
 
   return (
-    <>
+    <div className="pt-32 pb-32 min-h-screen flex flex-col justify-center">
       {/* Header */}
       <ScrollReveal>
-        <div
-          className="font-semibold text-xs tracking-[0.2em] uppercase mb-12"
-          style={{
-            fontFamily: 'var(--font-plex)',
-            color: 'var(--color-cobalt)',
-          }}
-        >
-          MY ENGINEERING PRINCIPLES
+        <div className="flex justify-center mb-12">
+          <div
+            className="inline-flex items-center px-4 py-2 rounded-full font-semibold text-xs tracking-[0.15em] uppercase"
+            style={{
+              fontFamily: 'var(--font-plex)',
+              color: '#ffffff',
+              background: 'var(--color-cobalt)',
+              boxShadow: '0 4px 12px -4px rgba(23, 70, 184, 0.4)',
+            }}
+          >
+            MY ENGINEERING PRINCIPLES
+          </div>
         </div>
       </ScrollReveal>
 
@@ -95,7 +99,7 @@ export function Principles() {
                   boxShadow: isExpanded
                     ? `0 40px 80px -20px rgba(0, 0, 0, 0.5), 0 0 0 1px ${principle.color}20`
                     : `0 20px 40px -15px rgba(0, 0, 0, 0.3), 0 0 0 1px ${principle.color}15`,
-                  height: '240px',
+                  height: '320px',
                 }}
               >
                 {/* Center glow */}
@@ -187,6 +191,6 @@ export function Principles() {
           })}
         </div>
       </ScrollReveal>
-    </>
+    </div>
   );
 }

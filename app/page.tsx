@@ -1,4 +1,4 @@
-import { AuroraBackground, ScrollTransition } from '@/components/animations';
+import { AuroraBackground } from '@/components/animations';
 import {
   Navigation,
   Hero,
@@ -14,9 +14,7 @@ export default function Home() {
         <Navigation />
         <main>
           <Hero />
-          <ScrollTransition variant="waves" />
           <Projects />
-          <ScrollTransition variant="fade" />
         </main>
         <Footer />
       </div>

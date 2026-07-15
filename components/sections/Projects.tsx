@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { Project } from './ProjectCard';
 import { ScrollReveal } from '@/components/animations';
@@ -50,30 +50,62 @@ const projects: Project[] = [
 ];
 
 export function Projects() {
+  const sectionRef = React.useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end end"]
+  });
+
+  // Gradient grows upward as you scroll down
+  const gradientHeight = useTransform(scrollYProgress, [0.5, 1], ['0vh', '150vh']);
+  const gradientOpacity = useTransform(scrollYProgress, [0.5, 0.7, 1], [0, 0.8, 1]);
+
   return (
     <section
+      ref={sectionRef}
       id="work"
-      className="relative py-20 pb-20"
+      className="relative py-20 pb-20 overflow-visible"
       style={{
         background: '#ffffff',
       }}
     >
+      {/* Blue gradient that grows upward behind footer */}
+      <motion.div
+        className="absolute left-0 right-0 bottom-0 pointer-events-none z-0"
+        style={{
+          height: gradientHeight,
+          opacity: gradientOpacity,
+        }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to top, rgba(29, 78, 216, 0.12), rgba(56, 189, 248, 0.08) 40%, transparent 70%)',
+            filter: 'blur(80px)',
+          }}
+        />
+      </motion.div>
       <div className="max-w-[1160px] mx-auto px-6">
         {/* Principles Section */}
-        <div className="mb-20">
+        <div>
           <Principles />
         </div>
 
         {/* Section eyebrow */}
         <ScrollReveal>
-          <div
-            className="font-semibold text-xs tracking-[0.2em] uppercase mb-12"
-            style={{
-              fontFamily: 'var(--font-plex)',
-              color: 'var(--color-cobalt)',
-            }}
-          >
-            PLAYGROUND
+          <div className="flex justify-center mb-12">
+            <div
+              className="inline-flex items-center px-4 py-2 rounded-full font-semibold text-xs tracking-[0.15em] uppercase"
+              style={{
+                fontFamily: 'var(--font-plex)',
+                color: '#ffffff',
+                background: 'var(--color-cobalt)',
+                boxShadow: '0 4px 12px -4px rgba(23, 70, 184, 0.4)',
+              }}
+            >
+              PLAYGROUND
+            </div>
           </div>
         </ScrollReveal>
 
