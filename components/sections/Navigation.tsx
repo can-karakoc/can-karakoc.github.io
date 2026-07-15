@@ -17,7 +17,7 @@ export function Navigation() {
         }}
       >
         {/* Logo */}
-        <a href="#top" className="flex items-center gap-3 no-underline">
+        <a href="/" className="flex items-center gap-3 no-underline">
           <OrbLogo size={34} />
           <span
             className="font-extrabold text-[21px] leading-none"
@@ -46,7 +46,7 @@ export function Navigation() {
             About
           </a>
           <a
-            href="#contact"
+            href="/contact"
             className="text-[var(--color-ink)] hover:text-[var(--color-cobalt)] transition-colors duration-200 no-underline"
           >
             Contact

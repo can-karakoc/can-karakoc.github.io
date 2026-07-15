@@ -479,3 +479,21 @@ html:not(.armed) .reveal {
   opacity: 1;
   transform: none;
 }
+
+/* ASCII Matrix Rain Animation */
+@keyframes matrixRain {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.2;
+  }
+  90% {
+    opacity: 0.15;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}

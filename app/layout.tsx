@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/SmoothScroll";
+import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -40,7 +40,7 @@ export default function RootLayout({
       className={`${jakarta.variable} ${plexMono.variable}`}
     >
       <body>
-        <SmoothScroll>{children}</SmoothScroll>
+        <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
   );

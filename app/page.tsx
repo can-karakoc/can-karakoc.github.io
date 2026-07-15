@@ -1,10 +1,10 @@
-import { AuroraBackground } from '@/components/animations';
+import { AuroraBackground, ScrollTransition } from '@/components/animations';
 import {
   Navigation,
   Hero,
   Footer,
+  Projects,
 } from '@/components/sections';
-import { ProjectsWaterfall } from '@/components/sections/Projects.waterfall';
 
 export default function Home() {
   return (
@@ -14,7 +14,9 @@ export default function Home() {
         <Navigation />
         <main>
           <Hero />
-          <ProjectsWaterfall />
+          <ScrollTransition variant="waves" />
+          <Projects />
+          <ScrollTransition variant="fade" />
         </main>
         <Footer />
       </div>

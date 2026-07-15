@@ -1,21 +1,89 @@
 'use client';
 
-import { Badge } from '@/components/ui';
+import { ProjectCard, Project } from './ProjectCard';
 import { ScrollReveal } from '@/components/animations';
-import { LinkedInIcon, GitHubIcon } from '@/components/ui/SocialIcon';
+import { Badge } from '@/components/ui';
 
-export function Contact() {
+const projects: Project[] = [
+  {
+    id: 'protein-explorer',
+    title: 'Protein Interaction Explorer',
+    category: 'Full-stack',
+    categoryColor: 'var(--color-cobalt)',
+    description:
+      'Parse, visualize & compare protein structures — AlphaFold coloring, contact detection, exportable reports.',
+    link: 'https://protein-io.vercel.app/',
+    gradientBg: 'linear-gradient(150deg, #4f7dff, #38bdf8)',
+    screenshot: '/protein-explorer.png',
+  },
+  {
+    id: 'embedding-search',
+    title: 'Embedding Similarity Search',
+    category: 'Machine Learning',
+    categoryColor: 'var(--color-aqua-teal)',
+    description:
+      'Find biologically similar proteins from a sequence via embeddings and vector search.',
+    link: 'https://frontend-five-dusky-60.vercel.app/',
+    gradientBg: 'linear-gradient(150deg, #38bdf8, #0891b2)',
+  },
+  {
+    id: 'lentivirus-search',
+    title: 'Lentivirus Gene Search',
+    category: 'Genomics',
+    categoryColor: 'var(--color-teal)',
+    description:
+      'An interactive genome browser for HIV-1/2 & SIV with 3D protein models.',
+    link: 'https://jordanklanfer.github.io/static_jbrowse/',
+    gradientBg: 'linear-gradient(150deg, #22b573, #0d9488)',
+  },
+  {
+    id: 'energy-emissions',
+    title: 'Energy & Carbon Emissions',
+    category: 'Data Science',
+    categoryColor: 'var(--color-cobalt-deep)',
+    description:
+      'Predicting renewable output and estimating price→emissions causal impact.',
+    link: 'https://github.com/can-karakoc/data102-final-proj',
+    gradientBg: 'linear-gradient(150deg, #4f7dff, #6d5ef0)',
+  },
+];
+
+export function Projects() {
   return (
     <section
-      id="contact"
-      className="relative px-6 py-20 min-h-[80vh] flex items-center"
+      id="work"
+      className="relative py-20 pb-20"
       style={{
         background: 'linear-gradient(180deg, #ffffff, #eef5ff 40%, #e6f0fb)',
       }}
     >
-      <div className="max-w-[1160px] mx-auto">
+      <div className="max-w-[1160px] mx-auto px-6">
+        {/* Section eyebrow */}
         <ScrollReveal>
           <div
+            className="font-semibold text-xs tracking-[0.2em] uppercase mb-12"
+            style={{
+              fontFamily: 'var(--font-plex)',
+              color: 'var(--color-cobalt)',
+            }}
+          >
+            PLAYGROUND
+          </div>
+        </ScrollReveal>
+
+        {/* Projects Grid - All same size */}
+        <div className="grid grid-cols-2 gap-6 mb-48" style={{ overflow: 'visible' }}>
+          {projects.map((project, index) => (
+            <ScrollReveal key={project.id} delay={index * 0.1}>
+              <ProjectCard project={project} />
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {/* Contact Card - Integrated */}
+        <ScrollReveal>
+          <div
+            id="contact"
             className="relative overflow-hidden rounded-[32px] px-10 py-[90px] text-center"
             style={{
               background: 'linear-gradient(180deg, #ffffff, #eef5ff 60%, #e6f0fb)',
@@ -74,8 +142,18 @@ export function Contact() {
                 }}
               />
 
-              {/* Aero grid overlay */}
-              <div className="absolute inset-0 aero-grid" />
+              {/* Aero grid overlay - centered */}
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(rgba(29, 78, 216, 0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(29, 78, 216, 0.09) 1px, transparent 1px)',
+                  backgroundSize: '46px 46px',
+                  backgroundPosition: 'center center',
+                  maskImage: 'radial-gradient(circle at 50% 50%, transparent 20%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.9) 80%)',
+                  WebkitMaskImage: 'radial-gradient(circle at 50% 50%, transparent 20%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.9) 80%)',
+                }}
+              />
 
               {/* Animated Grain overlay with blue tint */}
               <div
