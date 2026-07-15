@@ -8,7 +8,7 @@ interface GradientTextProps {
 export function GradientText({ children, className = '' }: GradientTextProps) {
   return (
     <span
-      className={`bg-gradient-to-br from-[var(--color-cobalt)] via-[var(--color-aqua-teal)] to-[var(--color-green)] bg-clip-text text-transparent ${className}`}
+      className={`bg-gradient-to-br from-[var(--color-cobalt)] via-[var(--color-aqua)] to-[var(--color-aqua-teal)] bg-clip-text text-transparent ${className}`}
       style={{
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',

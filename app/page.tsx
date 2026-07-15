@@ -2,11 +2,9 @@ import { AuroraBackground } from '@/components/animations';
 import {
   Navigation,
   Hero,
-  Projects,
-  Resume,
-  Contact,
   Footer,
 } from '@/components/sections';
+import { ProjectsWaterfall } from '@/components/sections/Projects.waterfall';
 
 export default function Home() {
   return (
@@ -16,9 +14,7 @@ export default function Home() {
         <Navigation />
         <main>
           <Hero />
-          <Projects />
-          <Resume />
-          <Contact />
+          <ProjectsWaterfall />
         </main>
         <Footer />
       </div>

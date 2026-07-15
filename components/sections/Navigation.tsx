@@ -6,7 +6,7 @@ export function Navigation() {
   return (
     <div className="sticky top-4 z-50 px-6 flex justify-center">
       <nav
-        className="w-full max-w-[1160px] flex items-center justify-between px-4 py-2.5 rounded-[var(--radius-pill)]"
+        className="w-full max-w-[1160px] flex items-center justify-between px-6 py-2.5 rounded-[var(--radius-pill)]"
         style={{
           background: 'var(--color-glass-55)',
           backdropFilter: 'blur(18px) saturate(1.4)',
@@ -37,7 +37,7 @@ export function Navigation() {
             href="#work"
             className="text-[var(--color-ink)] hover:text-[var(--color-cobalt)] transition-colors duration-200 no-underline"
           >
-            Work
+            Projects
           </a>
           <a
             href="/about"
@@ -46,29 +46,9 @@ export function Navigation() {
             About
           </a>
           <a
-            href="#resume"
+            href="#contact"
             className="text-[var(--color-ink)] hover:text-[var(--color-cobalt)] transition-colors duration-200 no-underline"
           >
-            Résumé
-          </a>
-
-          {/* Contact Button */}
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-[var(--radius-pill)] text-white no-underline mag"
-            style={{
-              background: 'linear-gradient(180deg, #2249B8, #122E8C)',
-              boxShadow:
-                'inset 0 1px 0 rgba(255,255,255,0.35), 0 6px 16px -6px rgba(15,40,120,0.85)',
-            }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full animate-pulse"
-              style={{
-                background: 'var(--color-lime)',
-                boxShadow: '0 0 8px 1px rgba(198,241,53,0.9)',
-              }}
-            />
             Contact
           </a>
         </div>
