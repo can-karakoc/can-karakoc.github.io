@@ -1,4 +1,4 @@
-import { Navigation, Footer } from '@/components/sections';
+import { Navigation, Footer, Principles } from '@/components/sections';
 import { AuroraBackground } from '@/components/animations';
 import { GlassCard } from '@/components/ui';
 
@@ -41,6 +41,11 @@ export default function About() {
                 Content coming soon!
               </p>
             </GlassCard>
+          </div>
+
+          {/* Engineering principles (moved from the landing page) */}
+          <div className="max-w-[1160px] mx-auto">
+            <Principles />
           </div>
         </main>
         <Footer />

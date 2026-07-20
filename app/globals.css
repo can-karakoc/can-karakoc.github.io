@@ -32,6 +32,9 @@
   /* Lime Spark */
   --color-lime: #C6F135;
 
+  /* Pink */
+  --color-pink: #EC4899;
+
   /* Surface Gradients */
   --color-surface-white: #ffffff;
   --color-surface-sky: #eef5ff;
@@ -168,16 +171,49 @@
   0% {
     transform: translateY(30px) scale(0.5);
     opacity: 0;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
   14% {
     opacity: 0.9;
   }
-  86% {
+  84% {
+    transform: translateY(-300px) scale(1.05);
     opacity: 0.55;
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+  /* Pop: quick outward burst + expanding ring, like a real bubble bursting */
+  92% {
+    transform: translateY(-314px) scale(1.35);
+    opacity: 0.45;
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.35);
   }
   100% {
-    transform: translateY(-320px) scale(1.12);
+    transform: translateY(-320px) scale(1.7);
     opacity: 0;
+    box-shadow: 0 0 0 18px rgba(255, 255, 255, 0);
+  }
+}
+
+/* Organic wobble for the glass distortion bubbles. Animates border-radius
+   (reliably animatable in every browser) rather than backdrop-filter -
+   animated backdrop-filter is broadly unsupported/choppy even where the
+   static property itself works fine, so it never visibly moved. */
+@keyframes blob-wobble {
+  0%, 100% {
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    border-radius: 46% 54% 52% 48% / 54% 48% 52% 46%;
+    transform: scale(1.04) rotate(3deg);
+  }
+  50% {
+    border-radius: 54% 46% 48% 52% / 48% 54% 46% 52%;
+    transform: scale(0.97) rotate(-2deg);
+  }
+  75% {
+    border-radius: 48% 52% 54% 46% / 52% 46% 54% 48%;
+    transform: scale(1.03) rotate(2deg);
   }
 }
 
@@ -217,6 +253,15 @@
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
   }
 }
 

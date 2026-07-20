@@ -1,5 +1,4 @@
 <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="400" height="400" rx="12" fill="#4F003B"/>
 <g filter="url(#filter0_ii_136_360)">
 <circle cx="200" cy="148.8" r="76.8" fill="url(#paint0_linear_136_360)"/>
 </g>
@@ -78,20 +77,20 @@
 <feBlend mode="normal" in2="effect1_innerShadow_136_360" result="effect2_innerShadow_136_360"/>
 </filter>
 <linearGradient id="paint0_linear_136_360" x1="200" y1="44.2667" x2="200" y2="261.867" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FF8DE2" stop-opacity="0.6"/>
-<stop offset="1" stop-color="#FF8DE2" stop-opacity="0"/>
+<stop stop-color="#EC4899" stop-opacity="0.5"/>
+<stop offset="1" stop-color="#EC4899" stop-opacity="0.2"/>
 </linearGradient>
 <linearGradient id="paint1_linear_136_360" x1="200" y1="146.667" x2="200" y2="364.267" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FF8DE2" stop-opacity="0.6"/>
-<stop offset="1" stop-color="#FF8DE2" stop-opacity="0"/>
+<stop stop-color="#EC4899" stop-opacity="0.5"/>
+<stop offset="1" stop-color="#EC4899" stop-opacity="0.2"/>
 </linearGradient>
 <linearGradient id="paint2_linear_136_360" x1="148.8" y1="95.4655" x2="148.8" y2="313.065" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FF8DE2" stop-opacity="0.6"/>
-<stop offset="1" stop-color="#FF8DE2" stop-opacity="0"/>
+<stop stop-color="#EC4899" stop-opacity="0.5"/>
+<stop offset="1" stop-color="#EC4899" stop-opacity="0.2"/>
 </linearGradient>
 <linearGradient id="paint3_linear_136_360" x1="251.2" y1="95.4655" x2="251.2" y2="313.065" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FF8DE2" stop-opacity="0.6"/>
-<stop offset="1" stop-color="#FF8DE2" stop-opacity="0"/>
+<stop stop-color="#EC4899" stop-opacity="0.5"/>
+<stop offset="1" stop-color="#EC4899" stop-opacity="0.2"/>
 </linearGradient>
 </defs>
 </svg>

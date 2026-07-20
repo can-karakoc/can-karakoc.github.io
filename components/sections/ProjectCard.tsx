@@ -11,6 +11,8 @@ export interface Project {
   title: string;
   category: string;
   categoryColor: string;
+  hoverGradient?: string;
+  gridColor?: string;
   description: string;
   link: string;
   gradientBg: string;

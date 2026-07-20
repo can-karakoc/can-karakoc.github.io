@@ -12,8 +12,9 @@ const principles = [
     title: 'Research-Driven',
     description:
       'I prioritize understanding users and their needs, using research and data to inform design decisions that simplify complex processes.',
-    color: '#C6F135',
-    bgColor: '#011722',
+    color: '#0891B2', // Aqua teal
+    accentColor: '#38BDF8', // Bright aqua
+    bgGradient: 'linear-gradient(135deg, rgba(8, 145, 178, 0.12), rgba(56, 189, 248, 0.08))',
     icon: '/RESEARCH.svg',
   },
   {
@@ -21,8 +22,9 @@ const principles = [
     title: 'Product-Focused',
     description:
       'My designs aim to solve real problems, creating interfaces that streamline complexity while aligning with business goals.',
-    color: '#E879F9',
-    bgColor: '#4F003B',
+    color: '#EC4899', // Pink
+    accentColor: '#F472B6', // Light pink
+    bgGradient: 'linear-gradient(135deg, rgba(236, 72, 153, 0.12), rgba(244, 114, 182, 0.08))',
     icon: '/PRODUCT.svg',
   },
   {
@@ -30,8 +32,9 @@ const principles = [
     title: 'User-Centric',
     description:
       'I focus on outcomes, ensuring that each design decision leads to actionable, effective solutions that enhance usability and satisfaction.',
-    color: '#FCD34D',
-    bgColor: '#2C2B05',
+    color: '#C6F135', // Lime spark
+    accentColor: '#16A34A', // Green
+    bgGradient: 'linear-gradient(135deg, rgba(198, 241, 53, 0.12), rgba(22, 163, 74, 0.08))',
     icon: '/USER.svg',
   },
 ];
@@ -80,7 +83,7 @@ export function Principles() {
               <motion.div
                 key={principle.id}
                 onClick={() => handleClick(principle.id)}
-                className="cursor-pointer relative overflow-hidden rounded-[16px] flex-shrink-0"
+                className="cursor-pointer relative overflow-hidden rounded-[24px] flex-shrink-0"
                 initial={false}
                 animate={{
                   width: isExpanded ? expandedWidth : collapsedWidth,
@@ -94,19 +97,29 @@ export function Principles() {
                   transition: { duration: 0.3, ease: 'easeOut' }
                 }}
                 style={{
-                  background: principle.bgColor,
-                  border: 'none',
+                  background: 'rgba(255, 255, 255, 0.75)',
+                  backdropFilter: 'blur(20px) saturate(1.3)',
+                  WebkitBackdropFilter: 'blur(20px) saturate(1.3)',
+                  border: `2px solid rgba(255, 255, 255, 0.9)`,
                   boxShadow: isExpanded
-                    ? `0 40px 80px -20px rgba(0, 0, 0, 0.5), 0 0 0 1px ${principle.color}20`
-                    : `0 20px 40px -15px rgba(0, 0, 0, 0.3), 0 0 0 1px ${principle.color}15`,
-                  height: '320px',
+                    ? `0 40px 80px -20px rgba(23, 70, 184, 0.35), inset 0 2px 0 rgba(255,255,255,0.95), 0 0 0 1px ${principle.color}25`
+                    : `0 20px 40px -15px rgba(23, 70, 184, 0.25), inset 0 2px 0 rgba(255,255,255,0.9), 0 0 0 1px ${principle.color}15`,
+                  height: '260px',
                 }}
               >
+                {/* Gradient background overlay */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: principle.bgGradient,
+                  }}
+                />
+
                 {/* Center glow */}
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{
-                    background: `radial-gradient(ellipse at center, ${principle.color}15, transparent 60%)`,
+                    background: `radial-gradient(ellipse at center, ${principle.accentColor}20, transparent 65%)`,
                   }}
                 />
 
@@ -116,37 +129,49 @@ export function Principles() {
                   style={{
                     backgroundImage:
                       `linear-gradient(${principle.color}25 1px, transparent 1px), linear-gradient(90deg, ${principle.color}25 1px, transparent 1px)`,
-                    backgroundSize: '24px 24px',
-                    maskImage: 'linear-gradient(to top, black 0%, black 30%, transparent 60%)',
-                    WebkitMaskImage: 'linear-gradient(to top, black 0%, black 30%, transparent 60%)',
+                    backgroundSize: '20px 20px',
+                    maskImage: 'linear-gradient(to top, black 0%, black 25%, transparent 55%)',
+                    WebkitMaskImage: 'linear-gradient(to top, black 0%, black 25%, transparent 55%)',
                     opacity: 0.2,
                   }}
                 />
 
-                <div className="relative h-full flex items-center justify-center px-6 py-8">
-                  <div className="flex items-center gap-6 w-full">
+                <div className="relative h-full flex items-center px-6 py-8" style={{ justifyContent: isExpanded ? 'flex-start' : 'center' }}>
+                  <div className="flex items-center gap-6" style={{ width: isExpanded ? '100%' : 'auto' }}>
                     {/* Icon - always visible */}
                     <motion.div
                       className="relative flex-shrink-0"
                       initial={false}
                       animate={{
-                        width: isExpanded ? 96 : 80,
-                        height: isExpanded ? 96 : 80,
+                        width: isExpanded ? 130 : 110,
+                        height: isExpanded ? 130 : 110,
                       }}
                       transition={{
                         duration: 0.5,
                         ease: [0.22, 1, 0.36, 1],
                       }}
                     >
-                      <Image
-                        src={principle.icon}
-                        alt={principle.title}
-                        fill
-                        className="object-contain"
+                      {/* Blur backdrop behind icon */}
+                      <div
+                        className="absolute inset-0 rounded-full"
                         style={{
-                          filter: `drop-shadow(0 0 20px ${principle.color}60)`,
+                          background: `radial-gradient(circle, ${principle.color}08, transparent 70%)`,
+                          filter: 'blur(20px)',
+                          transform: 'scale(1.2)',
                         }}
                       />
+                      {/* Icon */}
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={principle.icon}
+                          alt={principle.title}
+                          fill
+                          className="object-contain"
+                          style={{
+                            filter: `drop-shadow(0 4px 16px ${principle.color}50)`,
+                          }}
+                        />
+                      </div>
                     </motion.div>
 
                     {/* Text Content - fades in when expanded */}
@@ -168,7 +193,7 @@ export function Principles() {
                       <h3
                         className="font-extrabold leading-tight mb-4"
                         style={{
-                          color: '#ffffff',
+                          color: 'var(--color-ink)',
                           letterSpacing: '-0.03em',
                           fontSize: '32px',
                         }}
@@ -178,7 +203,7 @@ export function Principles() {
                       <p
                         className="text-[17px] leading-relaxed"
                         style={{
-                          color: 'rgba(255, 255, 255, 0.85)',
+                          color: 'var(--color-ink-muted)',
                         }}
                       >
                         {principle.description}
