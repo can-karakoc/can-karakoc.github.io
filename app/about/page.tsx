@@ -134,47 +134,49 @@ export default function About() {
                     </div>
                   </motion.a>
 
-                  {/* Hobbies Card - Warm gradient */}
+                  {/* Hobbies Card - Grid layout with emojis */}
                   <motion.div
                     className="p-8 rounded-3xl"
                     whileHover={{ scale: 1.05, y: -4 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
-                      background: 'linear-gradient(135deg, #F9F7F3 0%, #FFF8E8 100%)',
-                      border: '1px solid rgba(231, 241, 168, 0.4)',
-                      boxShadow: '0 8px 24px -12px rgba(231, 241, 168, 0.3)',
+                      background: '#FFFFFF',
+                      border: '1px solid rgba(124, 185, 232, 0.15)',
+                      boxShadow: '0 8px 24px -12px rgba(0, 0, 0, 0.08)',
                     }}
                   >
                     <p
                       className="text-xs font-bold mb-6 tracking-wider"
                       style={{
                         fontFamily: 'var(--font-plex)',
-                        color: 'var(--color-lime)',
+                        color: 'var(--color-cobalt)',
                       }}
                     >
                       HOBBIES
                     </p>
-                    <div className="space-y-3">
+                    <div className="grid grid-cols-2 gap-4">
                       {[
                         { emoji: '🎨', text: 'Design' },
                         { emoji: '📸', text: 'Photography' },
                         { emoji: '🥾', text: 'Hiking' },
-                        { emoji: '💡', text: 'Product Ideas' },
-                        { emoji: '🌐', text: 'Web Design' },
-                      ].map((hobby, idx) => (
+                        { emoji: '💡', text: 'Ideas' },
+                        { emoji: '🌐', text: 'Web' },
+                      ].slice(0, 4).map((hobby, idx) => (
                         <motion.div
                           key={hobby.text}
-                          className="flex items-center gap-3"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
+                          className="flex flex-col items-center justify-center p-3 rounded-2xl"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
                           transition={{ delay: idx * 0.05 }}
+                          style={{
+                            background: 'rgba(124, 185, 232, 0.05)',
+                          }}
                         >
-                          <span className="text-xl">{hobby.emoji}</span>
+                          <span className="text-2xl mb-2">{hobby.emoji}</span>
                           <span
-                            className="font-medium"
+                            className="font-medium text-xs"
                             style={{
                               color: 'var(--color-ink)',
-                              fontSize: '15px',
                             }}
                           >
                             {hobby.text}
@@ -184,17 +186,27 @@ export default function About() {
                     </div>
                   </motion.div>
 
-                  {/* Focus Card - Teal gradient */}
+                  {/* Focus Card - Green comp bio gradient with grid */}
                   <motion.div
-                    className="md:col-span-2 p-8 rounded-3xl group"
+                    className="md:col-span-2 p-8 rounded-3xl group relative overflow-hidden"
                     whileHover={{ scale: 1.02, y: -6 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
-                      background: 'linear-gradient(135deg, #5C9A92 0%, #6BB2BC 100%)',
+                      background: 'linear-gradient(135deg, #6FAF85 0%, #5C9A92 100%)',
                       border: '1px solid rgba(255, 255, 255, 0.2)',
-                      boxShadow: '0 20px 40px -20px rgba(92, 154, 146, 0.4)',
+                      boxShadow: '0 20px 40px -20px rgba(111, 175, 133, 0.4)',
                     }}
                   >
+                    {/* Aero grid overlay */}
+                    <div
+                      className="absolute inset-0 opacity-20"
+                      style={{
+                        backgroundImage:
+                          'linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px)',
+                        backgroundSize: '40px 40px',
+                      }}
+                    />
+                    <div className="relative z-10">
                     <p
                       className="text-xs font-bold mb-4 tracking-wider"
                       style={{
@@ -213,12 +225,13 @@ export default function About() {
                     >
                       Machine Learning &<br/>Computational Biology
                     </h3>
-                    <p
-                      className="text-[16px] leading-relaxed"
-                      style={{ color: 'rgba(255, 255, 255, 0.9)' }}
-                    >
-                      Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
-                    </p>
+                      <p
+                        className="text-[16px] leading-relaxed"
+                        style={{ color: 'rgba(255, 255, 255, 0.9)' }}
+                      >
+                        Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
+                      </p>
+                    </div>
                   </motion.div>
                 </div>
               </ScrollReveal>
