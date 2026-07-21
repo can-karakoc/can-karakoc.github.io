@@ -125,6 +125,57 @@ export default function About() {
                     </div>
                   </motion.a>
 
+                  {/* Hobbies Card - List layout */}
+                  <motion.div
+                    className="p-8 rounded-3xl"
+                    whileHover={{ scale: 1.05, y: -4 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.8)',
+                      border: '1px solid rgba(124, 185, 232, 0.2)',
+                      backdropFilter: 'blur(10px)',
+                      boxShadow: '0 4px 20px -8px rgba(124, 185, 232, 0.15)',
+                    }}
+                  >
+                    <p
+                      className="text-xs font-bold mb-6 tracking-wider"
+                      style={{
+                        fontFamily: 'var(--font-plex)',
+                        color: 'var(--color-lime)',
+                      }}
+                    >
+                      HOBBIES
+                    </p>
+                    <div className="space-y-3">
+                      {[
+                        { emoji: '🎨', text: 'Design' },
+                        { emoji: '📸', text: 'Photography' },
+                        { emoji: '🥾', text: 'Hiking' },
+                        { emoji: '💡', text: 'Product Ideas' },
+                        { emoji: '🌐', text: 'Web Design' },
+                      ].map((hobby, idx) => (
+                        <motion.div
+                          key={hobby.text}
+                          className="flex items-center gap-3"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: idx * 0.05 }}
+                        >
+                          <span className="text-xl">{hobby.emoji}</span>
+                          <span
+                            className="font-medium"
+                            style={{
+                              color: 'var(--color-ink)',
+                              fontSize: '15px',
+                            }}
+                          >
+                            {hobby.text}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+
                   {/* Focus Card - Larger, spans 2 columns */}
                   <motion.div
                     className="md:col-span-2 p-8 rounded-3xl group"
@@ -145,66 +196,21 @@ export default function About() {
                     >
                       FOCUS
                     </p>
-                    <motion.h3
+                    <h3
                       className="font-extrabold mb-4 text-white"
                       style={{
                         fontSize: 'clamp(28px, 3vw, 42px)',
                         letterSpacing: '-0.02em',
                       }}
-                      whileHover={{ x: 6 }}
                     >
                       Machine Learning &<br/>Computational Biology
-                    </motion.h3>
+                    </h3>
                     <p
                       className="text-[16px] leading-relaxed"
                       style={{ color: 'rgba(255, 255, 255, 0.9)' }}
                     >
                       Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
                     </p>
-                  </motion.div>
-
-                  {/* Interests Card - Smaller, interactive pills */}
-                  <motion.div
-                    className="p-8 rounded-3xl"
-                    whileHover={{ scale: 1.05, y: -4 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.8)',
-                      border: '1px solid rgba(124, 185, 232, 0.2)',
-                      backdropFilter: 'blur(10px)',
-                      boxShadow: '0 4px 20px -8px rgba(124, 185, 232, 0.15)',
-                    }}
-                  >
-                    <p
-                      className="text-xs font-bold mb-4 tracking-wider"
-                      style={{
-                        fontFamily: 'var(--font-plex)',
-                        color: 'var(--color-lime)',
-                      }}
-                    >
-                      BEYOND CODE
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {['Design', 'Photography', 'Hiking', 'Product Ideas', 'Web Design'].map((interest, idx) => (
-                        <motion.span
-                          key={interest}
-                          className="px-4 py-2 rounded-full text-xs font-medium cursor-default"
-                          whileHover={{ scale: 1.15, rotate: 2 }}
-                          whileTap={{ scale: 0.95 }}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: idx * 0.05 }}
-                          style={{
-                            fontFamily: 'var(--font-plex)',
-                            color: 'var(--color-ink)',
-                            background: 'rgba(124, 185, 232, 0.1)',
-                            border: '1px solid rgba(124, 185, 232, 0.2)',
-                          }}
-                        >
-                          {interest}
-                        </motion.span>
-                      ))}
-                    </div>
                   </motion.div>
                 </div>
               </ScrollReveal>
