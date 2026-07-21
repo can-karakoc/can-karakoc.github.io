@@ -12,7 +12,49 @@ export function Contact() {
     >
 
       <div className="relative z-10 max-w-[1160px] mx-auto w-full">
+        {/* Header Section */}
         <ScrollReveal>
+          <div className="text-center mb-12">
+            {/* Reach Out Badge */}
+            <div className="flex justify-center mb-6">
+              <span
+                className="px-6 py-2 rounded-full text-sm font-semibold"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.7)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(124, 185, 232, 0.3)',
+                  color: 'var(--color-ink)',
+                }}
+              >
+                Reach Out
+              </span>
+            </div>
+
+            {/* Main Heading */}
+            <h1
+              className="font-extrabold leading-tight mb-4"
+              style={{
+                fontSize: 'clamp(48px, 8vw, 96px)',
+                letterSpacing: '-0.04em',
+                color: 'var(--color-ink)',
+              }}
+            >
+              Let's connect!
+            </h1>
+
+            {/* Subtitle */}
+            <p
+              className="text-xl max-w-2xl mx-auto"
+              style={{
+                color: 'var(--color-ink-muted)',
+              }}
+            >
+              I would love to connect and build something together.
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.1}>
           <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 items-start">
             {/* Socials Sidebar - LEFT */}
             <div className="flex flex-col gap-3">
@@ -93,24 +135,6 @@ export function Contact() {
                 border: '1px solid rgba(255, 255, 255, 0.8)',
               }}
             >
-              <h2
-                className="font-extrabold leading-tight mb-2"
-                style={{
-                  fontSize: 'clamp(28px, 3.5vw, 42px)',
-                  letterSpacing: '-0.035em',
-                  color: 'var(--color-ink)',
-                }}
-              >
-                Get in Touch
-              </h2>
-              <p
-                className="text-base mb-6"
-                style={{
-                  color: 'var(--color-ink-muted)',
-                }}
-              >
-                Have a project or idea? Let's talk.
-              </p>
 
               <form
                 action={`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xdkozkoj'}`}
