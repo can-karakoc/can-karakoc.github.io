@@ -103,8 +103,10 @@ export default function About() {
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
                         style={{
-                          background: 'var(--color-ink)',
-                          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                          background: 'rgba(124, 185, 232, 0.15)',
+                          backdropFilter: 'blur(10px)',
+                          border: '1px solid rgba(124, 185, 232, 0.3)',
+                          boxShadow: '0 4px 12px rgba(124, 185, 232, 0.2)',
                         }}
                       >
                         <svg
@@ -112,7 +114,7 @@ export default function About() {
                           height="18"
                           viewBox="0 0 24 24"
                           fill="none"
-                          stroke="white"
+                          stroke="var(--color-cobalt)"
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -121,7 +123,7 @@ export default function About() {
                           <polyline points="7 10 12 15 17 10" />
                           <line x1="12" y1="15" x2="12" y2="3" />
                         </svg>
-                        <span className="font-semibold text-sm text-white">
+                        <span className="font-semibold text-sm" style={{ color: 'var(--color-cobalt)' }}>
                           Download Resume
                         </span>
                       </motion.div>
