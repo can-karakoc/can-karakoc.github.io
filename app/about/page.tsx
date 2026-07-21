@@ -3,42 +3,58 @@
 import { Navigation, Footer, Capabilities, Principles } from '@/components/sections';
 import { ScrollReveal } from '@/components/animations';
 import { PageTransition } from '@/components/PageTransition';
-import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
-import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 export default function About() {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleCard = (cardId: string) => {
     setExpandedCard(expandedCard === cardId ? null : cardId);
   };
 
-  return (
-    <PageTransition>
-      {/* Dimming overlay when card is expanded - at root level */}
+  const expandedCardPortal = mounted && typeof window !== 'undefined' ? (
+    <>
+      {/* Dimming overlay when card is expanded */}
       <AnimatePresence>
-        {expandedCard && (
+        {expandedCard && createPortal(
           <motion.div
             className="fixed inset-0 bg-black"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.5 }}
             exit={{ opacity: 0 }}
             onClick={() => setExpandedCard(null)}
-            style={{ cursor: 'pointer', zIndex: 99998 }}
-          />
+            style={{
+              cursor: 'pointer',
+              zIndex: 99998,
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+            }}
+          />,
+          document.body
         )}
       </AnimatePresence>
 
-      {/* Expanded Hobbies Card Overlay - at root level */}
+      {/* Expanded Hobbies Card Overlay */}
       <AnimatePresence>
-        {expandedCard === 'hobbies' && (
+        {expandedCard === 'hobbies' && createPortal(
           <motion.div
-            className="fixed p-12 rounded-3xl"
+            className="p-12 rounded-3xl"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             style={{
+              position: 'fixed',
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
@@ -165,20 +181,22 @@ export default function About() {
             >
               Beyond professional pursuits, I'm about design and innovation—exploring product ideas, web design, and graphic projects. I also love photography, hiking, and spending time in nature, where I find inspiration in both creativity and the outdoors.
             </p>
-          </motion.div>
+          </motion.div>,
+          document.body
         )}
       </AnimatePresence>
 
-      {/* Expanded Focus Card Overlay - at root level */}
+      {/* Expanded Focus Card Overlay */}
       <AnimatePresence>
-        {expandedCard === 'focus' && (
+        {expandedCard === 'focus' && createPortal(
           <motion.div
-            className="fixed p-12 rounded-3xl overflow-hidden"
+            className="p-12 rounded-3xl overflow-hidden"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             style={{
+              position: 'fixed',
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
@@ -255,9 +273,16 @@ export default function About() {
                 My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems.
               </p>
             </div>
-          </motion.div>
+          </motion.div>,
+          document.body
         )}
       </AnimatePresence>
+    </>
+  ) : null;
+
+  return (
+    <PageTransition>
+      {expandedCardPortal}
 
       <div className="relative z-10" style={{ background: 'var(--color-surface-white)' }}>
         <Navigation />
