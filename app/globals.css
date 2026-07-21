@@ -4,54 +4,54 @@
 
 @theme inline {
   /* === COLORS === */
-  /* Ink / Text */
-  --color-ink: #0A2540;
-  --color-ink-muted: #3A567A;
+  /* Ink / Text - Softer charcoal-based */
+  --color-ink: #494949;
+  --color-ink-muted: #6B7280;
 
-  /* Cobalt Blues */
-  --color-cobalt: #1D4ED8;
-  --color-cobalt-bright: #2249B8;
-  --color-cobalt-deep: #1746B8;
-  --color-cobalt-darker: #122E8C;
+  /* Soft Blue - Primary calming blue */
+  --color-cobalt: #7CB9E8;
+  --color-cobalt-bright: #95B1EE;
+  --color-cobalt-deep: #6BA5D8;
+  --color-cobalt-darker: #364C84;
 
-  /* Aqua / Cyan */
-  --color-aqua: #38BDF8;
-  --color-aqua-light: #7fd0f5;
-  --color-aqua-mid: #2b8fe0;
-  --color-aqua-teal: #0891B2;
+  /* Powder Blue / Aqua - Lighter accent */
+  --color-aqua: #9DD5DC;
+  --color-aqua-light: #B8E5EA;
+  --color-aqua-mid: #7FC4CD;
+  --color-aqua-teal: #6BB2BC;
 
-  /* Teal / Green */
-  --color-teal: #0D9488;
-  --color-green: #16A34A;
-  --color-green-bright: #22b573;
+  /* Teal / Green - Muted natural tones */
+  --color-teal: #5C9A92;
+  --color-green: #6FAF85;
+  --color-green-bright: #8BC99F;
 
-  /* Indigo (project accents) */
-  --color-indigo: #4f7dff;
-  --color-indigo-purple: #6d5ef0;
+  /* Indigo (project accents) - Softer purple-blue */
+  --color-indigo: #95B1EE;
+  --color-indigo-purple: #A89FD9;
 
-  /* Lime Spark */
-  --color-lime: #C6F135;
+  /* Light Green - Gentle lime replacement */
+  --color-lime: #E7F1A8;
 
-  /* Pink */
-  --color-pink: #EC4899;
+  /* Pink - Softer rose */
+  --color-pink: #E8A5BB;
 
-  /* Surface Gradients */
-  --color-surface-white: #ffffff;
-  --color-surface-sky: #eef5ff;
-  --color-surface-blue: #e6f0fb;
-  --color-surface-projects: #e8eef7;
+  /* Surface Gradients - Warm off-white base */
+  --color-surface-white: #F9F6F2;
+  --color-surface-sky: #F5F9FC;
+  --color-surface-blue: #EDF4F8;
+  --color-surface-projects: #F0F2F5;
 
-  /* Browser Frame Darks */
-  --color-frame-dark: #0a1e3d;
-  --color-frame-darker: #0b1f3f;
-  --color-frame-chrome: #193565;
-  --color-frame-chrome-dark: #0f254a;
+  /* Browser Frame Darks - Softer charcoal */
+  --color-frame-dark: #3A4556;
+  --color-frame-darker: #2D3340;
+  --color-frame-chrome: #4A5568;
+  --color-frame-chrome-dark: #353D4A;
 
-  /* Glass Surfaces */
-  --color-glass-55: rgba(255, 255, 255, 0.55);
-  --color-glass-60: rgba(255, 255, 255, 0.6);
-  --color-glass-70: rgba(255, 255, 255, 0.7);
-  --color-glass-border: rgba(255, 255, 255, 0.9);
+  /* Glass Surfaces - Warm off-white tint */
+  --color-glass-55: rgba(249, 246, 242, 0.55);
+  --color-glass-60: rgba(249, 246, 242, 0.6);
+  --color-glass-70: rgba(249, 246, 242, 0.7);
+  --color-glass-border: rgba(249, 246, 242, 0.9);
 
   /* === TYPOGRAPHY === */
   /* Fonts are loaded in layout.tsx */
@@ -66,18 +66,18 @@
   --radius-lg: 28px;
 
   /* === SHADOWS === */
-  /* Glass shadows */
-  --shadow-glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  --shadow-glass-drop: 0 12px 30px -16px rgba(23, 70, 184, 0.4);
-  --shadow-glass-card: 0 34px 70px -46px rgba(23, 70, 184, 0.5);
-  --shadow-glass-card-hover: 0 62px 116px -52px rgba(23, 70, 184, 0.68);
+  /* Glass shadows - Softer, warmer */
+  --shadow-glass-inset: inset 0 1px 0 rgba(249, 246, 242, 0.9);
+  --shadow-glass-drop: 0 12px 30px -16px rgba(124, 185, 232, 0.3);
+  --shadow-glass-card: 0 34px 70px -46px rgba(124, 185, 232, 0.4);
+  --shadow-glass-card-hover: 0 62px 116px -52px rgba(124, 185, 232, 0.5);
 
   /* Browser frame shadow */
-  --shadow-browser: 0 44px 60px -26px rgba(9, 22, 54, 0.62), 0 0 0 1px rgba(255, 255, 255, 0.55);
+  --shadow-browser: 0 44px 60px -26px rgba(73, 73, 73, 0.25), 0 0 0 1px rgba(249, 246, 242, 0.55);
 
   /* Button shadows */
-  --shadow-button-inset: inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  --shadow-button-drop: 0 6px 16px -6px rgba(15, 40, 120, 0.85);
+  --shadow-button-inset: inset 0 1px 0 rgba(249, 246, 242, 0.35);
+  --shadow-button-drop: 0 6px 16px -6px rgba(124, 185, 232, 0.4);
 
   /* === ANIMATIONS / KEYFRAMES === */
 
@@ -418,7 +418,7 @@
 
 body {
   margin: 0;
-  background: #f5f7fa;
+  background: #F9F6F2;
   font-family: var(--font-jakarta);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;

@@ -1,48 +1,26 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const WORDS = ['purposeful.', 'engaging.', 'human-centered.'];
 
 export function Hero() {
-  const words = ['purposeful.', 'engaging.', 'human-centered.'];
   const [currentWordIndex, setCurrentWordIndex] = React.useState(0);
-  const [displayedText, setDisplayedText] = React.useState('');
-  const [isDeleting, setIsDeleting] = React.useState(false);
+  const word = WORDS[currentWordIndex];
 
   React.useEffect(() => {
-    const currentWord = words[currentWordIndex];
-    const typingSpeed = isDeleting ? 50 : 100;
-    const pauseBeforeDelete = 2000;
-    const pauseBeforeNextWord = 500;
-
-    const timer = setTimeout(() => {
-      if (!isDeleting) {
-        // Typing
-        if (displayedText.length < currentWord.length) {
-          setDisplayedText(currentWord.slice(0, displayedText.length + 1));
-        } else {
-          // Pause before deleting
-          setTimeout(() => setIsDeleting(true), pauseBeforeDelete);
-        }
-      } else {
-        // Deleting
-        if (displayedText.length > 0) {
-          setDisplayedText(currentWord.slice(0, displayedText.length - 1));
-        } else {
-          // Move to next word
-          setIsDeleting(false);
-          setCurrentWordIndex((prev) => (prev + 1) % words.length);
-        }
-      }
-    }, typingSpeed);
-
-    return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, currentWordIndex]);
+    const timer = setInterval(
+      () => setCurrentWordIndex((prev) => (prev + 1) % WORDS.length),
+      3200
+    );
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section
       id="top"
-      className="relative -mt-[80px] min-h-[68vh] flex items-center overflow-hidden"
+      className="relative -mt-[80px] min-h-[58vh] flex items-center overflow-hidden"
     >
       {/* Content - full width */}
       <div className="relative z-10 w-full max-w-[1160px] mx-auto px-6 pt-[80px]">
@@ -51,7 +29,7 @@ export function Hero() {
           <motion.h1
             className="font-extrabold mb-4"
             style={{
-              fontSize: 'clamp(40px, 6.5vw, 76px)',
+              fontSize: 'clamp(36px, 5.5vw, 64px)',
               letterSpacing: '-0.035em',
               color: 'var(--color-ink)',
               lineHeight: 1.05,
@@ -80,31 +58,28 @@ export function Hero() {
             <span className="inline-block">
               that are{' '}
               <span
-                className="relative inline-block"
+                className="relative inline-block align-bottom overflow-hidden"
                 style={{
-                  color: 'var(--color-cobalt)',
                   minWidth: '7.5em',
                   textAlign: 'left',
+                  // Breathing room so descenders (p, g) aren't clipped
+                  paddingBottom: '0.12em',
+                  marginBottom: '-0.12em',
                 }}
               >
-                {displayedText}
-                {/* Blinking cursor */}
-                <motion.span
-                  className="inline-block w-[2px] h-[0.9em] ml-1 align-middle"
-                  style={{
-                    background: 'var(--color-cobalt)',
-                    verticalAlign: 'baseline',
-                  }}
-                  animate={{
-                    opacity: [1, 1, 0, 0],
-                  }}
-                  transition={{
-                    duration: 1,
-                    repeat: Infinity,
-                    ease: 'linear',
-                    times: [0, 0.5, 0.5, 1],
-                  }}
-                />
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={word}
+                    className="inline-block whitespace-nowrap"
+                    style={{ color: '#7fd0f5' }}
+                    initial={{ y: '105%', opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: '-105%', opacity: 0 }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    {word}
+                  </motion.span>
+                </AnimatePresence>
               </span>
             </span>
           </motion.p>

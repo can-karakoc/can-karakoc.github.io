@@ -306,7 +306,7 @@ function ProjectGridCard({ project }: { project: Project }) {
 
 export function Projects() {
   return (
-    <section id="work" className="relative pt-4 pb-24">
+    <section id="work" className="relative pt-0 pb-24">
       <div className="max-w-[1160px] mx-auto px-6">
         {/* Section title */}
         <ScrollReveal>

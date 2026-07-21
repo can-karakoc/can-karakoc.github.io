@@ -51,21 +51,28 @@ export function Principles() {
   };
 
   return (
-    <div className="pt-32 pb-32 min-h-screen flex flex-col justify-center">
+    <div className="pt-20 pb-32 flex flex-col justify-center">
       {/* Header */}
       <ScrollReveal>
-        <div className="flex justify-center mb-12">
-          <div
-            className="inline-flex items-center px-4 py-2 rounded-full font-semibold text-xs tracking-[0.15em] uppercase"
+        <div className="mb-12">
+          <h2
+            className="font-extrabold leading-tight mb-3"
             style={{
-              fontFamily: 'var(--font-plex)',
-              color: '#ffffff',
-              background: 'var(--color-cobalt)',
-              boxShadow: '0 4px 12px -4px rgba(23, 70, 184, 0.4)',
+              fontSize: 'clamp(28px, 3.5vw, 40px)',
+              letterSpacing: '-0.03em',
+              color: 'var(--color-ink)',
             }}
           >
-            MY ENGINEERING PRINCIPLES
-          </div>
+            Engineering Principles
+          </h2>
+          <p
+            className="text-lg"
+            style={{
+              color: 'var(--color-ink-muted)',
+            }}
+          >
+            How I approach design and product decisions.
+          </p>
         </div>
       </ScrollReveal>
 
