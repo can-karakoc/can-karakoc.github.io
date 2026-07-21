@@ -78,7 +78,7 @@ export default function About() {
                   <motion.a
                     href="/resume.pdf"
                     download
-                    className="p-8 rounded-3xl flex flex-col justify-center items-center no-underline group"
+                    className="p-8 rounded-3xl flex flex-col no-underline group"
                     whileHover={{ y: -6 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -88,18 +88,18 @@ export default function About() {
                       boxShadow: '0 4px 20px -8px rgba(0, 0, 0, 0.1)',
                     }}
                   >
-                    <div className="text-center">
-                      <p
-                        className="text-xs font-bold mb-4 tracking-wider"
-                        style={{
-                          fontFamily: 'var(--font-plex)',
-                          color: 'var(--color-ink-muted)',
-                        }}
-                      >
-                        RÉSUMÉ
-                      </p>
+                    <p
+                      className="text-xs font-bold mb-8 tracking-wider"
+                      style={{
+                        fontFamily: 'var(--font-plex)',
+                        color: 'var(--color-ink-muted)',
+                      }}
+                    >
+                      RÉSUMÉ
+                    </p>
+                    <div className="flex-1 flex flex-col items-center justify-center">
                       <motion.div
-                        className="w-14 h-14 mx-auto mb-3 rounded-full flex items-center justify-center"
+                        className="w-14 h-14 mb-3 rounded-full flex items-center justify-center"
                         whileHover={{ y: 2 }}
                         transition={{ duration: 0.3 }}
                         style={{
@@ -122,7 +122,7 @@ export default function About() {
                         </svg>
                       </motion.div>
                       <p
-                        className="font-semibold text-sm"
+                        className="font-semibold text-sm text-center"
                         style={{ color: 'var(--color-ink)' }}
                       >
                         Download Resume
