@@ -11,32 +11,10 @@ export default function About() {
       <div className="relative z-10" style={{ background: 'var(--color-surface-white)' }}>
         <Navigation />
         <main>
-          {/* Header + bio */}
-          <section className="relative py-20 px-6">
-            <div className="max-w-[1160px] mx-auto">
+          {/* Bento Grid Section - Centered */}
+          <section className="relative px-6 min-h-[calc(100vh-80px)] flex items-center justify-center">
+            <div className="max-w-[1160px] mx-auto w-full">
               <ScrollReveal>
-                <div className="max-w-[760px] mb-14">
-                  <h1
-                    className="font-extrabold leading-none mb-4"
-                    style={{
-                      fontSize: 'clamp(42px, 6vw, 64px)',
-                      letterSpacing: '-0.04em',
-                      color: 'var(--color-ink)',
-                    }}
-                  >
-                    About Me
-                  </h1>
-                  <p
-                    className="text-lg"
-                    style={{ color: 'var(--color-ink-muted)' }}
-                  >
-                    Computational biology, machine learning, and a design habit
-                    I can't quite shake.
-                  </p>
-                </div>
-              </ScrollReveal>
-
-              <ScrollReveal delay={0.08}>
                 {/* Asymmetric Bento Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-[1160px]">
                   {/* Education Card - Spans 2 columns, interactive tilt */}
@@ -92,7 +70,7 @@ export default function About() {
                     href="/resume.pdf"
                     download
                     className="relative overflow-hidden p-8 rounded-3xl flex flex-col justify-center items-center no-underline group"
-                    whileHover={{ scale: 1.05, y: -4 }}
+                    whileHover={{ y: -6 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
@@ -121,8 +99,8 @@ export default function About() {
                       </p>
                       <motion.div
                         className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
+                        whileHover={{ y: 2 }}
+                        transition={{ duration: 0.3 }}
                         style={{
                           background: 'rgba(255,255,255,0.2)',
                           border: '2px solid rgba(255,255,255,0.4)',
