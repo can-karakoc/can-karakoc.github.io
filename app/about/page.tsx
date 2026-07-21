@@ -29,8 +29,7 @@ export default function About() {
                   <motion.div
                     className="md:col-span-2 p-8 rounded-3xl group cursor-default relative overflow-hidden"
                     animate={{
-                      opacity: expandedCard && expandedCard !== 'education' ? 0.4 : 1,
-                      scale: expandedCard && expandedCard !== 'education' ? 0.95 : 1,
+                      opacity: expandedCard && expandedCard !== 'education' ? 0.5 : 1,
                     }}
                     whileHover={{ y: -8, scale: expandedCard ? 1 : 1.02 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -59,30 +58,41 @@ export default function About() {
                       >
                         EDUCATION
                       </p>
-                      <h3
-                        className="font-extrabold mb-3"
-                        style={{
-                          fontSize: 'clamp(28px, 3vw, 40px)',
-                          letterSpacing: '-0.02em',
-                          color: '#FFFFFF',
-                        }}
-                      >
-                        University of California, Berkeley
-                      </h3>
-                      <p
-                        className="font-semibold mb-2 text-lg"
-                        style={{
-                          color: 'rgba(255, 255, 255, 0.9)',
-                        }}
-                      >
-                        B.A. Computer Science & Data Science
-                      </p>
-                      <p
-                        className="text-[15px] leading-relaxed"
-                        style={{ color: 'rgba(255, 255, 255, 0.7)' }}
-                      >
-                        Emphasis in Computational Methods in Molecular & Genomic Biology
-                      </p>
+                      <AnimatePresence>
+                        {(!expandedCard || expandedCard === 'education') && (
+                          <motion.div
+                            initial={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                            style={{ overflow: 'hidden' }}
+                          >
+                            <h3
+                              className="font-extrabold mb-3"
+                              style={{
+                                fontSize: 'clamp(28px, 3vw, 40px)',
+                                letterSpacing: '-0.02em',
+                                color: '#FFFFFF',
+                              }}
+                            >
+                              University of California, Berkeley
+                            </h3>
+                            <p
+                              className="font-semibold mb-2 text-lg"
+                              style={{
+                                color: 'rgba(255, 255, 255, 0.9)',
+                              }}
+                            >
+                              B.A. Computer Science & Data Science
+                            </p>
+                            <p
+                              className="text-[15px] leading-relaxed"
+                              style={{ color: 'rgba(255, 255, 255, 0.7)' }}
+                            >
+                              Emphasis in Computational Methods in Molecular & Genomic Biology
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   </motion.div>
 
@@ -92,8 +102,7 @@ export default function About() {
                     download
                     className="p-8 rounded-3xl flex flex-col no-underline group"
                     animate={{
-                      opacity: expandedCard && expandedCard !== 'resume' ? 0.4 : 1,
-                      scale: expandedCard && expandedCard !== 'resume' ? 0.95 : 1,
+                      opacity: expandedCard && expandedCard !== 'resume' ? 0.5 : 1,
                     }}
                     whileHover={{ y: -6 }}
                     whileTap={{ scale: 0.98 }}
@@ -105,15 +114,24 @@ export default function About() {
                     }}
                   >
                     <p
-                      className="text-xs font-bold mb-8 tracking-wider"
+                      className="text-xs font-bold tracking-wider"
                       style={{
                         fontFamily: 'var(--font-plex)',
                         color: 'var(--color-ink-muted)',
+                        marginBottom: expandedCard && expandedCard !== 'resume' ? 0 : '2rem',
                       }}
                     >
                       RÉSUMÉ
                     </p>
-                    <div className="flex-1 flex items-center justify-center">
+                    <AnimatePresence>
+                      {(!expandedCard || expandedCard === 'resume') && (
+                        <motion.div
+                          className="flex-1 flex items-center justify-center"
+                          initial={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          style={{ overflow: 'hidden' }}
+                        >
                       <motion.div
                         className="flex items-center gap-3 px-6 py-3 rounded-full"
                         whileHover={{ scale: 1.05 }}
@@ -143,7 +161,9 @@ export default function About() {
                           Download Resume
                         </span>
                       </motion.div>
-                    </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </motion.a>
 
                   {/* Hobbies Card - Expandable */}
@@ -151,8 +171,7 @@ export default function About() {
                     className="p-8 rounded-3xl cursor-pointer md:col-span-1"
                     onClick={() => toggleCard('hobbies')}
                     animate={{
-                      opacity: expandedCard && expandedCard !== 'hobbies' ? 0.4 : 1,
-                      scale: expandedCard && expandedCard !== 'hobbies' ? 0.95 : 1,
+                      opacity: expandedCard && expandedCard !== 'hobbies' ? 0.5 : 1,
                     }}
                     whileHover={{ scale: expandedCard === 'hobbies' ? 1 : 1.05, y: expandedCard === 'hobbies' ? 0 : -4 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -163,15 +182,24 @@ export default function About() {
                     }}
                   >
                     <p
-                      className="text-xs font-bold mb-6 tracking-wider"
+                      className="text-xs font-bold tracking-wider"
                       style={{
                         fontFamily: 'var(--font-plex)',
                         color: 'var(--color-cobalt)',
+                        marginBottom: (!expandedCard || expandedCard === 'hobbies') ? '1.5rem' : 0,
                       }}
                     >
                       HOBBIES
                     </p>
-                    <div className="grid grid-cols-2 gap-4">
+                    <AnimatePresence>
+                      {(!expandedCard || expandedCard === 'hobbies') && (
+                        <motion.div
+                          initial={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                          style={{ overflow: 'hidden' }}
+                        >
+                          <div className="grid grid-cols-2 gap-4">
                       {[
                         { emoji: '🎨', text: 'Design' },
                         { emoji: '📸', text: 'Photography' },
@@ -199,26 +227,27 @@ export default function About() {
                           </span>
                         </motion.div>
                       ))}
-                    </div>
+                          </div>
 
-                    <AnimatePresence>
-                      {expandedCard === 'hobbies' && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                          animate={{ opacity: 1, height: 'auto', marginTop: 24 }}
-                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                          transition={{ duration: 0.3 }}
-                          style={{ overflow: 'hidden' }}
-                        >
-                          <p
-                            className="text-base leading-relaxed"
-                            style={{
-                              color: 'var(--color-ink-muted)',
-                              fontFamily: 'var(--font-jakarta)',
-                            }}
-                          >
-                            Beyond professional pursuits, I'm about design and innovation—exploring product ideas, web design, and graphic projects. I also love photography, hiking, and spending time in nature, where I find inspiration in both creativity and the outdoors.
-                          </p>
+                          {expandedCard === 'hobbies' && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                              animate={{ opacity: 1, height: 'auto', marginTop: 24 }}
+                              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                              transition={{ duration: 0.3, delay: 0.15 }}
+                              style={{ overflow: 'hidden' }}
+                            >
+                              <p
+                                className="text-base leading-relaxed"
+                                style={{
+                                  color: 'var(--color-ink-muted)',
+                                  fontFamily: 'var(--font-jakarta)',
+                                }}
+                              >
+                                Beyond professional pursuits, I'm about design and innovation—exploring product ideas, web design, and graphic projects. I also love photography, hiking, and spending time in nature, where I find inspiration in both creativity and the outdoors.
+                              </p>
+                            </motion.div>
+                          )}
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -229,8 +258,7 @@ export default function About() {
                     className="p-8 rounded-3xl group relative overflow-hidden cursor-pointer md:col-span-2"
                     onClick={() => toggleCard('focus')}
                     animate={{
-                      opacity: expandedCard && expandedCard !== 'focus' ? 0.4 : 1,
-                      scale: expandedCard && expandedCard !== 'focus' ? 0.95 : 1,
+                      opacity: expandedCard && expandedCard !== 'focus' ? 0.5 : 1,
                     }}
                     whileHover={{ scale: expandedCard === 'focus' ? 1 : 1.02, y: expandedCard === 'focus' ? 0 : -6 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -253,48 +281,58 @@ export default function About() {
                     />
                     <div className="relative z-10">
                       <p
-                        className="text-xs font-bold mb-4 tracking-wider"
+                        className="text-xs font-bold tracking-wider"
                         style={{
                           fontFamily: 'var(--font-plex)',
                           color: 'rgba(255, 255, 255, 0.8)',
+                          marginBottom: (!expandedCard || expandedCard === 'focus') ? '1rem' : 0,
                         }}
                       >
                         FOCUS
                       </p>
-                      <h3
-                        className="font-extrabold mb-4 text-white"
-                        style={{
-                          fontSize: 'clamp(28px, 3vw, 42px)',
-                          letterSpacing: '-0.02em',
-                        }}
-                      >
-                        Machine Learning &<br/>Computational Biology
-                      </h3>
-                      <p
-                        className="text-[16px] leading-relaxed"
-                        style={{ color: 'rgba(255, 255, 255, 0.9)' }}
-                      >
-                        Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
-                      </p>
-
                       <AnimatePresence>
-                        {expandedCard === 'focus' && (
+                        {(!expandedCard || expandedCard === 'focus') && (
                           <motion.div
-                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                            animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
-                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                            initial={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.3 }}
                             style={{ overflow: 'hidden' }}
                           >
-                            <p
-                              className="text-base leading-relaxed"
+                            <h3
+                              className="font-extrabold mb-4 text-white"
                               style={{
-                                color: 'rgba(255, 255, 255, 0.85)',
-                                fontFamily: 'var(--font-jakarta)',
+                                fontSize: 'clamp(28px, 3vw, 42px)',
+                                letterSpacing: '-0.02em',
                               }}
                             >
-                              I am a recent graduate of the University of California, Berkeley, with a dual degree in Computer Science and Data Science, specializing in Computational Methods in Molecular and Genomic Biology. My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems.
+                              Machine Learning &<br/>Computational Biology
+                            </h3>
+                            <p
+                              className="text-[16px] leading-relaxed"
+                              style={{ color: 'rgba(255, 255, 255, 0.9)' }}
+                            >
+                              Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
                             </p>
+
+                            {expandedCard === 'focus' && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                                animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
+                                exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                                transition={{ duration: 0.3, delay: 0.15 }}
+                                style={{ overflow: 'hidden' }}
+                              >
+                                <p
+                                  className="text-base leading-relaxed"
+                                  style={{
+                                    color: 'rgba(255, 255, 255, 0.85)',
+                                    fontFamily: 'var(--font-jakarta)',
+                                  }}
+                                >
+                                  I am a recent graduate of the University of California, Berkeley, with a dual degree in Computer Science and Data Science, specializing in Computational Methods in Molecular and Genomic Biology. My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems.
+                                </p>
+                              </motion.div>
+                            )}
                           </motion.div>
                         )}
                       </AnimatePresence>
