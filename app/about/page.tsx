@@ -33,7 +33,7 @@ export default function About() {
                         animate={{ opacity: 0.5 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setExpandedCard(null)}
-                        style={{ cursor: 'pointer', zIndex: 40 }}
+                        style={{ cursor: 'pointer', zIndex: 9998 }}
                       />
                     )}
                   </AnimatePresence>
@@ -156,7 +156,7 @@ export default function About() {
                     {/* Hobbies Card - Expandable */}
                     <motion.div
                       layoutId="hobbies"
-                      className="p-10 rounded-3xl cursor-pointer md:col-span-1 relative"
+                      className="rounded-3xl cursor-pointer md:col-span-1"
                       onClick={() => toggleCard('hobbies')}
                       whileHover={!expandedCard ? { scale: 1.05, y: -4 } : {}}
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
@@ -172,7 +172,7 @@ export default function About() {
                         width: expandedCard === 'hobbies' ? '90%' : 'auto',
                         maxWidth: expandedCard === 'hobbies' ? '800px' : 'none',
                         padding: expandedCard === 'hobbies' ? '3rem' : '2rem',
-                        zIndex: expandedCard === 'hobbies' ? 50 : 1,
+                        zIndex: expandedCard === 'hobbies' ? 9999 : 1,
                       }}
                     >
                       {/* Floating Photos - Only when expanded */}
@@ -317,22 +317,23 @@ export default function About() {
                     {/* Focus Card - Expandable */}
                     <motion.div
                       layoutId="focus"
-                      className="p-8 rounded-3xl group relative overflow-hidden cursor-pointer md:col-span-2"
+                      className="p-8 rounded-3xl group overflow-hidden cursor-pointer md:col-span-2"
                       onClick={() => toggleCard('focus')}
                       whileHover={!expandedCard ? { scale: 1.02, y: -6 } : {}}
                       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                       style={{
                         background: 'linear-gradient(135deg, #2D5F4E 0%, #1E4D3C 100%)',
                         border: '1px solid rgba(255, 255, 255, 0.15)',
-                        boxShadow: '0 20px 40px -20px rgba(45, 95, 78, 0.5)',
+                        boxShadow: expandedCard === 'focus' ? '0 40px 100px -20px rgba(45, 95, 78, 0.6)' : '0 20px 40px -20px rgba(45, 95, 78, 0.5)',
                         opacity: expandedCard && expandedCard !== 'focus' ? 0.3 : 1,
                         position: expandedCard === 'focus' ? 'fixed' : 'relative',
                         top: expandedCard === 'focus' ? '50%' : 'auto',
                         left: expandedCard === 'focus' ? '50%' : 'auto',
                         transform: expandedCard === 'focus' ? 'translate(-50%, -50%)' : 'none',
                         width: expandedCard === 'focus' ? '90%' : 'auto',
-                        maxWidth: expandedCard === 'focus' ? '800px' : 'none',
-                        zIndex: expandedCard === 'focus' ? 50 : 'auto',
+                        maxWidth: expandedCard === 'focus' ? '900px' : 'none',
+                        padding: expandedCard === 'focus' ? '3rem' : '2rem',
+                        zIndex: expandedCard === 'focus' ? 9999 : 1,
                       }}
                     >
                       {/* Aero grid overlay with opacity mask - more subtle */}
