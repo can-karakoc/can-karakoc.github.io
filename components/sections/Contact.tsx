@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { ScrollReveal } from '@/components/animations';
+import { EmailIcon, LinkedInIcon, GitHubIcon } from '@/components/ui/SocialIcon';
 
 export function Contact() {
   return (
@@ -31,7 +32,7 @@ export function Contact() {
                 href="mailto:cankarakoc@berkeley.edu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3 rounded-full no-underline transition-all duration-300 mag text-center font-semibold text-sm"
+                className="flex items-center gap-2 px-5 py-3 rounded-full no-underline transition-all duration-300 mag font-semibold text-sm"
                 style={{
                   background: 'var(--color-glass-55)',
                   backdropFilter: 'blur(16px)',
@@ -40,6 +41,7 @@ export function Contact() {
                   boxShadow: 'var(--shadow-glass-drop)',
                 }}
               >
+                <EmailIcon />
                 Email
               </a>
 
@@ -48,7 +50,7 @@ export function Contact() {
                 href="https://www.linkedin.com/in/can-karakoc"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3 rounded-full no-underline transition-all duration-300 mag text-center font-semibold text-sm"
+                className="flex items-center gap-2 px-5 py-3 rounded-full no-underline transition-all duration-300 mag font-semibold text-sm"
                 style={{
                   background: 'var(--color-glass-55)',
                   backdropFilter: 'blur(16px)',
@@ -57,6 +59,7 @@ export function Contact() {
                   boxShadow: 'var(--shadow-glass-drop)',
                 }}
               >
+                <LinkedInIcon />
                 LinkedIn
               </a>
 
@@ -65,7 +68,7 @@ export function Contact() {
                 href="https://github.com/can-karakoc"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-3 rounded-full no-underline transition-all duration-300 mag text-center font-semibold text-sm"
+                className="flex items-center gap-2 px-5 py-3 rounded-full no-underline transition-all duration-300 mag font-semibold text-sm"
                 style={{
                   background: 'var(--color-glass-55)',
                   backdropFilter: 'blur(16px)',
@@ -74,6 +77,7 @@ export function Contact() {
                   boxShadow: 'var(--shadow-glass-drop)',
                 }}
               >
+                <GitHubIcon />
                 GitHub
               </a>
             </div>
@@ -111,50 +115,34 @@ export function Contact() {
               <form
                 action={`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xdkozkoj'}`}
                 method="POST"
-                className="space-y-4"
+                className="space-y-3"
               >
-                {/* Name */}
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-semibold mb-2"
-                    style={{ color: 'var(--color-ink)' }}
-                  >
-                    Name
-                  </label>
+                {/* Name & Email Row */}
+                <div className="grid grid-cols-2 gap-3">
                   <input
                     type="text"
                     id="name"
                     name="name"
+                    placeholder="Name"
                     required
                     className="w-full px-4 py-3 rounded-2xl text-base"
                     style={{
-                      background: 'rgba(255, 255, 255, 0.8)',
-                      border: '1px solid rgba(124, 185, 232, 0.3)',
+                      background: 'rgba(255, 255, 255, 0.7)',
+                      border: '1px solid rgba(124, 185, 232, 0.25)',
                       color: 'var(--color-ink)',
                       outline: 'none',
                     }}
                   />
-                </div>
-
-                {/* Email */}
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-semibold mb-2"
-                    style={{ color: 'var(--color-ink)' }}
-                  >
-                    Email
-                  </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
+                    placeholder="Email"
                     required
                     className="w-full px-4 py-3 rounded-2xl text-base"
                     style={{
-                      background: 'rgba(255, 255, 255, 0.8)',
-                      border: '1px solid rgba(124, 185, 232, 0.3)',
+                      background: 'rgba(255, 255, 255, 0.7)',
+                      border: '1px solid rgba(124, 185, 232, 0.25)',
                       color: 'var(--color-ink)',
                       outline: 'none',
                     }}
@@ -162,28 +150,20 @@ export function Contact() {
                 </div>
 
                 {/* Message */}
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-semibold mb-2"
-                    style={{ color: 'var(--color-ink)' }}
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-2xl text-base resize-none"
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.8)',
-                      border: '1px solid rgba(124, 185, 232, 0.3)',
-                      color: 'var(--color-ink)',
-                      outline: 'none',
-                    }}
-                  />
-                </div>
+                <textarea
+                  id="message"
+                  name="message"
+                  placeholder="Message"
+                  required
+                  rows={5}
+                  className="w-full px-4 py-3 rounded-2xl text-base resize-none"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.7)',
+                    border: '1px solid rgba(124, 185, 232, 0.25)',
+                    color: 'var(--color-ink)',
+                    outline: 'none',
+                  }}
+                />
 
                 {/* Submit Button */}
                 <button
