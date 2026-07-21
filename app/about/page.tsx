@@ -28,12 +28,12 @@ export default function About() {
                   <AnimatePresence>
                     {expandedCard && (
                       <motion.div
-                        className="fixed inset-0 bg-black z-40"
+                        className="fixed inset-0 bg-black"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 0.5 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setExpandedCard(null)}
-                        style={{ cursor: 'pointer' }}
+                        style={{ cursor: 'pointer', zIndex: 40 }}
                       />
                     )}
                   </AnimatePresence>
@@ -156,24 +156,82 @@ export default function About() {
                     {/* Hobbies Card - Expandable */}
                     <motion.div
                       layoutId="hobbies"
-                      className="p-8 rounded-3xl cursor-pointer md:col-span-1"
+                      className="p-10 rounded-3xl cursor-pointer md:col-span-1 relative"
                       onClick={() => toggleCard('hobbies')}
                       whileHover={!expandedCard ? { scale: 1.05, y: -4 } : {}}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                       style={{
                         background: '#FFFFFF',
                         border: '1px solid rgba(124, 185, 232, 0.15)',
-                        boxShadow: '0 8px 24px -12px rgba(0, 0, 0, 0.08)',
+                        boxShadow: expandedCard === 'hobbies' ? '0 40px 100px -20px rgba(0, 0, 0, 0.4)' : '0 8px 24px -12px rgba(0, 0, 0, 0.08)',
                         opacity: expandedCard && expandedCard !== 'hobbies' ? 0.3 : 1,
                         position: expandedCard === 'hobbies' ? 'fixed' : 'relative',
                         top: expandedCard === 'hobbies' ? '50%' : 'auto',
                         left: expandedCard === 'hobbies' ? '50%' : 'auto',
                         transform: expandedCard === 'hobbies' ? 'translate(-50%, -50%)' : 'none',
                         width: expandedCard === 'hobbies' ? '90%' : 'auto',
-                        maxWidth: expandedCard === 'hobbies' ? '700px' : 'none',
-                        zIndex: expandedCard === 'hobbies' ? 50 : 'auto',
+                        maxWidth: expandedCard === 'hobbies' ? '800px' : 'none',
+                        padding: expandedCard === 'hobbies' ? '3rem' : '2rem',
+                        zIndex: expandedCard === 'hobbies' ? 50 : 1,
                       }}
                     >
+                      {/* Floating Photos - Only when expanded */}
+                      {expandedCard === 'hobbies' && (
+                        <>
+                          {[
+                            { src: '/photos/london.jpg', top: '-15%', left: '-12%', rotate: -8, delay: 0.3 },
+                            { src: '/photos/parthenon.jpg', top: '10%', right: '-15%', rotate: 6, delay: 0.4 },
+                            { src: '/photos/istanbul1.jpg', bottom: '-10%', left: '-10%', rotate: 5, delay: 0.5 },
+                            { src: '/photos/coast1.jpg', bottom: '15%', right: '-12%', rotate: -7, delay: 0.6 },
+                            { src: '/photos/beach.jpg', top: '45%', left: '-18%', rotate: -5, delay: 0.35 },
+                            { src: '/photos/coast2.jpg', top: '50%', right: '-16%', rotate: 8, delay: 0.45 },
+                          ].map((photo, idx) => (
+                            <motion.div
+                              key={idx}
+                              className="absolute"
+                              initial={{ opacity: 0, scale: 0, rotate: 0 }}
+                              animate={{
+                                opacity: 1,
+                                scale: 1,
+                                rotate: photo.rotate,
+                                y: [0, -10, 0],
+                              }}
+                              exit={{ opacity: 0, scale: 0 }}
+                              transition={{
+                                opacity: { duration: 0.4, delay: photo.delay },
+                                scale: { duration: 0.4, delay: photo.delay },
+                                rotate: { duration: 0.4, delay: photo.delay },
+                                y: {
+                                  duration: 3 + idx * 0.5,
+                                  repeat: Infinity,
+                                  ease: 'easeInOut',
+                                  delay: photo.delay,
+                                },
+                              }}
+                              style={{
+                                top: photo.top,
+                                bottom: photo.bottom,
+                                left: photo.left,
+                                right: photo.right,
+                                width: '140px',
+                                height: '100px',
+                                zIndex: -1,
+                              }}
+                            >
+                              <img
+                                src={photo.src}
+                                alt=""
+                                className="w-full h-full object-cover rounded-xl"
+                                style={{
+                                  boxShadow: '0 8px 20px -4px rgba(0, 0, 0, 0.3)',
+                                  border: '4px solid white',
+                                }}
+                              />
+                            </motion.div>
+                          ))}
+                        </>
+                      )}
+
                       {/* Close Button */}
                       {expandedCard === 'hobbies' && (
                         <motion.button
