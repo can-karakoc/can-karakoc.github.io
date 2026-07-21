@@ -8,7 +8,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative px-6 py-12 flex items-center justify-center"
+      className="relative px-6 min-h-screen flex items-center justify-center"
     >
 
       <div className="relative z-10 max-w-[1160px] mx-auto w-full">
