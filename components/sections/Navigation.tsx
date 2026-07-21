@@ -35,39 +35,45 @@ export function Navigation() {
         <div className="flex gap-6 items-center font-semibold text-sm">
           <a
             href="#work"
-            className="relative text-[var(--color-ink)] no-underline group"
+            className="relative text-[var(--color-ink)] no-underline group overflow-hidden inline-block"
           >
-            <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--color-cobalt)]">
+            <span className="relative block transition-transform duration-300 ease-out group-hover:-translate-y-full">
               Projects
             </span>
             <span
-              className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--color-cobalt)] transition-all duration-300 ease-out group-hover:w-full"
-              style={{ borderRadius: '2px' }}
-            />
+              className="absolute top-full left-0 block transition-transform duration-300 ease-out group-hover:-translate-y-full"
+              style={{ color: 'var(--color-cobalt)' }}
+            >
+              Projects
+            </span>
           </a>
           <a
             href="/about"
-            className="relative text-[var(--color-ink)] no-underline group"
+            className="relative text-[var(--color-ink)] no-underline group overflow-hidden inline-block"
           >
-            <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--color-cobalt)]">
+            <span className="relative block transition-transform duration-300 ease-out group-hover:-translate-y-full">
               About
             </span>
             <span
-              className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--color-cobalt)] transition-all duration-300 ease-out group-hover:w-full"
-              style={{ borderRadius: '2px' }}
-            />
+              className="absolute top-full left-0 block transition-transform duration-300 ease-out group-hover:-translate-y-full"
+              style={{ color: 'var(--color-cobalt)' }}
+            >
+              About
+            </span>
           </a>
           <a
             href="/contact"
-            className="relative text-[var(--color-ink)] no-underline group"
+            className="relative text-[var(--color-ink)] no-underline group overflow-hidden inline-block"
           >
-            <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--color-cobalt)]">
+            <span className="relative block transition-transform duration-300 ease-out group-hover:-translate-y-full">
               Contact
             </span>
             <span
-              className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--color-cobalt)] transition-all duration-300 ease-out group-hover:w-full"
-              style={{ borderRadius: '2px' }}
-            />
+              className="absolute top-full left-0 block transition-transform duration-300 ease-out group-hover:-translate-y-full"
+              style={{ color: 'var(--color-cobalt)' }}
+            >
+              Contact
+            </span>
           </a>
         </div>
       </nav>
