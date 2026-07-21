@@ -15,6 +15,250 @@ export default function About() {
 
   return (
     <PageTransition>
+      {/* Dimming overlay when card is expanded - at root level */}
+      <AnimatePresence>
+        {expandedCard && (
+          <motion.div
+            className="fixed inset-0 bg-black"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.5 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setExpandedCard(null)}
+            style={{ cursor: 'pointer', zIndex: 99998 }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Expanded Hobbies Card Overlay - at root level */}
+      <AnimatePresence>
+        {expandedCard === 'hobbies' && (
+          <motion.div
+            className="fixed p-12 rounded-3xl"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '90%',
+              maxWidth: '900px',
+              background: '#FFFFFF',
+              border: '1px solid rgba(124, 185, 232, 0.2)',
+              boxShadow: '0 40px 100px -20px rgba(0, 0, 0, 0.4)',
+              zIndex: 99999,
+            }}
+          >
+            {/* Floating Photos */}
+            {[
+              { src: '/photos/london.jpg', top: '-15%', left: '-12%', rotate: -8, delay: 0.3 },
+              { src: '/photos/parthenon.jpg', top: '10%', right: '-15%', rotate: 6, delay: 0.4 },
+              { src: '/photos/istanbul1.jpg', bottom: '-10%', left: '-10%', rotate: 5, delay: 0.5 },
+              { src: '/photos/coast1.jpg', bottom: '15%', right: '-12%', rotate: -7, delay: 0.6 },
+              { src: '/photos/beach.jpg', top: '45%', left: '-18%', rotate: -5, delay: 0.35 },
+              { src: '/photos/coast2.jpg', top: '50%', right: '-16%', rotate: 8, delay: 0.45 },
+            ].map((photo, idx) => (
+              <motion.div
+                key={idx}
+                className="absolute"
+                initial={{ opacity: 0, scale: 0, rotate: 0 }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                  rotate: photo.rotate,
+                  y: [0, -10, 0],
+                }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{
+                  opacity: { duration: 0.4, delay: photo.delay },
+                  scale: { duration: 0.4, delay: photo.delay },
+                  rotate: { duration: 0.4, delay: photo.delay },
+                  y: {
+                    duration: 3 + idx * 0.5,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                    delay: photo.delay,
+                  },
+                }}
+                style={{
+                  top: photo.top,
+                  bottom: photo.bottom,
+                  left: photo.left,
+                  right: photo.right,
+                  width: '140px',
+                  height: '100px',
+                  zIndex: -1,
+                }}
+              >
+                <img
+                  src={photo.src}
+                  alt=""
+                  className="w-full h-full object-cover rounded-xl"
+                  style={{
+                    boxShadow: '0 8px 20px -4px rgba(0, 0, 0, 0.3)',
+                    border: '4px solid white',
+                  }}
+                />
+              </motion.div>
+            ))}
+
+            {/* Close Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setExpandedCard(null);
+              }}
+              className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-110 z-10"
+              style={{
+                background: 'rgba(124, 185, 232, 0.1)',
+                border: '1px solid rgba(124, 185, 232, 0.3)',
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-cobalt)" strokeWidth="2" strokeLinecap="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+
+            <p
+              className="text-xs font-bold mb-8 tracking-wider"
+              style={{
+                fontFamily: 'var(--font-plex)',
+                color: 'var(--color-cobalt)',
+              }}
+            >
+              HOBBIES
+            </p>
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              {[
+                { emoji: '🎨', text: 'Design' },
+                { emoji: '📸', text: 'Photography' },
+                { emoji: '🥾', text: 'Hiking' },
+                { emoji: '☕', text: 'Coffee' },
+              ].map((hobby) => (
+                <div
+                  key={hobby.text}
+                  className="flex flex-col items-center justify-center p-4 rounded-2xl"
+                  style={{
+                    background: 'rgba(124, 185, 232, 0.05)',
+                  }}
+                >
+                  <span className="text-3xl mb-2">{hobby.emoji}</span>
+                  <span
+                    className="font-medium text-sm"
+                    style={{
+                      color: 'var(--color-ink)',
+                    }}
+                  >
+                    {hobby.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <p
+              className="text-lg leading-relaxed"
+              style={{
+                color: 'var(--color-ink-muted)',
+                fontFamily: 'var(--font-jakarta)',
+              }}
+            >
+              Beyond professional pursuits, I'm about design and innovation—exploring product ideas, web design, and graphic projects. I also love photography, hiking, and spending time in nature, where I find inspiration in both creativity and the outdoors.
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Expanded Focus Card Overlay - at root level */}
+      <AnimatePresence>
+        {expandedCard === 'focus' && (
+          <motion.div
+            className="fixed p-12 rounded-3xl overflow-hidden"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: '90%',
+              maxWidth: '900px',
+              background: 'linear-gradient(135deg, #2D5F4E 0%, #1E4D3C 100%)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              boxShadow: '0 40px 100px -20px rgba(45, 95, 78, 0.6)',
+              zIndex: 99999,
+            }}
+          >
+            {/* Grid overlay */}
+            <div
+              className="absolute inset-0 opacity-10"
+              style={{
+                backgroundImage:
+                  'linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px)',
+                backgroundSize: '40px 40px',
+                maskImage: 'radial-gradient(ellipse at center, black 0%, black 30%, transparent 75%)',
+                WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, black 30%, transparent 75%)',
+              }}
+            />
+
+            {/* Close Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setExpandedCard(null);
+              }}
+              className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-110 z-10"
+              style={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+              }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+
+            <div className="relative z-10">
+              <p
+                className="text-xs font-bold mb-4 tracking-wider"
+                style={{
+                  fontFamily: 'var(--font-plex)',
+                  color: 'rgba(255, 255, 255, 0.8)',
+                }}
+              >
+                FOCUS
+              </p>
+              <h3
+                className="font-extrabold mb-6 text-white"
+                style={{
+                  fontSize: 'clamp(32px, 4vw, 48px)',
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                Machine Learning &<br/>Computational Biology
+              </h3>
+              <p
+                className="text-lg leading-relaxed mb-6"
+                style={{ color: 'rgba(255, 255, 255, 0.9)' }}
+              >
+                Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
+              </p>
+              <p
+                className="text-base leading-relaxed"
+                style={{
+                  color: 'rgba(255, 255, 255, 0.85)',
+                  fontFamily: 'var(--font-jakarta)',
+                }}
+              >
+                My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems.
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="relative z-10" style={{ background: 'var(--color-surface-white)' }}>
         <Navigation />
         <main>
@@ -23,20 +267,6 @@ export default function About() {
             <div className="max-w-[1160px] mx-auto w-full">
 
               <ScrollReveal>
-                  {/* Dimming overlay when card is expanded */}
-                  <AnimatePresence>
-                    {expandedCard && (
-                      <motion.div
-                        className="fixed inset-0 bg-black"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.5 }}
-                        exit={{ opacity: 0 }}
-                        onClick={() => setExpandedCard(null)}
-                        style={{ cursor: 'pointer', zIndex: 9998 }}
-                      />
-                    )}
-                  </AnimatePresence>
-
                   {/* Asymmetric Bento Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-[1160px] relative">
                     {/* Education Card - Berkeley colors with animated hue */}
@@ -346,236 +576,6 @@ export default function About() {
                       </div>
                     </motion.div>
                   </div>
-
-                  {/* Expanded Hobbies Card Overlay */}
-                  <AnimatePresence>
-                    {expandedCard === 'hobbies' && (
-                      <motion.div
-                        className="fixed p-12 rounded-3xl"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        style={{
-                          top: '50%',
-                          left: '50%',
-                          transform: 'translate(-50%, -50%)',
-                          width: '90%',
-                          maxWidth: '900px',
-                          background: '#FFFFFF',
-                          border: '1px solid rgba(124, 185, 232, 0.2)',
-                          boxShadow: '0 40px 100px -20px rgba(0, 0, 0, 0.4)',
-                          zIndex: 9999,
-                        }}
-                      >
-                        {/* Floating Photos */}
-                        {[
-                          { src: '/photos/london.jpg', top: '-15%', left: '-12%', rotate: -8, delay: 0.3 },
-                          { src: '/photos/parthenon.jpg', top: '10%', right: '-15%', rotate: 6, delay: 0.4 },
-                          { src: '/photos/istanbul1.jpg', bottom: '-10%', left: '-10%', rotate: 5, delay: 0.5 },
-                          { src: '/photos/coast1.jpg', bottom: '15%', right: '-12%', rotate: -7, delay: 0.6 },
-                          { src: '/photos/beach.jpg', top: '45%', left: '-18%', rotate: -5, delay: 0.35 },
-                          { src: '/photos/coast2.jpg', top: '50%', right: '-16%', rotate: 8, delay: 0.45 },
-                        ].map((photo, idx) => (
-                          <motion.div
-                            key={idx}
-                            className="absolute"
-                            initial={{ opacity: 0, scale: 0, rotate: 0 }}
-                            animate={{
-                              opacity: 1,
-                              scale: 1,
-                              rotate: photo.rotate,
-                              y: [0, -10, 0],
-                            }}
-                            exit={{ opacity: 0, scale: 0 }}
-                            transition={{
-                              opacity: { duration: 0.4, delay: photo.delay },
-                              scale: { duration: 0.4, delay: photo.delay },
-                              rotate: { duration: 0.4, delay: photo.delay },
-                              y: {
-                                duration: 3 + idx * 0.5,
-                                repeat: Infinity,
-                                ease: 'easeInOut',
-                                delay: photo.delay,
-                              },
-                            }}
-                            style={{
-                              top: photo.top,
-                              bottom: photo.bottom,
-                              left: photo.left,
-                              right: photo.right,
-                              width: '140px',
-                              height: '100px',
-                              zIndex: -1,
-                            }}
-                          >
-                            <img
-                              src={photo.src}
-                              alt=""
-                              className="w-full h-full object-cover rounded-xl"
-                              style={{
-                                boxShadow: '0 8px 20px -4px rgba(0, 0, 0, 0.3)',
-                                border: '4px solid white',
-                              }}
-                            />
-                          </motion.div>
-                        ))}
-
-                        {/* Close Button */}
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setExpandedCard(null);
-                          }}
-                          className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-110 z-10"
-                          style={{
-                            background: 'rgba(124, 185, 232, 0.1)',
-                            border: '1px solid rgba(124, 185, 232, 0.3)',
-                          }}
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-cobalt)" strokeWidth="2" strokeLinecap="round">
-                            <line x1="18" y1="6" x2="6" y2="18" />
-                            <line x1="6" y1="6" x2="18" y2="18" />
-                          </svg>
-                        </button>
-
-                        <p
-                          className="text-xs font-bold mb-8 tracking-wider"
-                          style={{
-                            fontFamily: 'var(--font-plex)',
-                            color: 'var(--color-cobalt)',
-                          }}
-                        >
-                          HOBBIES
-                        </p>
-                        <div className="grid grid-cols-2 gap-4 mb-8">
-                          {[
-                            { emoji: '🎨', text: 'Design' },
-                            { emoji: '📸', text: 'Photography' },
-                            { emoji: '🥾', text: 'Hiking' },
-                            { emoji: '☕', text: 'Coffee' },
-                          ].map((hobby) => (
-                            <div
-                              key={hobby.text}
-                              className="flex flex-col items-center justify-center p-4 rounded-2xl"
-                              style={{
-                                background: 'rgba(124, 185, 232, 0.05)',
-                              }}
-                            >
-                              <span className="text-3xl mb-2">{hobby.emoji}</span>
-                              <span
-                                className="font-medium text-sm"
-                                style={{
-                                  color: 'var(--color-ink)',
-                                }}
-                              >
-                                {hobby.text}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                        <p
-                          className="text-lg leading-relaxed"
-                          style={{
-                            color: 'var(--color-ink-muted)',
-                            fontFamily: 'var(--font-jakarta)',
-                          }}
-                        >
-                          Beyond professional pursuits, I'm about design and innovation—exploring product ideas, web design, and graphic projects. I also love photography, hiking, and spending time in nature, where I find inspiration in both creativity and the outdoors.
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  {/* Expanded Focus Card Overlay */}
-                  <AnimatePresence>
-                    {expandedCard === 'focus' && (
-                      <motion.div
-                        className="fixed p-12 rounded-3xl overflow-hidden"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.8 }}
-                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        style={{
-                          top: '50%',
-                          left: '50%',
-                          transform: 'translate(-50%, -50%)',
-                          width: '90%',
-                          maxWidth: '900px',
-                          background: 'linear-gradient(135deg, #2D5F4E 0%, #1E4D3C 100%)',
-                          border: '1px solid rgba(255, 255, 255, 0.2)',
-                          boxShadow: '0 40px 100px -20px rgba(45, 95, 78, 0.6)',
-                          zIndex: 9999,
-                        }}
-                      >
-                        {/* Grid overlay */}
-                        <div
-                          className="absolute inset-0 opacity-10"
-                          style={{
-                            backgroundImage:
-                              'linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px)',
-                            backgroundSize: '40px 40px',
-                            maskImage: 'radial-gradient(ellipse at center, black 0%, black 30%, transparent 75%)',
-                            WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, black 30%, transparent 75%)',
-                          }}
-                        />
-
-                        {/* Close Button */}
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setExpandedCard(null);
-                          }}
-                          className="absolute top-6 right-6 w-10 h-10 rounded-full flex items-center justify-center cursor-pointer transition-all duration-200 hover:scale-110 z-10"
-                          style={{
-                            background: 'rgba(255, 255, 255, 0.1)',
-                            border: '1px solid rgba(255, 255, 255, 0.3)',
-                          }}
-                        >
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round">
-                            <line x1="18" y1="6" x2="6" y2="18" />
-                            <line x1="6" y1="6" x2="18" y2="18" />
-                          </svg>
-                        </button>
-
-                        <div className="relative z-10">
-                          <p
-                            className="text-xs font-bold mb-4 tracking-wider"
-                            style={{
-                              fontFamily: 'var(--font-plex)',
-                              color: 'rgba(255, 255, 255, 0.8)',
-                            }}
-                          >
-                            FOCUS
-                          </p>
-                          <h3
-                            className="font-extrabold mb-6 text-white"
-                            style={{
-                              fontSize: 'clamp(32px, 4vw, 48px)',
-                              letterSpacing: '-0.02em',
-                            }}
-                          >
-                            Machine Learning &<br/>Computational Biology
-                          </h3>
-                          <p
-                            className="text-lg leading-relaxed mb-6"
-                            style={{ color: 'rgba(255, 255, 255, 0.9)' }}
-                          >
-                            Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
-                          </p>
-                          <p
-                            className="text-base leading-relaxed"
-                            style={{
-                              color: 'rgba(255, 255, 255, 0.85)',
-                              fontFamily: 'var(--font-jakarta)',
-                            }}
-                          >
-                            My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems.
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
               </ScrollReveal>
             </div>
           </section>
