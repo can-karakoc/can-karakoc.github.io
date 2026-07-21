@@ -97,18 +97,19 @@ export default function About() {
                     >
                       RÉSUMÉ
                     </p>
-                    <div className="flex-1 flex flex-col items-center justify-center">
+                    <div className="flex-1 flex items-center justify-center">
                       <motion.div
-                        className="w-14 h-14 mb-3 rounded-full flex items-center justify-center"
-                        whileHover={{ y: 2 }}
+                        className="flex items-center gap-3 px-6 py-3 rounded-full"
+                        whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
                         style={{
                           background: 'var(--color-ink)',
+                          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
                         }}
                       >
                         <svg
-                          width="20"
-                          height="20"
+                          width="18"
+                          height="18"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="white"
@@ -120,13 +121,10 @@ export default function About() {
                           <polyline points="7 10 12 15 17 10" />
                           <line x1="12" y1="15" x2="12" y2="3" />
                         </svg>
+                        <span className="font-semibold text-sm text-white">
+                          Download Resume
+                        </span>
                       </motion.div>
-                      <p
-                        className="font-semibold text-sm text-center"
-                        style={{ color: 'var(--color-ink)' }}
-                      >
-                        Download Resume
-                      </p>
                     </div>
                   </motion.a>
 
@@ -181,26 +179,26 @@ export default function About() {
                     </div>
                   </motion.div>
 
-                  {/* Focus Card - Green comp bio gradient with grid */}
+                  {/* Focus Card - Deep green comp bio gradient with grid */}
                   <motion.div
                     className="md:col-span-2 p-8 rounded-3xl group relative overflow-hidden"
                     whileHover={{ scale: 1.02, y: -6 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
-                      background: 'linear-gradient(135deg, #6FAF85 0%, #5C9A92 100%)',
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      boxShadow: '0 20px 40px -20px rgba(111, 175, 133, 0.4)',
+                      background: 'linear-gradient(135deg, #2D5F4E 0%, #1E4D3C 100%)',
+                      border: '1px solid rgba(255, 255, 255, 0.15)',
+                      boxShadow: '0 20px 40px -20px rgba(45, 95, 78, 0.5)',
                     }}
                   >
-                    {/* Aero grid overlay with opacity mask */}
+                    {/* Aero grid overlay with opacity mask - more subtle */}
                     <div
-                      className="absolute inset-0 opacity-20"
+                      className="absolute inset-0 opacity-10"
                       style={{
                         backgroundImage:
-                          'linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px)',
+                          'linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px)',
                         backgroundSize: '40px 40px',
-                        maskImage: 'radial-gradient(ellipse at center, black 0%, black 40%, transparent 80%)',
-                        WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, black 40%, transparent 80%)',
+                        maskImage: 'radial-gradient(ellipse at center, black 0%, black 30%, transparent 75%)',
+                        WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, black 30%, transparent 75%)',
                       }}
                     />
                     <div className="relative z-10">
