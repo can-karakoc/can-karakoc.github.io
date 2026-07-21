@@ -7,88 +7,8 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative px-6 py-20 min-h-[90vh] flex items-center overflow-hidden"
+      className="relative px-6 py-20 min-h-[90vh] flex items-center"
     >
-      {/* Bubbly Grid Background - Full section */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 overflow-clip pointer-events-none"
-      >
-        {/* Animated moving hue blobs */}
-        <div
-          className="absolute w-[500px] h-[500px] rounded-full opacity-20"
-          style={{
-            top: '10%',
-            left: '10%',
-            background:
-              'radial-gradient(circle at 50% 50%, rgba(124, 185, 232, 0.4), transparent 70%)',
-            filter: 'blur(100px)',
-            animation: 'drift1 30s ease-in-out infinite',
-          }}
-        />
-        <div
-          className="absolute w-[450px] h-[450px] rounded-full opacity-15"
-          style={{
-            top: '30%',
-            right: '15%',
-            background:
-              'radial-gradient(circle at 50% 50%, rgba(157, 213, 220, 0.35), transparent 70%)',
-            filter: 'blur(90px)',
-            animation: 'drift2 35s ease-in-out infinite',
-          }}
-        />
-
-        {/* White glow - center */}
-        <div
-          className="absolute opacity-70"
-          style={{
-            top: '20%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: '700px',
-            height: '500px',
-            background:
-              'radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.8), rgba(255,255,255,0.4) 40%, transparent 65%)',
-          }}
-        />
-
-        {/* Aero grid overlay */}
-        <div className="absolute inset-0 aero-grid" />
-
-        {/* Animated Grain overlay */}
-        <div
-          className="grain"
-          style={{
-            opacity: 0.25,
-            animation: 'grain 8s steps(10) infinite',
-            mixBlendMode: 'overlay',
-          }}
-        />
-
-        {/* Floating bubbles */}
-        <div
-          className="absolute w-16 h-16 rounded-full opacity-0"
-          style={{
-            bottom: '80px',
-            left: '20%',
-            background:
-              'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.7), rgba(157, 213, 220, 0.4) 60%, transparent)',
-            filter: 'blur(10px)',
-            animation: 'rise 10s ease-in-out infinite',
-          }}
-        />
-        <div
-          className="absolute w-12 h-12 rounded-full opacity-0"
-          style={{
-            bottom: '60px',
-            right: '25%',
-            background:
-              'radial-gradient(circle at 35% 35%, rgba(255,255,255,0.75), rgba(124, 185, 232, 0.35))',
-            filter: 'blur(8px)',
-            animation: 'rise 8s ease-in-out infinite 1s',
-          }}
-        />
-      </div>
 
       <div className="relative z-10 max-w-[1160px] mx-auto w-full">
         <ScrollReveal>
