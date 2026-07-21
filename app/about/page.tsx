@@ -3,9 +3,16 @@
 import { Navigation, Footer, Capabilities, Principles } from '@/components/sections';
 import { ScrollReveal } from '@/components/animations';
 import { PageTransition } from '@/components/PageTransition';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 
 export default function About() {
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
+
+  const toggleCard = (cardId: string) => {
+    setExpandedCard(expandedCard === cardId ? null : cardId);
+  };
+
   return (
     <PageTransition>
       <div className="relative z-10" style={{ background: 'var(--color-surface-white)' }}>
@@ -14,29 +21,6 @@ export default function About() {
           {/* Bento Grid Section - Centered */}
           <section className="relative px-6 min-h-[calc(100vh-80px)] flex items-center justify-center">
             <div className="max-w-[1160px] mx-auto w-full">
-              {/* Introduction Text */}
-              <ScrollReveal>
-                <div className="max-w-[800px] mx-auto mb-16 text-center">
-                  <p
-                    className="text-lg leading-relaxed mb-4"
-                    style={{
-                      color: 'var(--color-ink)',
-                      fontFamily: 'var(--font-jakarta)',
-                    }}
-                  >
-                    I am a recent graduate of the University of California, Berkeley, with a dual degree in Computer Science and Data Science, specializing in Computational Methods in Molecular and Genomic Biology. My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems.
-                  </p>
-                  <p
-                    className="text-lg leading-relaxed"
-                    style={{
-                      color: 'var(--color-ink-muted)',
-                      fontFamily: 'var(--font-jakarta)',
-                    }}
-                  >
-                    Beyond professional pursuits, I'm about design and innovation—exploring product ideas, web design, and graphic projects. I also love photography, hiking, and spending time in nature, where I find inspiration in both creativity and the outdoors.
-                  </p>
-                </div>
-              </ScrollReveal>
 
               <ScrollReveal>
                 {/* Asymmetric Bento Grid */}
@@ -154,15 +138,18 @@ export default function About() {
                     </div>
                   </motion.a>
 
-                  {/* Hobbies Card - Grid layout with emojis */}
+                  {/* Hobbies Card - Expandable */}
                   <motion.div
-                    className="p-8 rounded-3xl"
-                    whileHover={{ scale: 1.05, y: -4 }}
+                    className="p-8 rounded-3xl cursor-pointer"
+                    onClick={() => toggleCard('hobbies')}
+                    layout
+                    whileHover={{ scale: expandedCard === 'hobbies' ? 1 : 1.05, y: expandedCard === 'hobbies' ? 0 : -4 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
                       background: '#FFFFFF',
                       border: '1px solid rgba(124, 185, 232, 0.15)',
                       boxShadow: '0 8px 24px -12px rgba(0, 0, 0, 0.08)',
+                      gridColumn: expandedCard === 'hobbies' ? 'span 3' : 'span 1',
                     }}
                   >
                     <p
@@ -203,17 +190,42 @@ export default function About() {
                         </motion.div>
                       ))}
                     </div>
+
+                    <AnimatePresence>
+                      {expandedCard === 'hobbies' && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                          animate={{ opacity: 1, height: 'auto', marginTop: 24 }}
+                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                          transition={{ duration: 0.3 }}
+                          style={{ overflow: 'hidden' }}
+                        >
+                          <p
+                            className="text-base leading-relaxed"
+                            style={{
+                              color: 'var(--color-ink-muted)',
+                              fontFamily: 'var(--font-jakarta)',
+                            }}
+                          >
+                            Beyond professional pursuits, I'm about design and innovation—exploring product ideas, web design, and graphic projects. I also love photography, hiking, and spending time in nature, where I find inspiration in both creativity and the outdoors.
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </motion.div>
 
-                  {/* Focus Card - Deep green comp bio gradient with grid */}
+                  {/* Focus Card - Expandable */}
                   <motion.div
-                    className="md:col-span-2 p-8 rounded-3xl group relative overflow-hidden"
-                    whileHover={{ scale: 1.02, y: -6 }}
+                    className="p-8 rounded-3xl group relative overflow-hidden cursor-pointer"
+                    onClick={() => toggleCard('focus')}
+                    layout
+                    whileHover={{ scale: expandedCard === 'focus' ? 1 : 1.02, y: expandedCard === 'focus' ? 0 : -6 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
                       background: 'linear-gradient(135deg, #2D5F4E 0%, #1E4D3C 100%)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       boxShadow: '0 20px 40px -20px rgba(45, 95, 78, 0.5)',
+                      gridColumn: expandedCard === 'focus' ? 'span 3' : 'span 2',
                     }}
                   >
                     {/* Aero grid overlay with opacity mask - more subtle */}
@@ -228,30 +240,52 @@ export default function About() {
                       }}
                     />
                     <div className="relative z-10">
-                    <p
-                      className="text-xs font-bold mb-4 tracking-wider"
-                      style={{
-                        fontFamily: 'var(--font-plex)',
-                        color: 'rgba(255, 255, 255, 0.8)',
-                      }}
-                    >
-                      FOCUS
-                    </p>
-                    <h3
-                      className="font-extrabold mb-4 text-white"
-                      style={{
-                        fontSize: 'clamp(28px, 3vw, 42px)',
-                        letterSpacing: '-0.02em',
-                      }}
-                    >
-                      Machine Learning &<br/>Computational Biology
-                    </h3>
+                      <p
+                        className="text-xs font-bold mb-4 tracking-wider"
+                        style={{
+                          fontFamily: 'var(--font-plex)',
+                          color: 'rgba(255, 255, 255, 0.8)',
+                        }}
+                      >
+                        FOCUS
+                      </p>
+                      <h3
+                        className="font-extrabold mb-4 text-white"
+                        style={{
+                          fontSize: 'clamp(28px, 3vw, 42px)',
+                          letterSpacing: '-0.02em',
+                        }}
+                      >
+                        Machine Learning &<br/>Computational Biology
+                      </h3>
                       <p
                         className="text-[16px] leading-relaxed"
                         style={{ color: 'rgba(255, 255, 255, 0.9)' }}
                       >
                         Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
                       </p>
+
+                      <AnimatePresence>
+                        {expandedCard === 'focus' && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                            animate={{ opacity: 1, height: 'auto', marginTop: 16 }}
+                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                            transition={{ duration: 0.3 }}
+                            style={{ overflow: 'hidden' }}
+                          >
+                            <p
+                              className="text-base leading-relaxed"
+                              style={{
+                                color: 'rgba(255, 255, 255, 0.85)',
+                                fontFamily: 'var(--font-jakarta)',
+                              }}
+                            >
+                              I am a recent graduate of the University of California, Berkeley, with a dual degree in Computer Science and Data Science, specializing in Computational Methods in Molecular and Genomic Biology. My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems.
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   </motion.div>
                 </div>
