@@ -37,8 +37,8 @@ export default function About() {
                 <div
                   className="p-8 rounded-3xl transition-all duration-300 hover:shadow-lg"
                   style={{
-                    background: 'rgba(255, 255, 255, 0.6)',
-                    border: '1px solid rgba(10, 37, 64, 0.1)',
+                    background: 'rgba(255, 255, 255, 0.8)',
+                    border: '1px solid rgba(124, 185, 232, 0.2)',
                     backdropFilter: 'blur(10px)',
                   }}
                 >
