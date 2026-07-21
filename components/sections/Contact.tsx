@@ -7,7 +7,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative px-6 py-20 min-h-[90vh] flex items-center"
+      className="relative px-6 py-12 flex items-center justify-center"
     >
 
       <div className="relative z-10 max-w-[1160px] mx-auto w-full">
@@ -80,7 +80,7 @@ export function Contact() {
 
             {/* White Form Card - RIGHT */}
             <div
-              className="rounded-[32px] px-10 py-12"
+              className="rounded-[32px] px-8 py-8"
               style={{
                 background: 'rgba(255, 255, 255, 0.9)',
                 boxShadow: '0 40px 80px -30px rgba(124, 185, 232, 0.4), inset 0 1px 0 rgba(255,255,255,0.9)',
@@ -88,9 +88,9 @@ export function Contact() {
               }}
             >
               <h2
-                className="font-extrabold leading-tight mb-3"
+                className="font-extrabold leading-tight mb-2"
                 style={{
-                  fontSize: 'clamp(32px, 4vw, 48px)',
+                  fontSize: 'clamp(28px, 3.5vw, 42px)',
                   letterSpacing: '-0.035em',
                   color: 'var(--color-ink)',
                 }}
@@ -98,7 +98,7 @@ export function Contact() {
                 Get in Touch
               </h2>
               <p
-                className="text-lg mb-8"
+                className="text-base mb-6"
                 style={{
                   color: 'var(--color-ink-muted)',
                 }}
@@ -109,7 +109,7 @@ export function Contact() {
               <form
                 action={`https://formspree.io/f/${process.env.NEXT_PUBLIC_FORMSPREE_ID || 'xdkozkoj'}`}
                 method="POST"
-                className="space-y-5"
+                className="space-y-4"
               >
                 {/* Name */}
                 <div>
@@ -172,7 +172,7 @@ export function Contact() {
                     id="message"
                     name="message"
                     required
-                    rows={6}
+                    rows={4}
                     className="w-full px-4 py-3 rounded-2xl text-base resize-none"
                     style={{
                       background: 'rgba(255, 255, 255, 0.8)',
