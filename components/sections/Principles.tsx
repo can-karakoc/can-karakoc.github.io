@@ -32,9 +32,9 @@ const principles = [
     title: 'User-Centric',
     description:
       'I focus on outcomes, ensuring that each design decision leads to actionable, effective solutions that enhance usability and satisfaction.',
-    color: '#C6F135', // Lime spark
-    accentColor: '#16A34A', // Green
-    bgGradient: 'linear-gradient(135deg, rgba(198, 241, 53, 0.12), rgba(22, 163, 74, 0.08))',
+    color: '#6FAF85', // Soft green
+    accentColor: '#8BC99F', // Light green
+    bgGradient: 'linear-gradient(135deg, rgba(111, 175, 133, 0.12), rgba(139, 201, 159, 0.08))',
     icon: '/USER.svg',
   },
 ];
@@ -109,8 +109,8 @@ export function Principles() {
                   WebkitBackdropFilter: 'blur(20px) saturate(1.3)',
                   border: `2px solid rgba(255, 255, 255, 0.9)`,
                   boxShadow: isExpanded
-                    ? `0 40px 80px -20px rgba(23, 70, 184, 0.35), inset 0 2px 0 rgba(255,255,255,0.95), 0 0 0 1px ${principle.color}25`
-                    : `0 20px 40px -15px rgba(23, 70, 184, 0.25), inset 0 2px 0 rgba(255,255,255,0.9), 0 0 0 1px ${principle.color}15`,
+                    ? `0 16px 32px -12px rgba(0, 0, 0, 0.15), inset 0 2px 0 rgba(255,255,255,0.95), 0 0 0 1px ${principle.color}25`
+                    : `0 8px 20px -8px rgba(0, 0, 0, 0.12), inset 0 2px 0 rgba(255,255,255,0.9), 0 0 0 1px ${principle.color}15`,
                   height: '260px',
                 }}
               >

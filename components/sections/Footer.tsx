@@ -72,7 +72,7 @@ export function Footer() {
                 inset: '-30px',
                 borderRadius: '999px',
                 background:
-                  'radial-gradient(ellipse at center, rgba(56,189,248,0.4), rgba(29,78,216,0.2) 55%, transparent 75%)',
+                  'radial-gradient(ellipse at center, rgba(124,185,232,0.2), rgba(157,213,220,0.1) 55%, transparent 75%)',
                 filter: 'blur(30px)',
                 opacity: ctaHovered ? 1 : 0,
                 transform: ctaHovered ? 'scale(1.1)' : 'scale(0.85)',
