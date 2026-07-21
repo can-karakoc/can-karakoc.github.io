@@ -100,7 +100,7 @@ export function Capabilities() {
                 {c.items.map((item, idx) => (
                   <li
                     key={item}
-                    className="px-3 py-1 rounded-full text-xs font-medium transition-all duration-400 ease-out hover:bg-[var(--color-cobalt)] hover:text-white hover:border-[var(--color-cobalt)] hover:scale-110 hover:-translate-y-0.5 hover:shadow-md cursor-default group-hover:scale-105 group-hover:-translate-y-1"
+                    className="px-3 py-1 rounded-full text-xs font-medium transition-all duration-400 ease-out cursor-default group-hover:scale-105 group-hover:-translate-y-1"
                     style={{
                       fontFamily: 'var(--font-plex)',
                       color: 'var(--color-ink-muted)',
