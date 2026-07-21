@@ -83,57 +83,6 @@ export function Hero() {
               </span>
             </span>
           </motion.p>
-
-          {/* Social Buttons */}
-          <motion.div
-            className="flex flex-wrap gap-2.5"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-          >
-            <a
-              href="https://www.linkedin.com/in/can-karakoc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-[var(--radius-pill)] font-bold text-[13.5px] no-underline mag"
-              style={{
-                background: 'var(--color-glass-55)',
-                backdropFilter: 'blur(16px)',
-                border: '1px solid var(--color-glass-border)',
-                color: 'var(--color-ink)',
-              }}
-            >
-              LinkedIn
-            </a>
-
-            <a
-              href="https://github.com/can-karakoc"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-[var(--radius-pill)] font-bold text-[13.5px] no-underline mag"
-              style={{
-                background: 'var(--color-glass-55)',
-                backdropFilter: 'blur(16px)',
-                border: '1px solid var(--color-glass-border)',
-                color: 'var(--color-ink)',
-              }}
-            >
-              GitHub
-            </a>
-
-            <a
-              href="mailto:cankarakoc@berkeley.edu"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-[var(--radius-pill)] font-bold text-[13.5px] no-underline mag"
-              style={{
-                background: 'var(--color-glass-55)',
-                backdropFilter: 'blur(16px)',
-                border: '1px solid var(--color-glass-border)',
-                color: 'var(--color-ink)',
-              }}
-            >
-              Email
-            </a>
-          </motion.div>
         </div>
       </div>
     </section>
