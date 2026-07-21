@@ -74,50 +74,41 @@ export default function About() {
                     </div>
                   </motion.div>
 
-                  {/* Resume Download Card - Compact CTA */}
+                  {/* Resume Download Card - Minimal */}
                   <motion.a
                     href="/resume.pdf"
                     download
-                    className="relative overflow-hidden p-8 rounded-3xl flex flex-col justify-center items-center no-underline group"
+                    className="p-8 rounded-3xl flex flex-col justify-center items-center no-underline group"
                     whileHover={{ y: -6 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
-                      background: 'linear-gradient(160deg, var(--color-cobalt), var(--color-cobalt-darker))',
-                      boxShadow: '0 34px 70px -46px rgba(124, 185, 232, 0.6), inset 0 1px 0 rgba(255,255,255,0.2)',
+                      background: '#FFFFFF',
+                      border: '2px solid rgba(0, 0, 0, 0.08)',
+                      boxShadow: '0 4px 20px -8px rgba(0, 0, 0, 0.1)',
                     }}
                   >
-                    {/* Cyan glow */}
-                    <div
-                      className="absolute -top-20 -right-20 w-64 h-64 rounded-full opacity-30 transition-transform duration-500 group-hover:scale-150"
-                      style={{
-                        background: 'radial-gradient(circle, var(--color-aqua), transparent 60%)',
-                        filter: 'blur(60px)',
-                      }}
-                    />
-
-                    <div className="relative z-10 text-center">
+                    <div className="text-center">
                       <p
-                        className="text-xs font-bold mb-3 tracking-wider"
+                        className="text-xs font-bold mb-4 tracking-wider"
                         style={{
                           fontFamily: 'var(--font-plex)',
-                          color: 'var(--color-lime)',
+                          color: 'var(--color-ink-muted)',
                         }}
                       >
                         RÉSUMÉ
                       </p>
                       <motion.div
-                        className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                        className="w-14 h-14 mx-auto mb-3 rounded-full flex items-center justify-center"
                         whileHover={{ y: 2 }}
                         transition={{ duration: 0.3 }}
                         style={{
-                          background: 'rgba(255,255,255,0.2)',
-                          border: '2px solid rgba(255,255,255,0.4)',
+                          background: 'var(--color-ink)',
                         }}
                       >
                         <svg
-                          width="24"
-                          height="24"
+                          width="20"
+                          height="20"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="white"
@@ -130,7 +121,12 @@ export default function About() {
                           <line x1="12" y1="15" x2="12" y2="3" />
                         </svg>
                       </motion.div>
-                      <p className="font-bold text-white text-sm">Download Resume</p>
+                      <p
+                        className="font-semibold text-sm"
+                        style={{ color: 'var(--color-ink)' }}
+                      >
+                        Download Resume
+                      </p>
                     </div>
                   </motion.a>
 
