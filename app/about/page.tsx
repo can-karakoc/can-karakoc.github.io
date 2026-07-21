@@ -417,7 +417,7 @@ export default function About() {
                               fontFamily: 'var(--font-jakarta)',
                             }}
                           >
-                            I am a recent graduate of the University of California, Berkeley, with a dual degree in Computer Science and Data Science, specializing in Computational Methods in Molecular and Genomic Biology. My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems.
+                            My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems.
                           </p>
                         </div>
                       </motion.div>
