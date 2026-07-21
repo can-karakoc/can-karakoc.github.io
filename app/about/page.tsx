@@ -1,6 +1,7 @@
 import { Navigation, Footer, Capabilities, Principles } from '@/components/sections';
 import { ScrollReveal } from '@/components/animations';
 import { PageTransition } from '@/components/PageTransition';
+import { motion } from 'framer-motion';
 
 export default function About() {
   return (
