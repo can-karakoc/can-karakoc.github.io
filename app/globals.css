@@ -36,7 +36,7 @@
   --color-pink: #E8A5BB;
 
   /* Surface Gradients - Warm off-white base */
-  --color-surface-white: #F9F6F2;
+  --color-surface-white: #F9F7F3;
   --color-surface-sky: #F5F9FC;
   --color-surface-blue: #EDF4F8;
   --color-surface-projects: #F0F2F5;
@@ -418,7 +418,7 @@
 
 body {
   margin: 0;
-  background: #F9F6F2;
+  background: #F9F7F3;
   font-family: var(--font-jakarta);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;

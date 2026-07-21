@@ -109,6 +109,8 @@ export function Contact() {
               {/* Email - Glass Button */}
               <a
                 href="mailto:cankarakoc@berkeley.edu"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-5 py-3 rounded-full no-underline transition-all duration-300 mag text-center font-semibold text-sm"
                 style={{
                   background: 'var(--color-glass-55)',
