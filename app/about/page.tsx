@@ -17,52 +17,61 @@ export default function About() {
               <ScrollReveal>
                 {/* Asymmetric Bento Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-[1160px]">
-                  {/* Education Card - Spans 2 columns, interactive tilt */}
+                  {/* Education Card - Berkeley colors with animated hue */}
                   <motion.div
-                    className="md:col-span-2 p-8 rounded-3xl group cursor-default"
+                    className="md:col-span-2 p-8 rounded-3xl group cursor-default relative overflow-hidden"
                     whileHover={{ y: -8, scale: 1.02 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
-                      background: 'rgba(255, 255, 255, 0.8)',
-                      border: '1px solid rgba(124, 185, 232, 0.2)',
-                      backdropFilter: 'blur(10px)',
-                      boxShadow: '0 4px 20px -8px rgba(124, 185, 232, 0.15)',
+                      background: 'linear-gradient(135deg, #003262 0%, #004A8F 100%)',
+                      border: '1px solid rgba(253, 181, 21, 0.3)',
+                      boxShadow: '0 20px 40px -20px rgba(0, 50, 98, 0.4)',
                     }}
                   >
-                    <p
-                      className="text-xs font-bold mb-4 tracking-wider"
+                    {/* Animated gold hue overlay */}
+                    <div
+                      className="absolute inset-0 opacity-20"
                       style={{
-                        fontFamily: 'var(--font-plex)',
-                        color: 'var(--color-cobalt)',
+                        background: 'radial-gradient(circle at 70% 30%, rgba(253, 181, 21, 0.4), transparent 70%)',
+                        animation: 'drift1 20s ease-in-out infinite',
                       }}
-                    >
-                      EDUCATION
-                    </p>
-                    <motion.h3
-                      className="font-extrabold mb-3"
-                      style={{
-                        fontSize: 'clamp(28px, 3vw, 40px)',
-                        letterSpacing: '-0.02em',
-                        color: 'var(--color-ink)',
-                      }}
-                      whileHover={{ x: 4 }}
-                    >
-                      University of California, Berkeley
-                    </motion.h3>
-                    <p
-                      className="font-semibold mb-2 text-lg"
-                      style={{
-                        color: 'var(--color-ink)',
-                      }}
-                    >
-                      B.A. Computer Science & Data Science
-                    </p>
-                    <p
-                      className="text-[15px] leading-relaxed"
-                      style={{ color: 'var(--color-ink-muted)' }}
-                    >
-                      Emphasis in Computational Methods in Molecular & Genomic Biology
-                    </p>
+                    />
+
+                    <div className="relative z-10">
+                      <p
+                        className="text-xs font-bold mb-4 tracking-wider"
+                        style={{
+                          fontFamily: 'var(--font-plex)',
+                          color: '#FDB515',
+                        }}
+                      >
+                        EDUCATION
+                      </p>
+                      <h3
+                        className="font-extrabold mb-3"
+                        style={{
+                          fontSize: 'clamp(28px, 3vw, 40px)',
+                          letterSpacing: '-0.02em',
+                          color: '#FFFFFF',
+                        }}
+                      >
+                        University of California, Berkeley
+                      </h3>
+                      <p
+                        className="font-semibold mb-2 text-lg"
+                        style={{
+                          color: 'rgba(255, 255, 255, 0.9)',
+                        }}
+                      >
+                        B.A. Computer Science & Data Science
+                      </p>
+                      <p
+                        className="text-[15px] leading-relaxed"
+                        style={{ color: 'rgba(255, 255, 255, 0.7)' }}
+                      >
+                        Emphasis in Computational Methods in Molecular & Genomic Biology
+                      </p>
+                    </div>
                   </motion.div>
 
                   {/* Resume Download Card - Compact CTA */}
@@ -125,16 +134,15 @@ export default function About() {
                     </div>
                   </motion.a>
 
-                  {/* Hobbies Card - List layout */}
+                  {/* Hobbies Card - Warm gradient */}
                   <motion.div
                     className="p-8 rounded-3xl"
                     whileHover={{ scale: 1.05, y: -4 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
-                      background: 'rgba(255, 255, 255, 0.8)',
-                      border: '1px solid rgba(124, 185, 232, 0.2)',
-                      backdropFilter: 'blur(10px)',
-                      boxShadow: '0 4px 20px -8px rgba(124, 185, 232, 0.15)',
+                      background: 'linear-gradient(135deg, #F9F7F3 0%, #FFF8E8 100%)',
+                      border: '1px solid rgba(231, 241, 168, 0.4)',
+                      boxShadow: '0 8px 24px -12px rgba(231, 241, 168, 0.3)',
                     }}
                   >
                     <p
@@ -176,15 +184,15 @@ export default function About() {
                     </div>
                   </motion.div>
 
-                  {/* Focus Card - Larger, spans 2 columns */}
+                  {/* Focus Card - Teal gradient */}
                   <motion.div
                     className="md:col-span-2 p-8 rounded-3xl group"
                     whileHover={{ scale: 1.02, y: -6 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
-                      background: 'linear-gradient(135deg, var(--color-cobalt) 0%, rgba(107, 165, 216, 0.9) 100%)',
+                      background: 'linear-gradient(135deg, #5C9A92 0%, #6BB2BC 100%)',
                       border: '1px solid rgba(255, 255, 255, 0.2)',
-                      boxShadow: '0 20px 40px -20px rgba(124, 185, 232, 0.4)',
+                      boxShadow: '0 20px 40px -20px rgba(92, 154, 146, 0.4)',
                     }}
                   >
                     <p
