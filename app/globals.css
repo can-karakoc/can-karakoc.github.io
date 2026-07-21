@@ -48,10 +48,10 @@
   --color-frame-chrome-dark: #353D4A;
 
   /* Glass Surfaces - Warm off-white tint */
-  --color-glass-55: rgba(249, 246, 242, 0.55);
-  --color-glass-60: rgba(249, 246, 242, 0.6);
-  --color-glass-70: rgba(249, 246, 242, 0.7);
-  --color-glass-border: rgba(249, 246, 242, 0.9);
+  --color-glass-55: rgba(249, 247, 243, 0.55);
+  --color-glass-60: rgba(249, 247, 243, 0.6);
+  --color-glass-70: rgba(249, 247, 243, 0.7);
+  --color-glass-border: rgba(249, 247, 243, 0.9);
 
   /* === TYPOGRAPHY === */
   /* Fonts are loaded in layout.tsx */
