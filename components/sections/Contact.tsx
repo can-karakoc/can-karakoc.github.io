@@ -55,76 +55,8 @@ export function Contact() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8 items-start">
-            {/* Socials Sidebar - LEFT */}
-            <div className="flex flex-col gap-3">
-              <h3
-                className="font-extrabold mb-2"
-                style={{
-                  fontSize: '18px',
-                  letterSpacing: '-0.02em',
-                  color: 'var(--color-ink)',
-                }}
-              >
-                Connect
-              </h3>
-
-              {/* Email - Glass Button */}
-              <a
-                href="mailto:cankarakoc@berkeley.edu"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-3 rounded-full no-underline transition-all duration-300 mag font-semibold text-sm"
-                style={{
-                  background: 'var(--color-glass-55)',
-                  backdropFilter: 'blur(16px)',
-                  border: '1px solid var(--color-glass-border)',
-                  color: 'var(--color-ink)',
-                  boxShadow: 'var(--shadow-glass-drop)',
-                }}
-              >
-                <EmailIcon />
-                Email
-              </a>
-
-              {/* LinkedIn - Glass Button */}
-              <a
-                href="https://www.linkedin.com/in/can-karakoc"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-3 rounded-full no-underline transition-all duration-300 mag font-semibold text-sm"
-                style={{
-                  background: 'var(--color-glass-55)',
-                  backdropFilter: 'blur(16px)',
-                  border: '1px solid var(--color-glass-border)',
-                  color: 'var(--color-ink)',
-                  boxShadow: 'var(--shadow-glass-drop)',
-                }}
-              >
-                <LinkedInIcon />
-                LinkedIn
-              </a>
-
-              {/* GitHub - Glass Button */}
-              <a
-                href="https://github.com/can-karakoc"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-5 py-3 rounded-full no-underline transition-all duration-300 mag font-semibold text-sm"
-                style={{
-                  background: 'var(--color-glass-55)',
-                  backdropFilter: 'blur(16px)',
-                  border: '1px solid var(--color-glass-border)',
-                  color: 'var(--color-ink)',
-                  boxShadow: 'var(--shadow-glass-drop)',
-                }}
-              >
-                <GitHubIcon />
-                GitHub
-              </a>
-            </div>
-
-            {/* White Form Card - RIGHT */}
+          <div className="max-w-3xl mx-auto">
+            {/* White Form Card - CENTERED */}
             <div
               className="rounded-[32px] px-8 py-8"
               style={{
@@ -192,14 +124,13 @@ export function Contact() {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full px-6 py-3.5 rounded-full font-bold text-sm text-white mag"
+                  className="w-full px-6 py-4 rounded-2xl font-bold text-base text-white transition-all duration-200 hover:scale-[1.02] cursor-pointer"
                   style={{
-                    background: 'linear-gradient(180deg, var(--color-cobalt), var(--color-cobalt-darker))',
-                    boxShadow:
-                      'inset 0 1px 0 rgba(255,255,255,0.35), 0 6px 16px -6px rgba(124, 185, 232, 0.6)',
+                    background: '#2D3340',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
                   }}
                 >
-                  Send Message
+                  Send a message
                 </button>
               </form>
             </div>
