@@ -82,9 +82,11 @@ export function Contact() {
             <div
               className="rounded-[32px] px-8 py-8"
               style={{
-                background: 'rgba(255, 255, 255, 0.9)',
+                background: 'rgba(255, 255, 255, 0.65)',
                 boxShadow: '0 40px 80px -30px rgba(124, 185, 232, 0.4), inset 0 1px 0 rgba(255,255,255,0.9)',
-                backdropFilter: 'blur(20px)',
+                backdropFilter: 'blur(40px) saturate(1.5)',
+                WebkitBackdropFilter: 'blur(40px) saturate(1.5)',
+                border: '1px solid rgba(255, 255, 255, 0.8)',
               }}
             >
               <h2
