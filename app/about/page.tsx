@@ -14,6 +14,30 @@ export default function About() {
           {/* Bento Grid Section - Centered */}
           <section className="relative px-6 min-h-[calc(100vh-80px)] flex items-center justify-center">
             <div className="max-w-[1160px] mx-auto w-full">
+              {/* Introduction Text */}
+              <ScrollReveal>
+                <div className="max-w-[800px] mx-auto mb-16 text-center">
+                  <p
+                    className="text-lg leading-relaxed mb-4"
+                    style={{
+                      color: 'var(--color-ink)',
+                      fontFamily: 'var(--font-jakarta)',
+                    }}
+                  >
+                    I am a recent graduate of the University of California, Berkeley, with a dual degree in Computer Science and Data Science, specializing in Computational Methods in Molecular and Genomic Biology. My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems.
+                  </p>
+                  <p
+                    className="text-lg leading-relaxed"
+                    style={{
+                      color: 'var(--color-ink-muted)',
+                      fontFamily: 'var(--font-jakarta)',
+                    }}
+                  >
+                    Beyond professional pursuits, I'm about design and innovation—exploring product ideas, web design, and graphic projects. I also love photography, hiking, and spending time in nature, where I find inspiration in both creativity and the outdoors.
+                  </p>
+                </div>
+              </ScrollReveal>
+
               <ScrollReveal>
                 {/* Asymmetric Bento Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-[1160px]">
