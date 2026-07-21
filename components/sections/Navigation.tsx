@@ -35,21 +35,39 @@ export function Navigation() {
         <div className="flex gap-6 items-center font-semibold text-sm">
           <a
             href="#work"
-            className="text-[var(--color-ink)] hover:text-[var(--color-cobalt)] transition-colors duration-200 no-underline"
+            className="relative text-[var(--color-ink)] no-underline group"
           >
-            Projects
+            <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--color-cobalt)]">
+              Projects
+            </span>
+            <span
+              className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--color-cobalt)] transition-all duration-300 ease-out group-hover:w-full"
+              style={{ borderRadius: '2px' }}
+            />
           </a>
           <a
             href="/about"
-            className="text-[var(--color-ink)] hover:text-[var(--color-cobalt)] transition-colors duration-200 no-underline"
+            className="relative text-[var(--color-ink)] no-underline group"
           >
-            About
+            <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--color-cobalt)]">
+              About
+            </span>
+            <span
+              className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--color-cobalt)] transition-all duration-300 ease-out group-hover:w-full"
+              style={{ borderRadius: '2px' }}
+            />
           </a>
           <a
             href="/contact"
-            className="text-[var(--color-ink)] hover:text-[var(--color-cobalt)] transition-colors duration-200 no-underline"
+            className="relative text-[var(--color-ink)] no-underline group"
           >
-            Contact
+            <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--color-cobalt)]">
+              Contact
+            </span>
+            <span
+              className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--color-cobalt)] transition-all duration-300 ease-out group-hover:w-full"
+              style={{ borderRadius: '2px' }}
+            />
           </a>
         </div>
       </nav>

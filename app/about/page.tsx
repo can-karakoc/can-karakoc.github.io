@@ -1,9 +1,11 @@
 import { Navigation, Footer, Capabilities, Principles } from '@/components/sections';
 import { ScrollReveal } from '@/components/animations';
+import { PageTransition } from '@/components/PageTransition';
 
 export default function About() {
   return (
-    <div className="relative z-10" style={{ background: 'var(--color-surface-white)' }}>
+    <PageTransition>
+      <div className="relative z-10" style={{ background: 'var(--color-surface-white)' }}>
       <Navigation />
       <main>
         {/* Header + bio */}
@@ -220,5 +222,6 @@ export default function About() {
       </main>
       <Footer />
     </div>
+    </PageTransition>
   );
 }
