@@ -28,7 +28,11 @@ export default function About() {
                   {/* Education Card - Berkeley colors with animated hue */}
                   <motion.div
                     className="md:col-span-2 p-8 rounded-3xl group cursor-default relative overflow-hidden"
-                    whileHover={{ y: -8, scale: 1.02 }}
+                    animate={{
+                      opacity: expandedCard && expandedCard !== 'education' ? 0.4 : 1,
+                      scale: expandedCard && expandedCard !== 'education' ? 0.95 : 1,
+                    }}
+                    whileHover={{ y: -8, scale: expandedCard ? 1 : 1.02 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
                       background: 'linear-gradient(135deg, #003262 0%, #004A8F 100%)',
@@ -87,6 +91,10 @@ export default function About() {
                     href="/resume.pdf"
                     download
                     className="p-8 rounded-3xl flex flex-col no-underline group"
+                    animate={{
+                      opacity: expandedCard && expandedCard !== 'resume' ? 0.4 : 1,
+                      scale: expandedCard && expandedCard !== 'resume' ? 0.95 : 1,
+                    }}
                     whileHover={{ y: -6 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -140,16 +148,18 @@ export default function About() {
 
                   {/* Hobbies Card - Expandable */}
                   <motion.div
-                    className="p-8 rounded-3xl cursor-pointer"
+                    className="p-8 rounded-3xl cursor-pointer md:col-span-1"
                     onClick={() => toggleCard('hobbies')}
-                    layout
+                    animate={{
+                      opacity: expandedCard && expandedCard !== 'hobbies' ? 0.4 : 1,
+                      scale: expandedCard && expandedCard !== 'hobbies' ? 0.95 : 1,
+                    }}
                     whileHover={{ scale: expandedCard === 'hobbies' ? 1 : 1.05, y: expandedCard === 'hobbies' ? 0 : -4 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
                       background: '#FFFFFF',
                       border: '1px solid rgba(124, 185, 232, 0.15)',
                       boxShadow: '0 8px 24px -12px rgba(0, 0, 0, 0.08)',
-                      gridColumn: expandedCard === 'hobbies' ? 'span 3' : 'span 1',
                     }}
                   >
                     <p
@@ -216,16 +226,18 @@ export default function About() {
 
                   {/* Focus Card - Expandable */}
                   <motion.div
-                    className="p-8 rounded-3xl group relative overflow-hidden cursor-pointer"
+                    className="p-8 rounded-3xl group relative overflow-hidden cursor-pointer md:col-span-2"
                     onClick={() => toggleCard('focus')}
-                    layout
+                    animate={{
+                      opacity: expandedCard && expandedCard !== 'focus' ? 0.4 : 1,
+                      scale: expandedCard && expandedCard !== 'focus' ? 0.95 : 1,
+                    }}
                     whileHover={{ scale: expandedCard === 'focus' ? 1 : 1.02, y: expandedCard === 'focus' ? 0 : -6 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
                       background: 'linear-gradient(135deg, #2D5F4E 0%, #1E4D3C 100%)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       boxShadow: '0 20px 40px -20px rgba(45, 95, 78, 0.5)',
-                      gridColumn: expandedCard === 'focus' ? 'span 3' : 'span 2',
                     }}
                   >
                     {/* Aero grid overlay with opacity mask - more subtle */}
