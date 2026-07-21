@@ -155,9 +155,8 @@ export default function About() {
                         { emoji: '🎨', text: 'Design' },
                         { emoji: '📸', text: 'Photography' },
                         { emoji: '🥾', text: 'Hiking' },
-                        { emoji: '💡', text: 'Ideas' },
-                        { emoji: '🌐', text: 'Web' },
-                      ].slice(0, 4).map((hobby, idx) => (
+                        { emoji: '☕', text: 'Coffee' },
+                      ].map((hobby, idx) => (
                         <motion.div
                           key={hobby.text}
                           className="flex flex-col items-center justify-center p-3 rounded-2xl"
@@ -193,13 +192,15 @@ export default function About() {
                       boxShadow: '0 20px 40px -20px rgba(111, 175, 133, 0.4)',
                     }}
                   >
-                    {/* Aero grid overlay */}
+                    {/* Aero grid overlay with opacity mask */}
                     <div
                       className="absolute inset-0 opacity-20"
                       style={{
                         backgroundImage:
                           'linear-gradient(rgba(255, 255, 255, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.3) 1px, transparent 1px)',
                         backgroundSize: '40px 40px',
+                        maskImage: 'radial-gradient(ellipse at center, black 0%, black 40%, transparent 80%)',
+                        WebkitMaskImage: 'radial-gradient(ellipse at center, black 0%, black 40%, transparent 80%)',
                       }}
                     />
                     <div className="relative z-10">
