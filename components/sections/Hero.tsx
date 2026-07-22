@@ -25,11 +25,11 @@ export function Hero() {
       {/* Content - full width */}
       <div className="relative z-10 w-full max-w-[1160px] mx-auto px-6 pt-[80px]">
         <div>
-          {/* Greeting - primary headline (light weight, generous spacing) */}
+          {/* Greeting - primary headline (larger size, generous spacing) */}
           <motion.h1
-            className="font-normal mb-5"
+            className="font-extrabold mb-5"
             style={{
-              fontSize: 'clamp(38px, 6vw, 68px)',
+              fontSize: 'clamp(40px, 6.4vw, 74px)',
               letterSpacing: '-0.03em',
               color: 'var(--color-ink)',
               lineHeight: 1.05,
@@ -41,9 +41,9 @@ export function Hero() {
             Hello! I'm Can
           </motion.h1>
 
-          {/* Sentence with typing animation - lighter secondary subtitle */}
+          {/* Sentence with typing animation - larger secondary subtitle */}
           <motion.p
-            className="font-normal leading-[1.3] mb-10 relative"
+            className="font-bold leading-[1.3] mb-10 relative"
             style={{
               fontSize: 'clamp(22px, 3.2vw, 38px)',
               letterSpacing: '-0.02em',

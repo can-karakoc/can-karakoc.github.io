@@ -436,11 +436,11 @@ export function Projects() {
         {/* Section title — understated label row with a "see all" link,
             echoing the "Featured works / See all works" hierarchy */}
         <ScrollReveal>
-          <div className="flex items-baseline justify-between gap-4 mb-8">
+          <div className="flex items-baseline justify-between gap-4 mb-10">
             <h2
-              className="font-medium"
+              className="font-extrabold"
               style={{
-                fontSize: '16px',
+                fontSize: '18px',
                 letterSpacing: '-0.01em',
                 color: 'var(--color-ink)',
               }}
@@ -449,9 +449,9 @@ export function Projects() {
             </h2>
             <a
               href="/projects"
-              className="font-medium no-underline hover:underline whitespace-nowrap"
+              className="font-extrabold no-underline hover:underline whitespace-nowrap"
               style={{
-                fontSize: '16px',
+                fontSize: '18px',
                 letterSpacing: '-0.01em',
                 color: 'var(--color-ink)',
                 textUnderlineOffset: '3px',

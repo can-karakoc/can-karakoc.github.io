@@ -339,21 +339,37 @@ export function LocationIndicator() {
   const theme = skyTheme(cat, isDay, golden);
 
   return (
-    <div className="hidden lg:block fixed bottom-6 left-6" style={{ zIndex: 2147483000 }}>
+    <div className="hidden lg:block fixed bottom-6 right-6" style={{ zIndex: 2147483000 }}>
       <motion.div
         layout
         transition={{ type: 'spring', stiffness: 320, damping: 32 }}
         style={{
-          background: theme.bg,
           color: theme.fg,
           borderRadius: open ? 22 : 999,
-          border: '1px solid rgba(255,255,255,0.45)',
+          border: '1px solid rgba(255,255,255,0.55)',
           boxShadow:
-            '0 18px 40px -16px rgba(10, 37, 64, 0.4), inset 0 1px 0 rgba(255,255,255,0.5)',
+            '0 18px 44px -14px rgba(10, 37, 64, 0.38), inset 0 1px 0 rgba(255,255,255,0.6)',
           overflow: 'hidden',
           width: open ? 288 : 'auto',
+          position: 'relative',
+          background: 'rgba(255,255,255,0.06)',
+          backdropFilter: 'blur(22px) saturate(1.5)',
+          WebkitBackdropFilter: 'blur(22px) saturate(1.5)',
         }}
       >
+        {/* Translucent weather-gradient tint — glassy, so the blurred page
+            behind shows through instead of a solid fill. */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: theme.bg,
+            opacity: 0.6,
+            pointerEvents: 'none',
+          }}
+        />
+        <div style={{ position: 'relative' }}>
         <AnimatePresence initial={false} mode="popLayout">
           {open ? (
             <motion.div
@@ -362,11 +378,20 @@ export function LocationIndicator() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="p-4"
+              onClick={() => setOpen(false)}
+              role="button"
+              aria-label="Collapse"
+              className="p-4 cursor-pointer"
             >
-              {/* Header: location + collapse */}
+              {/* Header: personalized title + location + collapse chevron */}
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
+                  <p
+                    className="text-[9.5px] font-bold uppercase tracking-[0.14em] mb-1"
+                    style={{ fontFamily: 'var(--font-plex)', color: theme.sub }}
+                  >
+                    Time &amp; Weather for Can
+                  </p>
                   <p className="font-bold text-sm leading-tight truncate" style={{ color: theme.fg }}>
                     {LOCATION.city}
                   </p>
@@ -374,16 +399,15 @@ export function LocationIndicator() {
                     {LOCATION.region}
                   </p>
                 </div>
-                <button
-                  onClick={() => setOpen(false)}
-                  aria-label="Collapse"
-                  className="shrink-0 -mr-1 -mt-1 p-1 rounded-full"
+                <span
+                  aria-hidden
+                  className="shrink-0 -mr-1 -mt-1 p-1"
                   style={{ color: theme.sub }}
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M6 15l6-6 6 6" />
                   </svg>
-                </button>
+                </span>
               </div>
 
               {/* Big time */}
@@ -456,6 +480,7 @@ export function LocationIndicator() {
             </motion.button>
           )}
         </AnimatePresence>
+        </div>
       </motion.div>
     </div>
   );
