@@ -362,72 +362,44 @@ export default function About() {
                       }}
                     />
 
-                    {/* Hover overlay with expanded text */}
-                    {hoveredCard === 'focus' && (
-                      <motion.div
-                        className="absolute inset-0 flex items-center justify-center p-8"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.2 }}
+                    {/* Content - title stays, description expands on hover */}
+                    <div className="relative z-10">
+                      <p
+                        className="text-xs font-bold mb-3 tracking-wider text-right"
                         style={{
-                          background: 'linear-gradient(135deg, rgba(45, 95, 78, 0.95) 0%, rgba(30, 77, 60, 0.95) 100%)',
-                          backdropFilter: 'blur(10px)',
+                          fontFamily: 'var(--font-plex)',
+                          color: 'rgba(255, 255, 255, 0.8)',
                         }}
                       >
-                        <div className="text-center">
-                          <h3
-                            className="font-extrabold mb-4 text-white"
-                            style={{
-                              fontSize: 'clamp(32px, 4vw, 40px)',
-                              letterSpacing: '-0.02em',
-                            }}
-                          >
-                            Machine Learning &<br/>Computational Biology
-                          </h3>
-                          <p
-                            className="text-base leading-relaxed"
-                            style={{
-                              color: 'rgba(255, 255, 255, 0.9)',
-                              fontFamily: 'var(--font-jakarta)',
-                            }}
-                          >
-                            My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems and molecular data.
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
+                        FOCUS
+                      </p>
+                      <h3
+                        className="font-extrabold mb-3 text-white text-right"
+                        style={{
+                          fontSize: 'clamp(24px, 2.5vw, 36px)',
+                          letterSpacing: '-0.02em',
+                        }}
+                      >
+                        Machine Learning &<br/>Computational Biology
+                      </h3>
 
-                    {/* Default content - hidden on hover */}
-                    {!hoveredCard || hoveredCard !== 'focus' ? (
-                      <div className="relative z-10">
-                        <p
-                          className="text-xs font-bold mb-3 tracking-wider text-right"
-                          style={{
-                            fontFamily: 'var(--font-plex)',
-                            color: 'rgba(255, 255, 255, 0.8)',
-                          }}
-                        >
-                          FOCUS
-                        </p>
-                        <h3
-                          className="font-extrabold mb-3 text-white text-right"
-                          style={{
-                            fontSize: 'clamp(24px, 2.5vw, 36px)',
-                            letterSpacing: '-0.02em',
-                          }}
-                        >
-                          Machine Learning &<br/>Computational Biology
-                        </h3>
-                        <p
-                          className="leading-relaxed text-right text-sm"
-                          style={{
-                            color: 'rgba(255, 255, 255, 0.9)',
-                          }}
-                        >
-                          Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
-                        </p>
-                      </div>
-                    ) : null}
+                      {/* Description - expands on hover */}
+                      <motion.p
+                        className="leading-relaxed text-right"
+                        animate={{
+                          fontSize: hoveredCard === 'focus' ? '16px' : '14px',
+                        }}
+                        transition={{ duration: 0.2 }}
+                        style={{
+                          color: 'rgba(255, 255, 255, 0.9)',
+                        }}
+                      >
+                        {hoveredCard === 'focus'
+                          ? 'My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems and molecular data.'
+                          : 'Leveraging AI and statistical modeling to explore complex biological systems and molecular data.'
+                        }
+                      </motion.p>
+                    </div>
                   </motion.div>
 
                 </div>
