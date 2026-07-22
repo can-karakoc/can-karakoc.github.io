@@ -156,6 +156,8 @@ function SunArc({
   fg: string;
   sub: string;
 }) {
+  const [hover, setHover] = React.useState<'sun' | 'moon' | null>(null);
+
   const W = 256;
   const H = 100;
   const x0 = 18;
@@ -216,8 +218,32 @@ function SunArc({
   const moonTrav = trav(moonAmp, nightF);
   const sunTrav = trav(sunAmp, dayF);
 
+  // Hover tooltip content (next rise/set time for the hovered body).
+  const fmtMin = (m: number) => {
+    const mm = ((m % 1440) + 1440) % 1440;
+    const h = Math.floor(mm / 60);
+    const mn = mm % 60;
+    const ap = h >= 12 ? 'PM' : 'AM';
+    const hh = ((h + 11) % 12) + 1;
+    return `${hh}:${String(mn).padStart(2, '0')} ${ap}`;
+  };
+  const tip =
+    hover === 'sun'
+      ? isDay
+        ? `Sun · sets ${fmtMin(sunsetMin)}`
+        : `Sun · rises ${fmtMin(sunriseMin)}`
+      : hover === 'moon'
+        ? isDay
+          ? `Moon · rises ${fmtMin(sunsetMin)}`
+          : `Moon · sets ${fmtMin(sunriseMin)}`
+        : null;
+  const tipAnchorX = hover === 'sun' ? sunX : moonX;
+  const tipY = hover === 'sun' ? sunY : moonY;
+  const tipW = tip ? Math.min(160, tip.length * 5 + 18) : 0;
+  const tipX = Math.min(W - tipW / 2 - 2, Math.max(tipW / 2 + 2, tipAnchorX));
+
   return (
-    <svg width="100%" viewBox={`0 0 ${W} ${H}`} aria-hidden="true" style={{ display: 'block' }}>
+    <svg width="100%" viewBox={`0 0 ${W} ${H}`} style={{ display: 'block', overflow: 'visible' }}>
       {/* horizon */}
       <line x1={x0} y1={horizon} x2={x1} y2={horizon} stroke={sub} strokeWidth="1" strokeDasharray="2 3" opacity={0.4} />
 
@@ -233,13 +259,79 @@ function SunArc({
         <path d={sunTrav} fill="none" stroke={fg} strokeWidth="1.6" opacity={isDay ? 0.6 : 0.26} strokeLinecap="round" />
       )}
 
-      {/* moon — blurred dark glow + solid orb */}
-      <circle cx={moonX} cy={moonY} r={10} fill="#242a38" opacity={isDay ? 0.45 : 0.6} style={{ filter: 'blur(5px)' }} />
-      <circle cx={moonX} cy={moonY} r={isDay ? 4 : 5.5} fill="#2b3242" opacity={isDay ? 0.85 : 1} />
+      {/* moon — blurred dark glow + solid orb (blooms on hover) */}
+      <circle
+        cx={moonX}
+        cy={moonY}
+        r={hover === 'moon' ? 15 : 10}
+        fill="#242a38"
+        opacity={hover === 'moon' ? (isDay ? 0.6 : 0.78) : isDay ? 0.45 : 0.6}
+        style={{ filter: 'blur(5px)', transition: 'r 0.2s ease, opacity 0.2s ease' }}
+      />
+      <circle
+        cx={moonX}
+        cy={moonY}
+        r={hover === 'moon' ? (isDay ? 5.5 : 7) : isDay ? 4 : 5.5}
+        fill="#2b3242"
+        opacity={isDay ? 0.9 : 1}
+        style={{ transition: 'r 0.2s ease' }}
+      />
 
-      {/* sun — blurred white glow + solid orb */}
-      <circle cx={sunX} cy={sunY} r={11} fill="#ffffff" opacity={isDay ? 0.75 : 0.35} style={{ filter: 'blur(5px)' }} />
-      <circle cx={sunX} cy={sunY} r={isDay ? 5.5 : 4.5} fill="#ffffff" opacity={isDay ? 1 : 0.75} />
+      {/* sun — blurred white glow + solid orb (blooms on hover) */}
+      <circle
+        cx={sunX}
+        cy={sunY}
+        r={hover === 'sun' ? 17 : 11}
+        fill="#ffffff"
+        opacity={hover === 'sun' ? (isDay ? 0.9 : 0.5) : isDay ? 0.75 : 0.35}
+        style={{ filter: 'blur(5px)', transition: 'r 0.2s ease, opacity 0.2s ease' }}
+      />
+      <circle
+        cx={sunX}
+        cy={sunY}
+        r={hover === 'sun' ? (isDay ? 7.5 : 6.5) : isDay ? 5.5 : 4.5}
+        fill="#ffffff"
+        opacity={isDay ? 1 : 0.8}
+        style={{ transition: 'r 0.2s ease' }}
+      />
+
+      {/* invisible hit areas for hover */}
+      <circle
+        cx={moonX}
+        cy={moonY}
+        r={13}
+        fill="transparent"
+        style={{ cursor: 'pointer' }}
+        onMouseEnter={() => setHover('moon')}
+        onMouseLeave={() => setHover(null)}
+      />
+      <circle
+        cx={sunX}
+        cy={sunY}
+        r={13}
+        fill="transparent"
+        style={{ cursor: 'pointer' }}
+        onMouseEnter={() => setHover('sun')}
+        onMouseLeave={() => setHover(null)}
+      />
+
+      {/* hover tooltip */}
+      {tip && (
+        <g style={{ pointerEvents: 'none' }}>
+          <rect x={tipX - tipW / 2} y={tipY - 28} width={tipW} height={17} rx={8.5} fill="rgba(17,22,32,0.88)" />
+          <text
+            x={tipX}
+            y={tipY - 16.2}
+            textAnchor="middle"
+            fontSize="9"
+            fontWeight={600}
+            fill="#ffffff"
+            style={{ fontFamily: 'var(--font-jakarta)' }}
+          >
+            {tip}
+          </text>
+        </g>
+      )}
     </svg>
   );
 }
