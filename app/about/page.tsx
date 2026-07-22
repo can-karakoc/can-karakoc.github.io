@@ -19,7 +19,7 @@ export default function About() {
             <div className="max-w-[1160px] mx-auto w-full">
               <ScrollReveal>
                 {/* Bento Grid - 6 columns for flexible sizing */}
-                <div className="grid grid-cols-1 md:grid-cols-6 gap-5 max-w-[1160px]">
+                <div className="grid grid-cols-1 md:grid-cols-6 md:grid-rows-2 gap-5 max-w-[1160px]" style={{ gridAutoRows: '1fr' }}>
 
                   {/* Profile Photo Card - 1.5 columns */}
                   <motion.div
@@ -78,8 +78,8 @@ export default function About() {
                           },
                         }}
                         style={{
-                          top: '-15%',
-                          right: '-20%',
+                          top: '-35%',
+                          right: '-15%',
                           width: '160px',
                           height: '160px',
                           zIndex: 200,
