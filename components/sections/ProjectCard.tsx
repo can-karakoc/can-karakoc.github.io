@@ -18,6 +18,8 @@ export interface Project {
   gradientBg: string;
   screenshot?: string;
   size?: 'large' | 'medium' | 'tall';
+  /** Stylized fallback mockup shown when there's no screenshot. */
+  mockup?: 'paper' | 'genome' | 'inbox' | 'arcade';
 }
 
 interface ProjectCardProps {
