@@ -17,15 +17,14 @@ export default function About() {
           {/* Bento Grid Section */}
           <section className="relative px-6 min-h-[calc(100vh-80px)] flex items-center justify-center" style={{ overflow: 'visible' }}>
             <div className="max-w-[1160px] mx-auto w-full" style={{ overflow: 'visible' }}>
-              <ScrollReveal>
-                {/* Bento Grid - 6 columns for flexible sizing */}
-                <div className="grid grid-cols-1 md:grid-cols-6 md:auto-rows-fr gap-5 max-w-[1160px]" style={{ overflow: 'visible' }}>
+              <div style={{ overflow: 'visible', padding: '100px 0' }}>
+                <ScrollReveal>
+                  {/* Bento Grid - 6 columns for flexible sizing */}
+                  <div className="grid grid-cols-1 md:grid-cols-6 md:auto-rows-fr gap-5 max-w-[1160px]" style={{ overflow: 'visible' }}>
 
                   {/* Profile Photo Card - fills full row height */}
                   <motion.div
                     className="md:col-span-1 md:row-span-1 p-0 rounded-3xl overflow-hidden"
-                    whileHover={{ scale: 1.05, y: -4 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
                       boxShadow: '0 8px 24px -12px rgba(0, 0, 0, 0.15)',
                     }}
@@ -146,9 +145,6 @@ export default function About() {
                     href="/resume.pdf"
                     download
                     className="md:col-span-1 p-6 rounded-3xl flex flex-col no-underline group"
-                    whileHover={{ y: -6 }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
                       background: '#FFFFFF',
                       border: '2px solid rgba(0, 0, 0, 0.08)',
@@ -202,8 +198,6 @@ export default function About() {
                     className="md:col-span-2 p-6 rounded-3xl relative"
                     onMouseEnter={() => setHoveredCard('hobbies')}
                     onMouseLeave={() => setHoveredCard(null)}
-                    whileHover={{ scale: 1.05, y: -4 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
                       background: '#FFFFFF',
                       border: '1px solid rgba(124, 185, 232, 0.15)',
@@ -339,8 +333,6 @@ export default function About() {
                     className="md:col-span-4 p-6 rounded-3xl group relative"
                     onMouseEnter={() => setHoveredCard('focus')}
                     onMouseLeave={() => setHoveredCard(null)}
-                    whileHover={{ scale: 1.02, y: -6 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
                       background: 'linear-gradient(135deg, #2D5F4E 0%, #1E4D3C 100%)',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
@@ -402,7 +394,8 @@ export default function About() {
                   </motion.div>
 
                 </div>
-              </ScrollReveal>
+                </ScrollReveal>
+              </div>
             </div>
           </section>
 
