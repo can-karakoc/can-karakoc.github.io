@@ -233,12 +233,13 @@ function SunArc({
         <path d={sunTrav} fill="none" stroke={fg} strokeWidth="1.6" opacity={isDay ? 0.6 : 0.26} strokeLinecap="round" />
       )}
 
-      {/* moon blob — a dark version of the sun */}
-      <circle cx={moonX} cy={moonY} r={isDay ? 4 : 5.5} fill="#2b3242" stroke="#ffffff" strokeOpacity={0.45} strokeWidth={0.75} opacity={isDay ? 0.72 : 1} />
+      {/* moon — blurred dark glow + solid orb */}
+      <circle cx={moonX} cy={moonY} r={10} fill="#242a38" opacity={isDay ? 0.45 : 0.6} style={{ filter: 'blur(5px)' }} />
+      <circle cx={moonX} cy={moonY} r={isDay ? 4 : 5.5} fill="#2b3242" opacity={isDay ? 0.85 : 1} />
 
-      {/* sun blob — bright white with a soft glow */}
-      <circle cx={sunX} cy={sunY} r={12} fill="#ffffff" opacity={isDay ? 0.32 : 0.14} />
-      <circle cx={sunX} cy={sunY} r={isDay ? 6 : 4.5} fill="#ffffff" stroke={fg} strokeOpacity={0.28} strokeWidth={0.75} opacity={isDay ? 1 : 0.7} />
+      {/* sun — blurred white glow + solid orb */}
+      <circle cx={sunX} cy={sunY} r={11} fill="#ffffff" opacity={isDay ? 0.75 : 0.35} style={{ filter: 'blur(5px)' }} />
+      <circle cx={sunX} cy={sunY} r={isDay ? 5.5 : 4.5} fill="#ffffff" opacity={isDay ? 1 : 0.75} />
     </svg>
   );
 }

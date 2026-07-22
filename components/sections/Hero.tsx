@@ -20,10 +20,10 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative -mt-[80px] min-h-[58vh] flex items-center overflow-hidden"
+      className="relative -mt-[80px] flex items-start overflow-hidden"
     >
       {/* Content - full width */}
-      <div className="relative z-10 w-full max-w-[1160px] mx-auto px-6 pt-[80px]">
+      <div className="relative z-10 w-full max-w-[1160px] mx-auto px-6 pt-[200px]">
         <div>
           {/* Greeting - primary headline (larger size, generous spacing) */}
           <motion.h1
