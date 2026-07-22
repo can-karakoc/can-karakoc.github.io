@@ -78,10 +78,10 @@ export default function About() {
                           },
                         }}
                         style={{
-                          top: '-35%',
-                          right: '-15%',
-                          width: '160px',
-                          height: '160px',
+                          top: '-45%',
+                          right: '-10%',
+                          width: '180px',
+                          height: '180px',
                           zIndex: 200,
                         }}
                       >
