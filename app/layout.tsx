@@ -18,12 +18,12 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Can Karakoç — Product Engineer",
+  title: "Can's Portfolio",
   description: "Product engineer building human-centered software. I research, design, and ship products end-to-end — frontend, backend, and ML.",
   keywords: ["product engineer", "software engineer", "full-stack", "machine learning", "UC Berkeley"],
   authors: [{ name: "Can Karakoç", url: "https://github.com/can-karakoc" }],
   openGraph: {
-    title: "Can Karakoç — Product Engineer",
+    title: "Can's Portfolio",
     description: "Product engineer building human-centered software",
     type: "website",
   },
