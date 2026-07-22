@@ -38,9 +38,9 @@ export default function About() {
                     />
                   </motion.div>
 
-                  {/* Education Card - Berkeley logo appears on hover */}
+                  {/* Education Card - Spans 2 columns, Berkeley logo appears on hover */}
                   <motion.div
-                    className="p-6 rounded-3xl group relative"
+                    className="md:col-span-2 p-6 rounded-3xl group relative"
                     onMouseEnter={() => setHoveredCard('education')}
                     onMouseLeave={() => setHoveredCard(null)}
                     style={{
@@ -48,12 +48,14 @@ export default function About() {
                       border: '1px solid rgba(253, 181, 21, 0.3)',
                       boxShadow: '0 20px 40px -20px rgba(0, 50, 98, 0.4)',
                       overflow: 'visible',
+                      position: 'relative',
+                      zIndex: hoveredCard === 'education' ? 100 : 1,
                     }}
                   >
                     {/* Berkeley Logo appears on hover */}
                     {hoveredCard === 'education' && (
                       <motion.div
-                        className="absolute pointer-events-none z-50"
+                        className="absolute pointer-events-none"
                         initial={{
                           opacity: 0,
                           scale: 0.5,
@@ -80,6 +82,7 @@ export default function About() {
                           right: '-20%',
                           width: '160px',
                           height: '160px',
+                          zIndex: 200,
                         }}
                       >
                         <img
@@ -208,6 +211,8 @@ export default function About() {
                       boxShadow: '0 8px 24px -12px rgba(0, 0, 0, 0.08)',
                       overflow: 'visible',
                       cursor: hoveredCard === 'hobbies' ? 'pointer' : 'default',
+                      position: 'relative',
+                      zIndex: hoveredCard === 'hobbies' ? 100 : 1,
                     }}
                   >
                     {/* Floating Photos on hover */}
@@ -332,7 +337,7 @@ export default function About() {
 
                   {/* Focus Card - Text overlay on hover - Spans 2 columns */}
                   <motion.div
-                    className="p-6 rounded-3xl group relative overflow-hidden md:col-span-2"
+                    className="p-6 rounded-3xl group relative md:col-span-2"
                     onMouseEnter={() => setHoveredCard('focus')}
                     onMouseLeave={() => setHoveredCard(null)}
                     whileHover={{ scale: 1.02, y: -6 }}
@@ -342,6 +347,7 @@ export default function About() {
                       border: '1px solid rgba(255, 255, 255, 0.15)',
                       boxShadow: '0 20px 40px -20px rgba(45, 95, 78, 0.5)',
                       cursor: hoveredCard === 'focus' ? 'pointer' : 'default',
+                      overflow: 'hidden',
                     }}
                   >
                     {/* Grid overlay */}
@@ -391,34 +397,37 @@ export default function About() {
                       </motion.div>
                     )}
 
-                    <div className="relative z-10">
-                      <p
-                        className="text-xs font-bold mb-3 tracking-wider text-right"
-                        style={{
-                          fontFamily: 'var(--font-plex)',
-                          color: 'rgba(255, 255, 255, 0.8)',
-                        }}
-                      >
-                        FOCUS
-                      </p>
-                      <h3
-                        className="font-extrabold mb-3 text-white text-right"
-                        style={{
-                          fontSize: 'clamp(24px, 2.5vw, 36px)',
-                          letterSpacing: '-0.02em',
-                        }}
-                      >
-                        Machine Learning &<br/>Computational Biology
-                      </h3>
-                      <p
-                        className="leading-relaxed text-right text-sm"
-                        style={{
-                          color: 'rgba(255, 255, 255, 0.9)',
-                        }}
-                      >
-                        Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
-                      </p>
-                    </div>
+                    {/* Default content - hidden on hover */}
+                    {!hoveredCard || hoveredCard !== 'focus' ? (
+                      <div className="relative z-10">
+                        <p
+                          className="text-xs font-bold mb-3 tracking-wider text-right"
+                          style={{
+                            fontFamily: 'var(--font-plex)',
+                            color: 'rgba(255, 255, 255, 0.8)',
+                          }}
+                        >
+                          FOCUS
+                        </p>
+                        <h3
+                          className="font-extrabold mb-3 text-white text-right"
+                          style={{
+                            fontSize: 'clamp(24px, 2.5vw, 36px)',
+                            letterSpacing: '-0.02em',
+                          }}
+                        >
+                          Machine Learning &<br/>Computational Biology
+                        </h3>
+                        <p
+                          className="leading-relaxed text-right text-sm"
+                          style={{
+                            color: 'rgba(255, 255, 255, 0.9)',
+                          }}
+                        >
+                          Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
+                        </p>
+                      </div>
+                    ) : null}
                   </motion.div>
 
                 </div>
