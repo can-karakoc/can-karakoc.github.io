@@ -555,7 +555,7 @@ export function LocationIndicator() {
   const theme = skyTheme(cat, isDay, golden);
 
   return (
-    <div className="hidden lg:block fixed bottom-6 right-6" style={{ zIndex: 2147483000 }}>
+    <div className="block fixed bottom-4 right-4 sm:bottom-6 sm:right-6" style={{ zIndex: 2147483000 }}>
       <motion.div
         layout
         transition={{ type: 'spring', stiffness: 320, damping: 32 }}
@@ -566,7 +566,7 @@ export function LocationIndicator() {
           boxShadow:
             '0 18px 44px -14px rgba(10, 37, 64, 0.38), inset 0 1px 0 rgba(255,255,255,0.6)',
           overflow: 'hidden',
-          width: open ? 328 : 'auto',
+          width: open ? 'min(328px, calc(100vw - 2rem))' : 'auto',
           position: 'relative',
           background: 'rgba(255,255,255,0.05)',
           backdropFilter: 'blur(24px) saturate(1.5)',

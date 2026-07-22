@@ -3,6 +3,7 @@
 import { Navigation, Footer, Capabilities, Principles } from '@/components/sections';
 import { ScrollReveal } from '@/components/animations';
 import { PageTransition } from '@/components/PageTransition';
+import { MobileCarousel } from '@/components/ui/MobileCarousel';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
@@ -19,8 +20,8 @@ export default function About() {
             <div className="max-w-[1160px] mx-auto w-full" style={{ overflow: 'visible' }}>
               <div style={{ overflow: 'visible', padding: '100px 0' }}>
                 <ScrollReveal>
-                  {/* Bento Grid - 6 columns for flexible sizing */}
-                  <div className="grid grid-cols-1 md:grid-cols-6 gap-5 max-w-[1160px]" style={{ overflow: 'visible' }}>
+                  {/* Bento Grid - 6 columns (desktop only; mobile uses a carousel) */}
+                  <div className="hidden md:grid md:grid-cols-6 gap-5 max-w-[1160px]" style={{ overflow: 'visible' }}>
 
                   {/* Profile Photo Card - fills full row height */}
                   <motion.div
@@ -524,6 +525,57 @@ export default function About() {
                   </motion.div>
 
                 </div>
+
+                  {/* Mobile: carousel of the same cards, static (no hover) */}
+                  <div className="md:hidden">
+                    <MobileCarousel
+                      ariaLabel="About Can"
+                      items={[
+                        <div key="profile" className="rounded-3xl overflow-hidden" style={{ boxShadow: '0 8px 24px -12px rgba(0,0,0,0.15)' }}>
+                          <img src="/photos/profile.jpg" alt="Profile" className="w-full object-cover" style={{ height: 420 }} />
+                        </div>,
+                        <div key="edu" className="rounded-3xl p-6 relative overflow-hidden flex flex-col justify-center" style={{ minHeight: 420, background: 'linear-gradient(135deg,#003262 0%,#004A8F 100%)', border: '1px solid rgba(253,181,21,0.3)' }}>
+                          <img src="/berkeley-logo.svg" alt="" aria-hidden className="absolute pointer-events-none" style={{ right: -28, bottom: -18, width: 185, height: 185, opacity: 0.9 }} />
+                          <div className="relative z-10">
+                            <p className="text-xs font-bold mb-3 tracking-wider" style={{ fontFamily: 'var(--font-plex)', color: '#FDB515' }}>EDUCATION</p>
+                            <h3 className="font-extrabold mb-2" style={{ fontSize: 'clamp(22px,6vw,28px)', letterSpacing: '-0.02em', color: '#fff' }}>University of California, Berkeley</h3>
+                            <p className="font-semibold mb-1 text-base" style={{ color: 'rgba(255,255,255,0.9)' }}>B.A. Computer Science &amp; Data Science</p>
+                            <p className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.7)' }}>Emphasis in Computational Methods in Molecular &amp; Genomic Biology</p>
+                          </div>
+                        </div>,
+                        <a key="resume" href="/resume.pdf" download="Can-Karakoc-Resume.pdf" className="rounded-3xl p-6 flex flex-col no-underline" style={{ minHeight: 420, background: '#fff', border: '2px solid rgba(0,0,0,0.08)', boxShadow: '0 4px 20px -8px rgba(0,0,0,0.1)' }}>
+                          <p className="text-xs font-bold mb-6 tracking-wider" style={{ fontFamily: 'var(--font-plex)', color: 'var(--color-ink-muted)' }}>RÉSUMÉ</p>
+                          <div className="flex-1 flex items-center justify-center">
+                            <div className="flex items-center gap-3 px-6 py-3 rounded-full" style={{ background: 'rgba(124,185,232,0.15)', border: '1px solid rgba(124,185,232,0.3)' }}>
+                              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-cobalt)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+                              <span className="font-semibold text-sm" style={{ color: 'var(--color-cobalt)' }}>Download</span>
+                            </div>
+                          </div>
+                        </a>,
+                        <div key="hobbies" className="rounded-3xl p-6" style={{ minHeight: 420, background: '#fff', border: '1px solid rgba(124,185,232,0.15)', boxShadow: '0 8px 24px -12px rgba(0,0,0,0.08)' }}>
+                          <p className="text-xs font-bold mb-6 tracking-wider" style={{ fontFamily: 'var(--font-plex)', color: 'var(--color-cobalt)' }}>HOBBIES</p>
+                          <div className="grid grid-cols-2 gap-4">
+                            {[['🎨', 'Design'], ['📸', 'Photography'], ['🥾', 'Hiking'], ['☕', 'Coffee']].map(([e, t]) => (
+                              <div key={t} className="flex flex-col items-center justify-center p-3 rounded-2xl" style={{ background: 'rgba(124,185,232,0.05)' }}>
+                                <span className="text-2xl mb-2">{e}</span>
+                                <span className="font-medium text-xs" style={{ color: 'var(--color-ink)' }}>{t}</span>
+                              </div>
+                            ))}
+                          </div>
+                          <p className="text-sm leading-relaxed mt-5" style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-jakarta)' }}>
+                            Beyond professional pursuits, I&apos;m about design and innovation—exploring product ideas, web design, and graphic projects. I also love photography, hiking, and spending time in nature.
+                          </p>
+                        </div>,
+                        <div key="focus" className="rounded-3xl p-6 relative overflow-hidden flex flex-col justify-center" style={{ minHeight: 420, background: 'linear-gradient(135deg,#2D5F4E 0%,#1E4D3C 100%)', border: '1px solid rgba(255,255,255,0.15)' }}>
+                          <p className="text-xs font-bold mb-3 tracking-wider" style={{ fontFamily: 'var(--font-plex)', color: 'rgba(255,255,255,0.8)' }}>FOCUS</p>
+                          <h3 className="font-extrabold mb-3 text-white" style={{ fontSize: 'clamp(22px,6vw,30px)', letterSpacing: '-0.02em' }}>Machine Learning &amp; Computational Biology</h3>
+                          <p className="leading-relaxed text-sm" style={{ color: 'rgba(255,255,255,0.9)' }}>
+                            My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems and molecular data.
+                          </p>
+                        </div>,
+                      ]}
+                    />
+                  </div>
                 </ScrollReveal>
               </div>
             </div>

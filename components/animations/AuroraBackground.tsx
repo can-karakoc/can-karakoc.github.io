@@ -72,6 +72,17 @@ function ParallaxBubble({
 }
 
 export function AuroraBackground() {
+  // Bubbles + scroll parallax are disabled on mobile — the per-scroll motion
+  // updates are heavy on phones and make the page feel laggy.
+  const [isDesktop, setIsDesktop] = React.useState(false);
+  React.useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
   const { scrollY } = useScroll();
 
   // Smoothed copy of scroll position; the difference to the real position is
@@ -227,8 +238,8 @@ export function AuroraBackground() {
           }}
         />
 
-        {/* Rising bubbles with scroll parallax */}
-        {backBubbles.map((b, i) => (
+        {/* Rising bubbles with scroll parallax (desktop only) */}
+        {isDesktop && backBubbles.map((b, i) => (
           <ParallaxBubble
             key={i}
             lag={lag}
@@ -250,12 +261,12 @@ export function AuroraBackground() {
         ))}
       </div>
 
-      {/* ===== Front layer - distortion bubbles above the content ===== */}
+      {/* ===== Front layer - distortion bubbles above the content (desktop only) ===== */}
       <div
         aria-hidden="true"
         className="fixed inset-0 overflow-clip pointer-events-none z-30"
       >
-        {frontBubbles.map((b, i) => (
+        {isDesktop && frontBubbles.map((b, i) => (
           <ParallaxBubble
             key={i}
             lag={lag}

@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image';
 import { ScrollReveal } from '@/components/animations';
 import { Badge } from '@/components/ui';
+import { MobileCarousel } from '@/components/ui/MobileCarousel';
 
 const principles = [
   {
@@ -76,9 +77,9 @@ export function Principles() {
         </div>
       </ScrollReveal>
 
-      {/* Horizontal Expandable Cards - Always fills width */}
+      {/* Horizontal Expandable Cards - desktop only (mobile uses a carousel) */}
       <ScrollReveal delay={0.1}>
-        <div className="flex gap-4 items-stretch">
+        <div className="hidden md:flex gap-4 items-stretch">
           {principles.map((principle, index) => {
             const isExpanded = expandedId === principle.id;
             // Calculate widths: 2 collapsed (140px each) + 2 gaps (16px each) = 312px
@@ -221,6 +222,40 @@ export function Principles() {
               </motion.div>
             );
           })}
+        </div>
+
+        {/* Mobile: carousel of the principle cards (fully expanded) */}
+        <div className="md:hidden">
+          <MobileCarousel
+            ariaLabel="Engineering principles"
+            items={principles.map((principle) => (
+              <div
+                key={principle.id}
+                className="rounded-[24px] p-7 flex flex-col relative overflow-hidden"
+                style={{
+                  minHeight: 300,
+                  background: 'rgba(255, 255, 255, 0.78)',
+                  backdropFilter: 'blur(20px) saturate(1.3)',
+                  WebkitBackdropFilter: 'blur(20px) saturate(1.3)',
+                  border: '2px solid rgba(255, 255, 255, 0.9)',
+                  boxShadow: `0 12px 26px -12px rgba(0,0,0,0.14), inset 0 2px 0 rgba(255,255,255,0.9), 0 0 0 1px ${principle.color}18`,
+                }}
+              >
+                <div className="absolute inset-0 pointer-events-none" style={{ background: principle.bgGradient }} />
+                <div className="relative">
+                  <div className="relative mb-5" style={{ width: 84, height: 84 }}>
+                    <Image src={principle.icon} alt={principle.title} fill className="object-contain" style={{ filter: `drop-shadow(0 4px 16px ${principle.color}50)` }} />
+                  </div>
+                  <h3 className="font-extrabold leading-tight mb-3" style={{ color: 'var(--color-ink)', letterSpacing: '-0.03em', fontSize: 26 }}>
+                    {principle.title}
+                  </h3>
+                  <p className="text-[15px] leading-relaxed" style={{ color: 'var(--color-ink-muted)' }}>
+                    {principle.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          />
         </div>
       </ScrollReveal>
     </div>
