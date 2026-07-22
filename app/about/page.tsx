@@ -20,7 +20,7 @@ export default function About() {
               <div style={{ overflow: 'visible', padding: '100px 0' }}>
                 <ScrollReveal>
                   {/* Bento Grid - 6 columns for flexible sizing */}
-                  <div className="grid grid-cols-1 md:grid-cols-6 md:auto-rows-fr gap-5 max-w-[1160px]" style={{ overflow: 'visible' }}>
+                  <div className="grid grid-cols-1 md:grid-cols-6 gap-5 max-w-[1160px]" style={{ overflow: 'visible' }}>
 
                   {/* Profile Photo Card - fills full row height */}
                   <motion.div
@@ -339,7 +339,6 @@ export default function About() {
                       boxShadow: '0 20px 40px -20px rgba(45, 95, 78, 0.5)',
                       cursor: hoveredCard === 'focus' ? 'pointer' : 'default',
                       overflow: 'hidden',
-                      minHeight: '200px',
                     }}
                   >
                     {/* Grid overlay */}
