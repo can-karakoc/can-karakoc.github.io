@@ -433,13 +433,14 @@ export function Projects() {
   return (
     <section id="work" className="relative pt-0 pb-24 scroll-mt-28">
       <div className="max-w-[1160px] mx-auto px-6">
-        {/* Section title */}
+        {/* Section title — small understated label, matching the reference's
+            "Featured works" treatment and spacing */}
         <ScrollReveal>
           <h2
-            className="font-extrabold mb-8"
+            className="font-extrabold mb-6"
             style={{
-              fontSize: 'clamp(24px, 3vw, 32px)',
-              letterSpacing: '-0.025em',
+              fontSize: '18px',
+              letterSpacing: '-0.01em',
               color: 'var(--color-ink)',
             }}
           >

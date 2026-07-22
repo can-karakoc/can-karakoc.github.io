@@ -20,14 +20,14 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative -mt-[80px] min-h-[58vh] flex items-center overflow-hidden"
+      className="relative -mt-[80px] flex items-start overflow-hidden"
     >
       {/* Content - full width */}
-      <div className="relative z-10 w-full max-w-[1160px] mx-auto px-6 pt-[80px]">
+      <div className="relative z-10 w-full max-w-[1160px] mx-auto px-6 pt-[200px]">
         <div>
-          {/* Greeting - primary headline */}
+          {/* Greeting - primary headline (larger size, generous spacing) */}
           <motion.h1
-            className="font-extrabold mb-4"
+            className="font-extrabold mb-5"
             style={{
               fontSize: 'clamp(36px, 5.5vw, 64px)',
               letterSpacing: '-0.035em',
@@ -41,9 +41,9 @@ export function Hero() {
             Hello! I'm Can
           </motion.h1>
 
-          {/* Sentence with typing animation - secondary */}
+          {/* Sentence with typing animation - larger secondary subtitle */}
           <motion.p
-            className="font-bold leading-[1.25] mb-8 relative"
+            className="font-bold leading-[1.3] mb-10 relative"
             style={{
               fontSize: 'clamp(22px, 3vw, 34px)',
               letterSpacing: '-0.02em',

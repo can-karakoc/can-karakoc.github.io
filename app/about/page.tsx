@@ -144,7 +144,7 @@ export default function About() {
                   {/* Resume Download Card - 1 column (smallest) */}
                   <motion.a
                     href="/resume.pdf"
-                    download
+                    download="Can-Karakoc-Resume.pdf"
                     className="md:col-span-1 p-6 rounded-3xl flex flex-col no-underline group"
                     onMouseEnter={() => setHoveredCard('resume')}
                     onMouseLeave={() => setHoveredCard(null)}
