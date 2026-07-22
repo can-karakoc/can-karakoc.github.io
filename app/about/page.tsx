@@ -8,9 +8,26 @@ import { useState, useEffect } from 'react';
 
 export default function About() {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
+  const [hoverTimeout, setHoverTimeout] = useState<NodeJS.Timeout | null>(null);
 
-  const toggleCard = (cardId: string) => {
-    setExpandedCard(expandedCard === cardId ? null : cardId);
+  const handleMouseEnter = (cardId: string) => {
+    // Clear any existing timeout
+    if (hoverTimeout) clearTimeout(hoverTimeout);
+
+    // Set a slight delay before showing to prevent accidental triggers
+    const timeout = setTimeout(() => {
+      setExpandedCard(cardId);
+    }, 300);
+    setHoverTimeout(timeout);
+  };
+
+  const handleMouseLeave = () => {
+    // Clear the pending timeout
+    if (hoverTimeout) {
+      clearTimeout(hoverTimeout);
+      setHoverTimeout(null);
+    }
+    setExpandedCard(null);
   };
 
   // Handle Escape key
@@ -30,14 +47,14 @@ export default function About() {
       <AnimatePresence>
         {expandedCard && (
           <>
-            {/* Backdrop - transparent, just for clicking to close */}
+            {/* Backdrop - transparent, closes on hover exit */}
             <motion.div
               className="fixed inset-0"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              onClick={() => setExpandedCard(null)}
+              onMouseEnter={handleMouseLeave}
               style={{ zIndex: 9998 }}
             />
 
@@ -49,6 +66,8 @@ export default function About() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
+                onMouseEnter={() => handleMouseEnter('hobbies')}
+                onMouseLeave={handleMouseLeave}
                 style={{ zIndex: 9999, pointerEvents: 'none' }}
               >
                 {/* Glow/blur halo - darker shadow layer */}
@@ -240,6 +259,8 @@ export default function About() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
+                onMouseEnter={() => handleMouseEnter('focus')}
+                onMouseLeave={handleMouseLeave}
                 style={{ zIndex: 9999, pointerEvents: 'none' }}
               >
                 {/* Glow/blur halo - darker shadow layer */}
@@ -391,6 +412,11 @@ export default function About() {
                       }}
                     />
 
+                    {/* Berkeley Logo */}
+                    <div className="absolute top-6 right-6 opacity-30 group-hover:opacity-50 transition-opacity duration-300">
+                      <img src="/assets/svg/Group-1.svg" alt="Berkeley Logo" className="w-16 h-16" />
+                    </div>
+
                     <div className="relative z-10">
                       <p
                         className="text-xs font-bold mb-4 tracking-wider"
@@ -484,10 +510,11 @@ export default function About() {
                     </div>
                   </motion.a>
 
-                  {/* Hobbies Card - Clickable */}
+                  {/* Hobbies Card - Hover to expand */}
                   <motion.div
                     className="p-8 rounded-3xl cursor-pointer md:col-span-1"
-                    onClick={() => toggleCard('hobbies')}
+                    onMouseEnter={() => handleMouseEnter('hobbies')}
+                    onMouseLeave={handleMouseLeave}
                     whileHover={{ scale: 1.05, y: -4 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
@@ -533,10 +560,11 @@ export default function About() {
                     </div>
                   </motion.div>
 
-                  {/* Focus Card - Clickable */}
+                  {/* Focus Card - Hover to expand */}
                   <motion.div
                     className="p-8 rounded-3xl group relative overflow-hidden cursor-pointer md:col-span-2"
-                    onClick={() => toggleCard('focus')}
+                    onMouseEnter={() => handleMouseEnter('focus')}
+                    onMouseLeave={handleMouseLeave}
                     whileHover={{ scale: 1.02, y: -6 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
