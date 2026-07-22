@@ -700,29 +700,28 @@ export function LocationIndicator() {
               className="flex items-center gap-2.5 pl-3.5 pr-4 py-2.5 cursor-pointer"
             >
               <span style={{ color: theme.fg }}>
-                <WeatherIcon cat={cat} isDay={isDay} size={26} />
+                <WeatherIcon cat={cat} isDay={isDay} size={22} />
               </span>
               <span className="text-left leading-tight">
                 {/* location + live green dot */}
                 <span className="flex items-center gap-1.5">
-                  <span className="relative inline-flex items-center justify-center" style={{ width: 7, height: 7 }}>
+                  <span className="relative inline-flex items-center justify-center" style={{ width: 6, height: 6 }}>
                     <motion.span
                       className="absolute rounded-full"
-                      style={{ width: 7, height: 7, background: '#22c55e' }}
+                      style={{ width: 6, height: 6, background: '#22c55e' }}
                       animate={{ opacity: [0.55, 0, 0.55], scale: [1, 2.6, 1] }}
                       transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                     />
                     <span
                       className="relative rounded-full"
-                      style={{ width: 6, height: 6, background: '#22c55e', boxShadow: '0 0 4px 1px rgba(34,197,94,0.85)' }}
+                      style={{ width: 5.5, height: 5.5, background: '#22c55e', boxShadow: '0 0 4px 1px rgba(34,197,94,0.85)' }}
                     />
                   </span>
-                  <span className="font-semibold text-[11px]" style={{ color: theme.sub }}>
+                  <span className="font-bold text-[13px]" style={{ color: theme.fg }}>
                     {LOCATION.city}, {LOCATION.country}
                   </span>
                 </span>
-                {/* time + temp — prioritized */}
-                <span className="block font-extrabold text-[15px] leading-tight" style={{ color: theme.fg }}>
+                <span className="block text-[11px] font-medium" style={{ color: theme.sub }}>
                   {clock} {period.toLowerCase()}
                   {weather ? ` · ${Math.round(weather.tempC)}°C` : ''}
                 </span>
