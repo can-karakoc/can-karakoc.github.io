@@ -17,6 +17,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const LOCATION = {
   city: 'London',
   region: 'United Kingdom',
+  country: 'UK',
   latitude: 51.5074,
   longitude: -0.1278,
   timeZone: 'Europe/London',
@@ -582,60 +583,45 @@ export function LocationIndicator() {
               onClick={() => setOpen(false)}
               role="button"
               aria-label="Collapse"
-              className="p-5 cursor-pointer"
+              className="p-3 cursor-pointer"
             >
-              {/* Header: personalized title + location + collapse chevron */}
-              <div className="flex items-start justify-between gap-2">
-                <div className="min-w-0">
-                  <p
-                    className="text-[9.5px] font-bold uppercase tracking-[0.14em] mb-1"
-                    style={{ fontFamily: 'var(--font-plex)', color: theme.sub }}
-                  >
-                    Time &amp; Weather for Can
-                  </p>
-                  <p className="font-bold text-sm leading-tight truncate" style={{ color: theme.fg }}>
-                    {LOCATION.city}
-                  </p>
-                  <p className="text-[11px] leading-tight truncate" style={{ color: theme.sub }}>
-                    {LOCATION.region}
-                  </p>
-                </div>
-                <span
-                  aria-hidden
-                  className="shrink-0 -mr-1 -mt-1 p-1"
-                  style={{ color: theme.sub }}
+              {/* Top: location pill (live green dot) + collapse chevron — on the gradient */}
+              <div className="flex items-center justify-between gap-2 px-0.5">
+                <div
+                  className="inline-flex items-center gap-2 pl-2 pr-3 py-1 rounded-full"
+                  style={{
+                    background: 'rgba(255,255,255,0.72)',
+                    border: '1px solid rgba(255,255,255,0.75)',
+                    backdropFilter: 'blur(6px)',
+                    WebkitBackdropFilter: 'blur(6px)',
+                  }}
                 >
+                  {/* live green glowing dot */}
+                  <span className="relative inline-flex items-center justify-center" style={{ width: 8, height: 8 }}>
+                    <motion.span
+                      className="absolute rounded-full"
+                      style={{ width: 8, height: 8, background: '#22c55e' }}
+                      animate={{ opacity: [0.55, 0, 0.55], scale: [1, 2.6, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                    />
+                    <span
+                      className="relative rounded-full"
+                      style={{ width: 7, height: 7, background: '#22c55e', boxShadow: '0 0 5px 1px rgba(34,197,94,0.85)' }}
+                    />
+                  </span>
+                  <span className="text-[12px] font-bold" style={{ color: 'var(--color-ink)' }}>
+                    {LOCATION.city}, {LOCATION.country}
+                  </span>
+                </div>
+                <span aria-hidden className="shrink-0 p-1" style={{ color: theme.fg }}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M6 9l6 6 6-6" />
                   </svg>
                 </span>
               </div>
 
-              {/* Big time */}
-              <div className="mt-3 flex items-end gap-2">
-                <span className="font-extrabold tracking-tight leading-none" style={{ fontSize: 46, color: theme.fg }}>
-                  {clock}
-                </span>
-                <span className="font-semibold mb-1.5" style={{ fontSize: 15, color: theme.sub }}>
-                  {period.toLowerCase()}
-                </span>
-                <span className="flex-1" />
-                <span style={{ color: theme.fg }} className="mb-1">
-                  <WeatherIcon cat={cat} isDay={isDay} size={30} />
-                </span>
-              </div>
-
-              <div className="mt-0.5 flex items-center justify-between">
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em]" style={{ fontFamily: 'var(--font-plex)', color: theme.sub }}>
-                  {dateStr}
-                </p>
-                <p className="text-[13px] font-semibold" style={{ color: theme.fg }}>
-                  {label}
-                </p>
-              </div>
-
-              {/* Sun / moon position arc */}
-              <div className="mt-4">
+              {/* Sun / moon trajectory — on the gradient, outside the card */}
+              <div className="mt-3">
                 <SunArc
                   sunriseMin={sunriseMin}
                   sunsetMin={sunsetMin}
@@ -644,7 +630,7 @@ export function LocationIndicator() {
                   fg={theme.fg}
                   sub={theme.sub}
                 />
-                <div className="flex items-center justify-between px-1 -mt-0.5">
+                <div className="flex items-center justify-between px-1.5 -mt-0.5">
                   <span className="text-[10px] font-semibold" style={{ color: theme.sub }}>
                     ↑ {weather ? to12h(weather.sunrise.slice(11, 16)) : '—'}
                   </span>
@@ -654,23 +640,52 @@ export function LocationIndicator() {
                 </div>
               </div>
 
-              {/* Weather metadata — secondary, smaller & lighter */}
-              <div className="mt-4 rounded-2xl px-3 py-2.5 grid grid-cols-2 gap-y-2 gap-x-4" style={{ background: theme.panel }}>
-                {[
-                  ['Temp', weather ? `${Math.round(weather.tempC)}°C` : '—'],
-                  ['Feels like', weather ? `${Math.round(weather.feelsC)}°C` : '—'],
-                  ['Humidity', weather ? `${weather.humidity}%` : '—'],
-                  ['Wind', weather ? `${Math.round(weather.windKph)} km/h` : '—'],
-                ].map(([k, v]) => (
-                  <div key={k}>
-                    <p className="text-[9px] font-semibold uppercase tracking-[0.1em]" style={{ fontFamily: 'var(--font-plex)', color: theme.sub }}>
-                      {k}
-                    </p>
-                    <p className="text-[12.5px] font-medium" style={{ color: theme.fg }}>
-                      {v}
+              {/* Solid white data card */}
+              <div
+                className="mt-3 rounded-2xl p-4"
+                style={{ background: '#ffffff', boxShadow: '0 8px 22px -12px rgba(10,37,64,0.3)' }}
+              >
+                {/* time + weather */}
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <div className="flex items-end gap-1.5">
+                      <span className="font-extrabold tracking-tight leading-none" style={{ fontSize: 46, color: 'var(--color-ink)' }}>
+                        {clock}
+                      </span>
+                      <span className="font-semibold mb-1.5" style={{ fontSize: 15, color: 'var(--color-ink-muted)' }}>
+                        {period.toLowerCase()}
+                      </span>
+                    </div>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.14em] mt-1.5" style={{ fontFamily: 'var(--font-plex)', color: 'var(--color-ink-muted)' }}>
+                      {dateStr}
                     </p>
                   </div>
-                ))}
+                  <div className="flex flex-col items-center gap-1 pt-1 shrink-0" style={{ color: 'var(--color-ink)' }}>
+                    <WeatherIcon cat={cat} isDay={isDay} size={30} />
+                    <span className="text-[11.5px] font-semibold text-center leading-tight" style={{ color: 'var(--color-ink)' }}>
+                      {label}
+                    </span>
+                  </div>
+                </div>
+
+                {/* stats */}
+                <div className="mt-3 pt-3 grid grid-cols-2 gap-y-2.5 gap-x-4" style={{ borderTop: '1px solid rgba(10,37,64,0.08)' }}>
+                  {[
+                    ['Temp', weather ? `${Math.round(weather.tempC)}°C` : '—'],
+                    ['Feels like', weather ? `${Math.round(weather.feelsC)}°C` : '—'],
+                    ['Humidity', weather ? `${weather.humidity}%` : '—'],
+                    ['Wind', weather ? `${Math.round(weather.windKph)} km/h` : '—'],
+                  ].map(([k, v]) => (
+                    <div key={k}>
+                      <p className="text-[9px] font-semibold uppercase tracking-[0.1em]" style={{ fontFamily: 'var(--font-plex)', color: 'var(--color-ink-muted)' }}>
+                        {k}
+                      </p>
+                      <p className="text-[13px] font-semibold" style={{ color: 'var(--color-ink)' }}>
+                        {v}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ) : (
