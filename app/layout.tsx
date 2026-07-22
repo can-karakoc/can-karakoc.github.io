@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-TTWS5D5KRN";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -42,6 +45,7 @@ export default function RootLayout({
       <body>
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
+      <GoogleAnalytics gaId={GA_ID} />
     </html>
   );
 }
