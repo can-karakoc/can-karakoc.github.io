@@ -177,6 +177,7 @@ export default function About() {
                         style={{
                           background: 'rgba(124, 185, 232, 0.15)',
                           backdropFilter: 'blur(10px)',
+                          WebkitBackdropFilter: 'blur(10px)',
                           border: '1px solid rgba(124, 185, 232, 0.3)',
                         }}
                       >
@@ -306,6 +307,7 @@ export default function About() {
                         style={{
                           background: 'rgba(255, 255, 255, 0.95)',
                           backdropFilter: 'blur(10px)',
+                          WebkitBackdropFilter: 'blur(10px)',
                         }}
                       >
                         <p

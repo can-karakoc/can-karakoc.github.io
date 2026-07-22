@@ -261,6 +261,7 @@ function ProjectMockup({ type }: { type: NonNullable<Project['mockup']> }) {
           aspectRatio: '1 / 1',
           background: 'rgba(255, 255, 255, 0.16)',
           backdropFilter: 'blur(6px)',
+          WebkitBackdropFilter: 'blur(6px)',
           border: '1px solid rgba(255, 255, 255, 0.35)',
         }}
       >

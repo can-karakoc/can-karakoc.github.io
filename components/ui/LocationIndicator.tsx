@@ -245,6 +245,20 @@ function SunArc({
 
   return (
     <svg width="100%" viewBox={`0 0 ${W} ${H}`} style={{ display: 'block', overflow: 'visible' }}>
+      <defs>
+        {/* Radial-gradient glows — render identically in Safari, unlike CSS
+            blur() on SVG elements. */}
+        <radialGradient id="liSunGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.85" />
+          <stop offset="55%" stopColor="#ffffff" stopOpacity="0.35" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id="liMoonGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#242a38" stopOpacity="0.8" />
+          <stop offset="55%" stopColor="#242a38" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#242a38" stopOpacity="0" />
+        </radialGradient>
+      </defs>
       {/* horizon */}
       <line x1={x0} y1={horizon} x2={x1} y2={horizon} stroke={sub} strokeWidth="1" strokeDasharray="2 3" opacity={0.4} />
 
@@ -260,14 +274,14 @@ function SunArc({
         <path d={sunTrav} fill="none" stroke={fg} strokeWidth="1.6" opacity={isDay ? 0.6 : 0.26} strokeLinecap="round" />
       )}
 
-      {/* moon — blurred dark glow + solid orb (blooms on hover) */}
+      {/* moon — soft radial glow + solid orb (blooms on hover) */}
       <circle
         cx={moonX}
         cy={moonY}
-        r={hover === 'moon' ? 15 : 10}
-        fill="#242a38"
-        opacity={hover === 'moon' ? (isDay ? 0.6 : 0.78) : isDay ? 0.45 : 0.6}
-        style={{ filter: 'blur(5px)', transition: 'r 0.2s ease, opacity 0.2s ease' }}
+        r={hover === 'moon' ? 16 : 11}
+        fill="url(#liMoonGlow)"
+        opacity={hover === 'moon' ? (isDay ? 0.85 : 1) : isDay ? 0.7 : 0.9}
+        style={{ transition: 'r 0.2s ease, opacity 0.2s ease' }}
       />
       <circle
         cx={moonX}
@@ -278,14 +292,14 @@ function SunArc({
         style={{ transition: 'r 0.2s ease' }}
       />
 
-      {/* sun — blurred white glow + solid orb (blooms on hover) */}
+      {/* sun — soft radial glow + solid orb (blooms on hover) */}
       <circle
         cx={sunX}
         cy={sunY}
-        r={hover === 'sun' ? 17 : 11}
-        fill="#ffffff"
-        opacity={hover === 'sun' ? (isDay ? 0.9 : 0.5) : isDay ? 0.75 : 0.35}
-        style={{ filter: 'blur(5px)', transition: 'r 0.2s ease, opacity 0.2s ease' }}
+        r={hover === 'sun' ? 18 : 12}
+        fill="url(#liSunGlow)"
+        opacity={hover === 'sun' ? 1 : isDay ? 0.9 : 0.55}
+        style={{ transition: 'r 0.2s ease, opacity 0.2s ease' }}
       />
       <circle
         cx={sunX}
