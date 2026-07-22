@@ -47,7 +47,7 @@ const projects: Project[] = [
     categoryColor: 'var(--color-teal)',
     description:
       'Interactive genome browser for HIV-1/2 & SIV — gene annotations, conserved regions, 3D protein models.',
-    link: 'https://jordanklanfer.github.io/static_jbrowse/',
+    link: 'https://github.com/JORDANKLANFER/jbrowse2_project',
     gradientBg: 'linear-gradient(150deg, #5C9A92, #6BB2BC)',
     mockup: 'genome',
   },
