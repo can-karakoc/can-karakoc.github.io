@@ -414,7 +414,7 @@ export default function About() {
 
                     {/* Berkeley Logo */}
                     <div className="absolute top-6 right-6 opacity-30 group-hover:opacity-50 transition-opacity duration-300">
-                      <img src="/assets/svg/Group-1.svg" alt="Berkeley Logo" className="w-16 h-16" />
+                      <img src="/berkeley-logo.svg" alt="Berkeley Logo" className="w-16 h-16" />
                     </div>
 
                     <div className="relative z-10">
