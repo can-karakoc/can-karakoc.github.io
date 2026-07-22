@@ -15,20 +15,19 @@ export default function About() {
         <Navigation />
         <main>
           {/* Bento Grid Section */}
-          <section className="relative px-6 min-h-[calc(100vh-80px)] flex items-center justify-center">
-            <div className="max-w-[1160px] mx-auto w-full">
+          <section className="relative px-6 min-h-[calc(100vh-80px)] flex items-center justify-center" style={{ overflow: 'visible' }}>
+            <div className="max-w-[1160px] mx-auto w-full" style={{ overflow: 'visible' }}>
               <ScrollReveal>
                 {/* Bento Grid - 6 columns for flexible sizing */}
-                <div className="grid grid-cols-1 md:grid-cols-6 md:auto-rows-fr gap-5 max-w-[1160px]">
+                <div className="grid grid-cols-1 md:grid-cols-6 md:auto-rows-fr gap-5 max-w-[1160px]" style={{ overflow: 'visible' }}>
 
-                  {/* Profile Photo Card - 1.5 columns */}
+                  {/* Profile Photo Card - fills full row height */}
                   <motion.div
-                    className="md:col-span-1 p-0 rounded-3xl overflow-hidden"
+                    className="md:col-span-1 md:row-span-1 p-0 rounded-3xl overflow-hidden"
                     whileHover={{ scale: 1.05, y: -4 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     style={{
                       boxShadow: '0 8px 24px -12px rgba(0, 0, 0, 0.15)',
-                      aspectRatio: '1',
                     }}
                   >
                     <img
@@ -38,9 +37,9 @@ export default function About() {
                     />
                   </motion.div>
 
-                  {/* Education Card - 3 columns (largest), Berkeley logo appears on hover */}
+                  {/* Education Card - 4 columns (larger), Berkeley logo appears on hover */}
                   <motion.div
-                    className="md:col-span-3 p-6 rounded-3xl group relative"
+                    className="md:col-span-4 p-6 rounded-3xl group relative"
                     onMouseEnter={() => setHoveredCard('education')}
                     onMouseLeave={() => setHoveredCard(null)}
                     style={{
@@ -142,11 +141,11 @@ export default function About() {
                     </div>
                   </motion.div>
 
-                  {/* Resume Download Card - 2 columns (smaller) */}
+                  {/* Resume Download Card - 1 column (smallest) */}
                   <motion.a
                     href="/resume.pdf"
                     download
-                    className="md:col-span-2 p-6 rounded-3xl flex flex-col no-underline group"
+                    className="md:col-span-1 p-6 rounded-3xl flex flex-col no-underline group"
                     whileHover={{ y: -6 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
