@@ -3,7 +3,7 @@
 import { Navigation, Footer, Capabilities, Principles } from '@/components/sections';
 import { ScrollReveal } from '@/components/animations';
 import { PageTransition } from '@/components/PageTransition';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
 export default function About() {
@@ -24,7 +24,7 @@ export default function About() {
 
                   {/* Profile Photo Card - fills full row height */}
                   <motion.div
-                    className="md:col-span-1 md:row-span-1 p-0 rounded-3xl overflow-hidden"
+                    className="md:col-span-1 md:row-span-1 p-0 rounded-3xl overflow-hidden group"
                     style={{
                       boxShadow: '0 8px 24px -12px rgba(0, 0, 0, 0.15)',
                     }}
@@ -32,7 +32,7 @@ export default function About() {
                     <img
                       src="/photos/profile.jpg"
                       alt="Profile"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110 group-hover:brightness-105"
                     />
                   </motion.div>
 
@@ -45,54 +45,55 @@ export default function About() {
                       background: 'linear-gradient(135deg, #003262 0%, #004A8F 100%)',
                       border: '1px solid rgba(253, 181, 21, 0.3)',
                       boxShadow: '0 20px 40px -20px rgba(0, 50, 98, 0.4)',
-                      overflow: 'visible',
+                      overflow: 'hidden',
                       position: 'relative',
                       zIndex: hoveredCard === 'education' ? 100 : 1,
+                      cursor: 'pointer',
                     }}
                   >
-                    {/* Berkeley Logo appears on hover */}
-                    {hoveredCard === 'education' && (
+                    {/* Berkeley banner - springs in fully visible on the right,
+                        sized to fit inside the card */}
+                    <div
+                      className="absolute inset-0 flex items-center justify-end pointer-events-none"
+                      style={{ paddingRight: '36px', zIndex: 20 }}
+                    >
                       <motion.div
-                        className="absolute pointer-events-none"
-                        initial={{
-                          opacity: 0,
-                          scale: 0.5,
-                          rotate: -15,
-                        }}
-                        animate={{
-                          opacity: 1,
-                          scale: 1,
-                          rotate: 8,
-                          y: [0, -10, 0],
-                        }}
-                        transition={{
-                          opacity: { duration: 0.3 },
-                          scale: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
-                          rotate: { duration: 0.3 },
-                          y: {
-                            duration: 2.5,
-                            repeat: Infinity,
-                            ease: 'easeInOut',
-                          },
-                        }}
+                        initial={false}
+                        animate={
+                          hoveredCard === 'education'
+                            ? {
+                                opacity: 1,
+                                scale: 1,
+                                rotate: 8,
+                                y: [0, -6, 0],
+                              }
+                            : { opacity: 0, scale: 0.6, rotate: -12, y: 0 }
+                        }
+                        transition={
+                          hoveredCard === 'education'
+                            ? {
+                                opacity: { duration: 0.3 },
+                                scale: { type: 'spring', stiffness: 300, damping: 18 },
+                                rotate: { type: 'spring', stiffness: 300, damping: 18 },
+                                y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' },
+                              }
+                            : { duration: 0.3, ease: [0.32, 0.72, 0, 1] }
+                        }
                         style={{
-                          bottom: '20px',
-                          right: '20px',
-                          width: '120px',
-                          height: '120px',
-                          zIndex: 200,
+                          height: '88%',
+                          aspectRatio: '1 / 1',
                         }}
                       >
                         <img
                           src="/berkeley-logo.svg"
-                          alt="Berkeley Logo"
+                          alt="Berkeley banner"
                           className="w-full h-full object-contain"
                           style={{
-                            filter: 'drop-shadow(0 12px 30px rgba(0, 0, 0, 0.4))',
+                            filter: 'drop-shadow(0 10px 24px rgba(0, 0, 0, 0.35))',
                           }}
                         />
                       </motion.div>
-                    )}
+                    </div>
 
                     {/* Animated gold hue overlay */}
                     <div
@@ -145,6 +146,8 @@ export default function About() {
                     href="/resume.pdf"
                     download
                     className="md:col-span-1 p-6 rounded-3xl flex flex-col no-underline group"
+                    onMouseEnter={() => setHoveredCard('resume')}
+                    onMouseLeave={() => setHoveredCard(null)}
                     style={{
                       background: '#FFFFFF',
                       border: '2px solid rgba(0, 0, 0, 0.08)',
@@ -163,16 +166,21 @@ export default function About() {
                     <div className="flex-1 flex items-center justify-center">
                       <motion.div
                         className="flex items-center gap-3 px-5 py-2.5 rounded-full"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
+                        animate={{
+                          scale: hoveredCard === 'resume' ? 1.06 : 1,
+                          boxShadow:
+                            hoveredCard === 'resume'
+                              ? '0 8px 20px rgba(124, 185, 232, 0.4)'
+                              : '0 4px 12px rgba(124, 185, 232, 0.2)',
+                        }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         style={{
                           background: 'rgba(124, 185, 232, 0.15)',
                           backdropFilter: 'blur(10px)',
                           border: '1px solid rgba(124, 185, 232, 0.3)',
-                          boxShadow: '0 4px 12px rgba(124, 185, 232, 0.2)',
                         }}
                       >
-                        <svg
+                        <motion.svg
                           width="16"
                           height="16"
                           viewBox="0 0 24 24"
@@ -181,13 +189,23 @@ export default function About() {
                           strokeWidth="2"
                           strokeLinecap="round"
                           strokeLinejoin="round"
+                          animate={
+                            hoveredCard === 'resume'
+                              ? { y: [0, 3, 0] }
+                              : { y: 0 }
+                          }
+                          transition={
+                            hoveredCard === 'resume'
+                              ? { duration: 0.8, repeat: Infinity, ease: 'easeInOut' }
+                              : { duration: 0.2 }
+                          }
                         >
                           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                           <polyline points="7 10 12 15 17 10" />
                           <line x1="12" y1="15" x2="12" y2="3" />
-                        </svg>
+                        </motion.svg>
                         <span className="font-semibold text-sm" style={{ color: 'var(--color-cobalt)' }}>
-                          Download Resume
+                          Download
                         </span>
                       </motion.div>
                     </div>
@@ -209,9 +227,9 @@ export default function About() {
                     }}
                   >
                     {/* Floating Photos on hover */}
-                    {hoveredCard === 'hobbies' && (
-                      <>
-                        {[
+                    <AnimatePresence>
+                    {hoveredCard === 'hobbies' &&
+                        [
                           { src: '/photos/london.jpg', top: '-20%', left: '-25%', rotate: -6, delay: 0 },
                           { src: '/photos/parthenon.jpg', top: '-15%', right: '-30%', rotate: 5, delay: 0.05 },
                           { src: '/photos/beach.jpg', top: '35%', left: '-30%', rotate: -7, delay: 0.1 },
@@ -220,7 +238,7 @@ export default function About() {
                           { src: '/photos/coast1.jpg', bottom: '-15%', right: '-25%', rotate: -5, delay: 0.25 },
                         ].map((photo, idx) => (
                           <motion.div
-                            key={idx}
+                            key={photo.src}
                             className="absolute pointer-events-none z-50"
                             initial={{
                               opacity: 0,
@@ -232,6 +250,17 @@ export default function About() {
                               scale: 1,
                               rotate: photo.rotate,
                               y: [0, -8, 0],
+                            }}
+                            exit={{
+                              opacity: 0,
+                              scale: 0.7,
+                              rotate: 0,
+                              y: 10,
+                              transition: {
+                                duration: 0.45,
+                                delay: photo.delay * 0.5,
+                                ease: [0.32, 0.72, 0, 1],
+                              },
                             }}
                             transition={{
                               opacity: { duration: 0.3, delay: photo.delay },
@@ -264,15 +293,15 @@ export default function About() {
                             />
                           </motion.div>
                         ))}
-                      </>
-                    )}
 
                     {/* Hover overlay with text */}
                     {hoveredCard === 'hobbies' && (
                       <motion.div
+                        key="hobbies-overlay"
                         className="absolute inset-0 flex items-center justify-center p-8 rounded-3xl"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
+                        exit={{ opacity: 0, transition: { duration: 0.35, ease: 'easeOut' } }}
                         transition={{ duration: 0.2 }}
                         style={{
                           background: 'rgba(255, 255, 255, 0.95)',
@@ -290,6 +319,7 @@ export default function About() {
                         </p>
                       </motion.div>
                     )}
+                    </AnimatePresence>
 
                     <p
                       className="text-xs font-bold mb-6 tracking-wider"
@@ -353,10 +383,19 @@ export default function About() {
                       }}
                     />
 
-                    {/* Content - title stays, description expands on hover */}
-                    <div className="relative z-10">
+                    {/* Default content - label pinned top-right, title + text
+                        vertically centered in the remaining space */}
+                    <motion.div
+                      className="relative z-10 h-full flex flex-col items-center justify-center text-center"
+                      initial={false}
+                      animate={{
+                        opacity: hoveredCard === 'focus' ? 0 : 1,
+                        y: hoveredCard === 'focus' ? -8 : 0,
+                      }}
+                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    >
                       <p
-                        className="text-xs font-bold mb-3 tracking-wider text-right"
+                        className="text-xs font-bold tracking-wider absolute top-0 right-0"
                         style={{
                           fontFamily: 'var(--font-plex)',
                           color: 'rgba(255, 255, 255, 0.8)',
@@ -365,32 +404,121 @@ export default function About() {
                         FOCUS
                       </p>
                       <h3
-                        className="font-extrabold mb-3 text-white text-right"
+                        className="font-extrabold mb-3 text-white whitespace-nowrap"
                         style={{
-                          fontSize: 'clamp(24px, 2.5vw, 36px)',
+                          fontSize: 'clamp(18px, 2vw, 28px)',
                           letterSpacing: '-0.02em',
                         }}
                       >
-                        Machine Learning &<br/>Computational Biology
+                        Machine Learning & Computational Biology
                       </h3>
+                      <p
+                        className="leading-relaxed text-sm max-w-[52ch]"
+                        style={{ color: 'rgba(255, 255, 255, 0.9)' }}
+                      >
+                        Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
+                      </p>
+                    </motion.div>
 
-                      {/* Description - expands on hover */}
+                    {/* Hover state - DNA helix on the left, full description on
+                        the right; replaces the default content entirely */}
+                    <motion.div
+                      className="absolute inset-0 flex items-center gap-8 p-8 pointer-events-none"
+                      style={{ zIndex: 15 }}
+                      initial={false}
+                      animate={{ opacity: hoveredCard === 'focus' ? 1 : 0 }}
+                      transition={{
+                        duration: hoveredCard === 'focus' ? 0.3 : 0.5,
+                        delay: hoveredCard === 'focus' ? 0 : 0.15,
+                      }}
+                    >
+                      <motion.svg
+                        viewBox="0 0 120 300"
+                        fill="none"
+                        preserveAspectRatio="xMidYMid meet"
+                        className="flex-shrink-0"
+                        style={{ height: '100%', width: 'auto' }}
+                        animate={
+                          hoveredCard === 'focus'
+                            ? { y: [0, -5, 0] }
+                            : { y: 0 }
+                        }
+                        transition={
+                          hoveredCard === 'focus'
+                            ? { y: { duration: 3, repeat: Infinity, ease: 'easeInOut' } }
+                            : { duration: 0.3 }
+                        }
+                      >
+                        {/* Strands */}
+                        {[
+                          'M 90 0 C 90 25, 30 25, 30 50 C 30 75, 90 75, 90 100 C 90 125, 30 125, 30 150 C 30 175, 90 175, 90 200 C 90 225, 30 225, 30 250 C 30 275, 90 275, 90 300',
+                          'M 30 0 C 30 25, 90 25, 90 50 C 90 75, 30 75, 30 100 C 30 125, 90 125, 90 150 C 90 175, 30 175, 30 200 C 30 225, 90 225, 90 250 C 90 275, 30 275, 30 300',
+                        ].map((d, i) => (
+                          <motion.path
+                            key={i}
+                            d={d}
+                            stroke="rgba(167, 243, 208, 0.9)"
+                            strokeWidth="3"
+                            strokeLinecap="round"
+                            initial={false}
+                            animate={{
+                              pathLength: hoveredCard === 'focus' ? 1 : 0,
+                            }}
+                            transition={{
+                              duration: hoveredCard === 'focus' ? 1.1 : 0.5,
+                              ease: 'easeInOut',
+                              delay: hoveredCard === 'focus' ? i * 0.1 : 0,
+                            }}
+                          />
+                        ))}
+                        {/* Rungs - light up sequentially */}
+                        {[10, 40, 60, 90, 110, 140, 160, 190, 210, 240, 260, 290].map(
+                          (y, i) => (
+                            <motion.line
+                              key={y}
+                              x1="37"
+                              y1={y}
+                              x2="83"
+                              y2={y}
+                              stroke="rgba(255, 255, 255, 0.55)"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              initial={false}
+                              animate={{
+                                opacity: hoveredCard === 'focus' ? 1 : 0,
+                              }}
+                              transition={{
+                                duration: hoveredCard === 'focus' ? 0.25 : 0.15,
+                                delay:
+                                  hoveredCard === 'focus'
+                                    ? 0.35 + i * 0.06
+                                    : (11 - i) * 0.025,
+                              }}
+                            />
+                          )
+                        )}
+                      </motion.svg>
+
                       <motion.p
-                        className="leading-relaxed text-right"
-                        animate={{
-                          fontSize: hoveredCard === 'focus' ? '16px' : '14px',
-                        }}
-                        transition={{ duration: 0.2 }}
+                        className="flex-1 leading-relaxed text-left"
                         style={{
-                          color: 'rgba(255, 255, 255, 0.9)',
+                          color: 'rgba(255, 255, 255, 0.95)',
+                          fontSize: 'clamp(14px, 1.3vw, 17px)',
+                        }}
+                        initial={false}
+                        animate={{
+                          opacity: hoveredCard === 'focus' ? 1 : 0,
+                          x: hoveredCard === 'focus' ? 0 : 24,
+                        }}
+                        transition={{
+                          duration: hoveredCard === 'focus' ? 0.4 : 0.35,
+                          delay: hoveredCard === 'focus' ? 0.15 : 0,
+                          ease: [0.22, 1, 0.36, 1],
                         }}
                       >
-                        {hoveredCard === 'focus'
-                          ? 'My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems and molecular data.'
-                          : 'Leveraging AI and statistical modeling to explore complex biological systems and molecular data.'
-                        }
+                        My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems and molecular data.
                       </motion.p>
-                    </div>
+                    </motion.div>
                   </motion.div>
 
                 </div>

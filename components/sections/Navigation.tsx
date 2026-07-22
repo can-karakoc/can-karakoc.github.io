@@ -34,7 +34,7 @@ export function Navigation() {
         {/* Nav Links */}
         <div className="flex gap-6 items-center font-semibold text-sm">
           <a
-            href="#work"
+            href="/#work"
             className="relative text-[var(--color-ink)] no-underline group overflow-hidden inline-block"
           >
             <span className="relative block transition-transform duration-300 ease-out group-hover:-translate-y-full">

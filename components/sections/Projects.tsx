@@ -85,163 +85,106 @@ function ProjectGridCard({ project }: { project: Project }) {
         cursor: 'none',
       }}
     >
-      {/* Browser mockup with screenshot */}
+      {/* Mockup: browser window for web apps, A4 research paper otherwise */}
       <div className="px-5 pt-5">
-        <div
-          className="rounded-[10px] overflow-hidden"
-          style={{
-            border: '1px solid rgba(10, 37, 64, 0.08)',
-            boxShadow: '0 12px 28px -18px rgba(10, 37, 64, 0.35)',
-          }}
-        >
-          {/* Chrome bar */}
+        {project.screenshot ? (
           <div
-            className="flex items-center gap-1.5 px-3 h-8"
+            className="rounded-[10px] overflow-hidden"
             style={{
-              background: 'rgba(240, 245, 252, 0.95)',
-              borderBottom: '1px solid rgba(10, 37, 64, 0.06)',
+              border: '1px solid rgba(10, 37, 64, 0.08)',
+              boxShadow: '0 12px 28px -18px rgba(10, 37, 64, 0.35)',
             }}
           >
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#f87171' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#fbbf24' }} />
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#34d399' }} />
-            <span
-              className="ml-3 px-2.5 py-0.5 rounded-full text-[10px] truncate"
+            {/* Chrome bar */}
+            <div
+              className="flex items-center gap-1.5 px-3 h-8"
               style={{
-                fontFamily: 'var(--font-plex)',
-                color: 'var(--color-ink-muted)',
-                background: 'rgba(255, 255, 255, 0.8)',
-                border: '1px solid rgba(10, 37, 64, 0.05)',
+                background: 'rgba(240, 245, 252, 0.95)',
+                borderBottom: '1px solid rgba(10, 37, 64, 0.06)',
               }}
             >
-              {getDomain(project.link)}
-            </span>
-          </div>
+              <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#f87171' }} />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#fbbf24' }} />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#34d399' }} />
+              <span
+                className="ml-3 px-2.5 py-0.5 rounded-full text-[10px] truncate"
+                style={{
+                  fontFamily: 'var(--font-plex)',
+                  color: 'var(--color-ink-muted)',
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  border: '1px solid rgba(10, 37, 64, 0.05)',
+                }}
+              >
+                {getDomain(project.link)}
+              </span>
+            </div>
 
-          {/* Viewport */}
-          <div
-            className="relative w-full overflow-hidden"
-            style={{ aspectRatio: '1.84 / 1' }}
-          >
-            {project.screenshot ? (
+            {/* Viewport */}
+            <div
+              className="relative w-full overflow-hidden"
+              style={{ aspectRatio: '1.84 / 1' }}
+            >
               <Image
                 src={project.screenshot}
                 alt={project.title}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={project.screenshot === '/protein-interaction-explorer.png'}
                 className="object-cover"
               />
-            ) : (
-              <div
-                className="absolute inset-0 flex items-center justify-center overflow-hidden"
-                style={{ background: project.gradientBg }}
-              >
-                {/* Grid texture - subtle, fading from visible at the bottom to transparent at the top */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage:
-                      'linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
-                    backgroundSize: '28px 28px',
-                    maskImage: 'linear-gradient(to top, black 0%, black 25%, transparent 75%)',
-                    WebkitMaskImage: 'linear-gradient(to top, black 0%, black 25%, transparent 75%)',
-                    opacity: 0.6,
-                  }}
-                />
-                {/* Soft depth blobs */}
-                <div
-                  className="absolute rounded-full"
-                  style={{
-                    width: 180,
-                    height: 180,
-                    top: '-15%',
-                    left: '-8%',
-                    background: 'radial-gradient(circle, rgba(255,255,255,0.35), transparent 70%)',
-                    filter: 'blur(12px)',
-                  }}
-                />
-                <div
-                  className="absolute rounded-full"
-                  style={{
-                    width: 220,
-                    height: 220,
-                    bottom: '-20%',
-                    right: '-10%',
-                    background: 'radial-gradient(circle, rgba(255,255,255,0.22), transparent 70%)',
-                    filter: 'blur(16px)',
-                  }}
-                />
-
-                {/* Icon row: renewable generation, solar, emissions trend */}
-                <div className="relative flex items-center gap-5">
-                  {/* Wind turbine - renewable energy generation */}
-                  <svg width="48" height="48" viewBox="0 0 36 36" fill="none">
-                    <path
-                      d="M18 33 L16.6 12"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      opacity="0.9"
-                    />
-                    <g transform="translate(16.6 12)">
-                      <path
-                        d="M0 0 C -1.6 -3 -2.2 -7.2 0 -11 C 2.2 -7.2 1.6 -3 0 0 Z"
-                        fill="white"
-                        fillOpacity="0.95"
-                      />
-                      <path
-                        d="M0 0 C -1.6 -3 -2.2 -7.2 0 -11 C 2.2 -7.2 1.6 -3 0 0 Z"
-                        fill="white"
-                        fillOpacity="0.75"
-                        transform="rotate(120)"
-                      />
-                      <path
-                        d="M0 0 C -1.6 -3 -2.2 -7.2 0 -11 C 2.2 -7.2 1.6 -3 0 0 Z"
-                        fill="white"
-                        fillOpacity="0.6"
-                        transform="rotate(240)"
-                      />
-                      <circle cx="0" cy="0" r="1.6" fill="white" />
-                    </g>
-                  </svg>
-
-                  {/* Sun - solar generation */}
-                  <svg width="38" height="38" viewBox="0 0 36 36" fill="none">
-                    <circle cx="18" cy="18" r="7" fill="white" fillOpacity="0.95" />
-                    {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
-                      <path
-                        key={deg}
-                        d="M18 3.5 V8"
-                        stroke="white"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        opacity="0.75"
-                        transform={`rotate(${deg} 18 18)`}
-                      />
-                    ))}
-                  </svg>
-
-                  {/* Emissions cloud with a falling trend - price -> emissions impact */}
-                  <svg width="48" height="48" viewBox="0 0 36 36" fill="none">
-                    <path
-                      d="M11 22c-2.5 0-4.5-2-4.5-4.4 0-2.15 1.55-3.95 3.6-4.35.5-2.5 2.75-4.35 5.4-4.35 2.7 0 4.95 1.9 5.4 4.45h.2c2.5 0 4.4 1.95 4.4 4.35S23.6 22 21.1 22H11z"
-                      fill="white"
-                      fillOpacity="0.92"
-                    />
-                    <path
-                      d="M13 26 L18 30 L23 24"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      fill="none"
-                      opacity="0.8"
-                    />
-                  </svg>
-                </div>
-              </div>
-            )}
+            </div>
           </div>
-        </div>
+        ) : (
+          /* A4 research paper on a soft desk backdrop - no browser chrome.
+             Aspect matches chrome bar + viewport height of the other cards. */
+          <div
+            className="relative w-full overflow-hidden rounded-[10px] flex items-center justify-center"
+            style={{
+              aspectRatio: '1.57 / 1',
+              background: 'linear-gradient(150deg, #eef2f8 0%, #dde5f0 100%)',
+              border: '1px solid rgba(10, 37, 64, 0.08)',
+              boxShadow: '0 12px 28px -18px rgba(10, 37, 64, 0.35)',
+            }}
+          >
+            {/* A4 paper - title page only */}
+            <div
+              className="relative bg-white"
+              style={{
+                height: '86%',
+                aspectRatio: '1 / 1.414',
+                boxShadow: '0 10px 30px -10px rgba(10, 37, 64, 0.35), 0 1px 3px rgba(10, 37, 64, 0.12)',
+                padding: '7% 6%',
+                fontFamily: 'Georgia, serif',
+              }}
+            >
+              <div className="h-full flex flex-col items-center justify-center text-center">
+                {/* Date above the title */}
+                <p className="text-[8px] mb-3" style={{ color: '#555' }}>
+                  December 2024
+                </p>
+
+                {/* Title */}
+                <h3
+                  className="font-bold leading-snug mb-3"
+                  style={{
+                    fontSize: '11px',
+                    color: '#000',
+                  }}
+                >
+                  Predictive and Inferential Models for Carbon Emissions and Renewable Energy Production
+                </h3>
+
+                {/* University + course below the title */}
+                <p className="text-[9px] mb-0.5" style={{ color: '#222' }}>
+                  University of California, Berkeley
+                </p>
+                <p className="text-[8px] font-bold" style={{ color: '#333' }}>
+                  Data 102: Data, Inference, and Decisions
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Text - forced onto its own compositing layer so the Explore pill's
@@ -306,7 +249,7 @@ function ProjectGridCard({ project }: { project: Project }) {
 
 export function Projects() {
   return (
-    <section id="work" className="relative pt-0 pb-24">
+    <section id="work" className="relative pt-0 pb-24 scroll-mt-28">
       <div className="max-w-[1160px] mx-auto px-6">
         {/* Section title */}
         <ScrollReveal>
