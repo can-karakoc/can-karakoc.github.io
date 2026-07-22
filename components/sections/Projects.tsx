@@ -433,33 +433,19 @@ export function Projects() {
   return (
     <section id="work" className="relative pt-0 pb-24 scroll-mt-28">
       <div className="max-w-[1160px] mx-auto px-6">
-        {/* Section title — understated label row with a "see all" link,
-            echoing the "Featured works / See all works" hierarchy */}
+        {/* Section title — small understated label, matching the reference's
+            "Featured works" treatment and spacing */}
         <ScrollReveal>
-          <div className="flex items-baseline justify-between gap-4 mb-10">
-            <h2
-              className="font-extrabold"
-              style={{
-                fontSize: '18px',
-                letterSpacing: '-0.01em',
-                color: 'var(--color-ink)',
-              }}
-            >
-              Featured Projects
-            </h2>
-            <a
-              href="/projects"
-              className="font-extrabold no-underline hover:underline whitespace-nowrap"
-              style={{
-                fontSize: '18px',
-                letterSpacing: '-0.01em',
-                color: 'var(--color-ink)',
-                textUnderlineOffset: '3px',
-              }}
-            >
-              See all projects
-            </a>
-          </div>
+          <h2
+            className="font-extrabold mb-10"
+            style={{
+              fontSize: '18px',
+              letterSpacing: '-0.01em',
+              color: 'var(--color-ink)',
+            }}
+          >
+            Featured Projects
+          </h2>
         </ScrollReveal>
 
         {/* Minimal project grid */}

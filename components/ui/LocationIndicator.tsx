@@ -105,35 +105,142 @@ const dark = (bg: string): SkyTheme => ({
 
 function skyTheme(cat: WeatherCat, isDay: boolean, golden: boolean): SkyTheme {
   if (golden && (cat === 'clear' || cat === 'partly')) return GOLDEN;
+  // Richer 3-stop gradients: bright sky up top fading toward the horizon
+  // by day, deep-to-lighter by night — a stronger light→dark range that
+  // reads as the sun's height.
   switch (cat) {
     case 'clear':
       return isDay
-        ? light('linear-gradient(180deg, #78b7f2 0%, #c7e6fb 100%)')
-        : dark('linear-gradient(180deg, #141b45 0%, #3a3f78 100%)');
+        ? light('linear-gradient(180deg, #3e97ec 0%, #8ec6f4 50%, #d6ecfb 100%)')
+        : dark('linear-gradient(180deg, #070c28 0%, #1c2559 58%, #454c88 100%)');
     case 'partly':
       return isDay
-        ? light('linear-gradient(180deg, #8dbbe9 0%, #d4e2f0 100%)')
-        : dark('linear-gradient(180deg, #222a4d 0%, #464d76 100%)');
+        ? light('linear-gradient(180deg, #5ba2e2 0%, #a2cae9 50%, #dbe7f2 100%)')
+        : dark('linear-gradient(180deg, #0e1438 0%, #262f5c 58%, #4a5182 100%)');
     case 'cloudy':
       return isDay
-        ? light('linear-gradient(180deg, #97a6b9 0%, #cdd6e1 100%)')
-        : dark('linear-gradient(180deg, #2a3350 0%, #494f69 100%)');
+        ? light('linear-gradient(180deg, #7890a8 0%, #a8b6c7 52%, #d7dee7 100%)')
+        : dark('linear-gradient(180deg, #161d33 0%, #313a56 58%, #545c78 100%)');
     case 'fog':
       return isDay
-        ? light('linear-gradient(180deg, #abb4c1 0%, #d8dde4 100%)')
-        : dark('linear-gradient(180deg, #333a49 0%, #565d6e 100%)');
+        ? light('linear-gradient(180deg, #909aa8 0%, #bcc4ce 52%, #e2e6ec 100%)')
+        : dark('linear-gradient(180deg, #212734 0%, #434a5b 58%, #656d7e 100%)');
     case 'drizzle':
     case 'rain':
       return isDay
-        ? dark('linear-gradient(180deg, #62768c 0%, #93a3b7 100%)')
-        : dark('linear-gradient(180deg, #283340 0%, #464f63 100%)');
+        ? dark('linear-gradient(180deg, #445a6e 0%, #6d8194 52%, #a2b0bf 100%)')
+        : dark('linear-gradient(180deg, #131b28 0%, #2c3746 58%, #4a5464 100%)');
     case 'snow':
-      return light('linear-gradient(180deg, #b1c2d7 0%, #e9f0f8 100%)');
+      return light('linear-gradient(180deg, #93a8c4 0%, #c6d4e6 52%, #eff5fc 100%)');
     case 'storm':
-      return dark('linear-gradient(180deg, #363c4d 0%, #565d70 100%)');
+      return dark('linear-gradient(180deg, #1a2032 0%, #363f56 58%, #565f79 100%)');
     default:
-      return light('linear-gradient(180deg, #97a6b9 0%, #cdd6e1 100%)');
+      return light('linear-gradient(180deg, #7890a8 0%, #a8b6c7 52%, #d7dee7 100%)');
   }
+}
+
+/* Sun/moon arc — shows the sun (day) or moon (night) traveling from
+   sunrise to sunset along a dome, with the current position marked. */
+function SunArc({
+  sunriseMin,
+  sunsetMin,
+  nowMin,
+  isDay,
+  fg,
+  sub,
+}: {
+  sunriseMin: number;
+  sunsetMin: number;
+  nowMin: number;
+  isDay: boolean;
+  fg: string;
+  sub: string;
+}) {
+  const W = 256;
+  const H = 100;
+  const x0 = 18;
+  const x1 = W - 18;
+  const xc = (x0 + x1) / 2;
+  const span = x1 - x0;
+  const horizon = H - 14;
+  const sigma = span / 6;
+
+  // Bell-curve (Gaussian) trajectory: flat near the horizon, humped in the
+  // middle. A tall bell for the sun and a shorter one for the moon.
+  const bellY = (x: number, amp: number) =>
+    horizon - amp * Math.exp(-((x - xc) ** 2) / (2 * sigma * sigma));
+  const xAt = (f: number) => x0 + f * span;
+  const clamp = (v: number) => Math.min(1, Math.max(0, v));
+
+  // Day progress (sunrise→sunset) and night progress (sunset→next sunrise).
+  const dayF = clamp(
+    nowMin < sunriseMin
+      ? 0
+      : nowMin > sunsetMin
+        ? 1
+        : (nowMin - sunriseMin) / Math.max(1, sunsetMin - sunriseMin)
+  );
+  const nextSunrise = sunriseMin + 1440;
+  const nightF = clamp(
+    nowMin >= sunsetMin
+      ? (nowMin - sunsetMin) / Math.max(1, nextSunrise - sunsetMin)
+      : nowMin < sunriseMin
+        ? (nowMin + 1440 - sunsetMin) / Math.max(1, nextSunrise - sunsetMin)
+        : 0
+  );
+
+  const sunAmp = 66;
+  const moonAmp = 48;
+  const N = 48;
+  const full = (amp: number) => {
+    const a: string[] = [];
+    for (let i = 0; i <= N; i++) {
+      const x = xAt(i / N);
+      a.push(`${x.toFixed(1)},${bellY(x, amp).toFixed(1)}`);
+    }
+    return `M ${a.join(' L ')}`;
+  };
+  const trav = (amp: number, f: number) => {
+    const a: string[] = [];
+    for (let i = 0; i <= N * f; i++) {
+      const x = xAt(i / N);
+      a.push(`${x.toFixed(1)},${bellY(x, amp).toFixed(1)}`);
+    }
+    return a.length > 1 ? `M ${a.join(' L ')}` : '';
+  };
+
+  const sunX = xAt(dayF);
+  const sunY = bellY(sunX, sunAmp);
+  const moonX = xAt(nightF);
+  const moonY = bellY(moonX, moonAmp);
+  const moonTrav = trav(moonAmp, nightF);
+  const sunTrav = trav(sunAmp, dayF);
+
+  return (
+    <svg width="100%" viewBox={`0 0 ${W} ${H}`} aria-hidden="true" style={{ display: 'block' }}>
+      {/* horizon */}
+      <line x1={x0} y1={horizon} x2={x1} y2={horizon} stroke={sub} strokeWidth="1" strokeDasharray="2 3" opacity={0.4} />
+
+      {/* moon bell + traveled */}
+      <path d={full(moonAmp)} fill="none" stroke={fg} strokeWidth="1.2" opacity={0.18} strokeDasharray="3 4" />
+      {moonTrav && (
+        <path d={moonTrav} fill="none" stroke={fg} strokeWidth="1.5" opacity={isDay ? 0.22 : 0.55} strokeLinecap="round" />
+      )}
+
+      {/* sun bell + traveled */}
+      <path d={full(sunAmp)} fill="none" stroke={fg} strokeWidth="1.2" opacity={0.24} strokeDasharray="3 4" />
+      {sunTrav && (
+        <path d={sunTrav} fill="none" stroke={fg} strokeWidth="1.6" opacity={isDay ? 0.6 : 0.26} strokeLinecap="round" />
+      )}
+
+      {/* moon blob — a dark version of the sun */}
+      <circle cx={moonX} cy={moonY} r={isDay ? 4 : 5.5} fill="#2b3242" stroke="#ffffff" strokeOpacity={0.45} strokeWidth={0.75} opacity={isDay ? 0.72 : 1} />
+
+      {/* sun blob — bright white with a soft glow */}
+      <circle cx={sunX} cy={sunY} r={12} fill="#ffffff" opacity={isDay ? 0.32 : 0.14} />
+      <circle cx={sunX} cy={sunY} r={isDay ? 6 : 4.5} fill="#ffffff" stroke={fg} strokeOpacity={0.28} strokeWidth={0.75} opacity={isDay ? 1 : 0.7} />
+    </svg>
+  );
 }
 
 /* ---- Weather icon (inline SVG, inherits currentColor) ------------------- */
@@ -317,24 +424,25 @@ export function LocationIndicator() {
     : ['Loading…', 'cloudy'];
   const isDay = weather ? weather.isDay : true;
 
-  // "golden hour" — within 60 min of sunrise/sunset, in the location's tz
-  let golden = false;
-  if (weather) {
-    const hhmmNow = new Intl.DateTimeFormat('en-GB', {
+  // Current minute-of-day + sun times (in the location's tz), used for the
+  // sun/moon arc and the golden-hour gradient.
+  const toMin = (s: string) => {
+    const [h, m] = s.split(':').map(Number);
+    return h * 60 + m;
+  };
+  const nowMin = toMin(
+    new Intl.DateTimeFormat('en-GB', {
       timeZone: LOCATION.timeZone,
       hour: '2-digit',
       minute: '2-digit',
       hour12: false,
-    }).format(now);
-    const mins = (s: string) => {
-      const [h, m] = s.split(':').map(Number);
-      return h * 60 + m;
-    };
-    const n = mins(hhmmNow);
-    const ss = mins(weather.sunset.slice(11, 16));
-    const sr = mins(weather.sunrise.slice(11, 16));
-    golden = Math.abs(n - ss) <= 60 || Math.abs(n - sr) <= 60;
-  }
+    }).format(now)
+  );
+  const sunriseMin = weather ? toMin(weather.sunrise.slice(11, 16)) : 6 * 60;
+  const sunsetMin = weather ? toMin(weather.sunset.slice(11, 16)) : 18 * 60;
+  const golden = weather
+    ? Math.abs(nowMin - sunsetMin) <= 60 || Math.abs(nowMin - sunriseMin) <= 60
+    : false;
 
   const theme = skyTheme(cat, isDay, golden);
 
@@ -350,11 +458,11 @@ export function LocationIndicator() {
           boxShadow:
             '0 18px 44px -14px rgba(10, 37, 64, 0.38), inset 0 1px 0 rgba(255,255,255,0.6)',
           overflow: 'hidden',
-          width: open ? 288 : 'auto',
+          width: open ? 328 : 'auto',
           position: 'relative',
-          background: 'rgba(255,255,255,0.06)',
-          backdropFilter: 'blur(22px) saturate(1.5)',
-          WebkitBackdropFilter: 'blur(22px) saturate(1.5)',
+          background: 'rgba(255,255,255,0.05)',
+          backdropFilter: 'blur(24px) saturate(1.5)',
+          WebkitBackdropFilter: 'blur(24px) saturate(1.5)',
         }}
       >
         {/* Translucent weather-gradient tint — glassy, so the blurred page
@@ -365,7 +473,7 @@ export function LocationIndicator() {
             position: 'absolute',
             inset: 0,
             background: theme.bg,
-            opacity: 0.6,
+            opacity: 0.42,
             pointerEvents: 'none',
           }}
         />
@@ -381,7 +489,7 @@ export function LocationIndicator() {
               onClick={() => setOpen(false)}
               role="button"
               aria-label="Collapse"
-              className="p-4 cursor-pointer"
+              className="p-5 cursor-pointer"
             >
               {/* Header: personalized title + location + collapse chevron */}
               <div className="flex items-start justify-between gap-2">
@@ -405,7 +513,7 @@ export function LocationIndicator() {
                   style={{ color: theme.sub }}
                 >
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M6 15l6-6 6 6" />
+                    <path d="M6 9l6 6 6-6" />
                   </svg>
                 </span>
               </div>
@@ -433,21 +541,39 @@ export function LocationIndicator() {
                 </p>
               </div>
 
-              {/* Stats panel */}
-              <div className="mt-3 rounded-2xl px-3 py-3 grid grid-cols-2 gap-y-3 gap-x-4" style={{ background: theme.panel }}>
+              {/* Sun / moon position arc */}
+              <div className="mt-4">
+                <SunArc
+                  sunriseMin={sunriseMin}
+                  sunsetMin={sunsetMin}
+                  nowMin={nowMin}
+                  isDay={isDay}
+                  fg={theme.fg}
+                  sub={theme.sub}
+                />
+                <div className="flex items-center justify-between px-1 -mt-0.5">
+                  <span className="text-[10px] font-semibold" style={{ color: theme.sub }}>
+                    ↑ {weather ? to12h(weather.sunrise.slice(11, 16)) : '—'}
+                  </span>
+                  <span className="text-[10px] font-semibold" style={{ color: theme.sub }}>
+                    ↓ {weather ? to12h(weather.sunset.slice(11, 16)) : '—'}
+                  </span>
+                </div>
+              </div>
+
+              {/* Weather metadata — secondary, smaller & lighter */}
+              <div className="mt-4 rounded-2xl px-3 py-2.5 grid grid-cols-2 gap-y-2 gap-x-4" style={{ background: theme.panel }}>
                 {[
                   ['Temp', weather ? `${Math.round(weather.tempC)}°C` : '—'],
                   ['Feels like', weather ? `${Math.round(weather.feelsC)}°C` : '—'],
                   ['Humidity', weather ? `${weather.humidity}%` : '—'],
                   ['Wind', weather ? `${Math.round(weather.windKph)} km/h` : '—'],
-                  ['Sunrise', weather ? to12h(weather.sunrise.slice(11, 16)) : '—'],
-                  ['Sunset', weather ? to12h(weather.sunset.slice(11, 16)) : '—'],
                 ].map(([k, v]) => (
                   <div key={k}>
-                    <p className="text-[9.5px] font-bold uppercase tracking-[0.12em]" style={{ fontFamily: 'var(--font-plex)', color: theme.sub }}>
+                    <p className="text-[9px] font-semibold uppercase tracking-[0.1em]" style={{ fontFamily: 'var(--font-plex)', color: theme.sub }}>
                       {k}
                     </p>
-                    <p className="text-[15px] font-semibold" style={{ color: theme.fg }}>
+                    <p className="text-[12.5px] font-medium" style={{ color: theme.fg }}>
                       {v}
                     </p>
                   </div>
@@ -463,7 +589,7 @@ export function LocationIndicator() {
               transition={{ duration: 0.2 }}
               onClick={() => setOpen(true)}
               aria-label={`${LOCATION.city} — ${clock} ${period}. Expand for weather`}
-              className="flex items-center gap-2.5 pl-3.5 pr-4 py-2.5"
+              className="flex items-center gap-2.5 pl-3.5 pr-4 py-2.5 cursor-pointer"
             >
               <span style={{ color: theme.fg }}>
                 <WeatherIcon cat={cat} isDay={isDay} size={22} />

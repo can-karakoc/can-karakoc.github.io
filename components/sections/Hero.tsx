@@ -29,8 +29,8 @@ export function Hero() {
           <motion.h1
             className="font-extrabold mb-5"
             style={{
-              fontSize: 'clamp(40px, 6.4vw, 74px)',
-              letterSpacing: '-0.03em',
+              fontSize: 'clamp(36px, 5.5vw, 64px)',
+              letterSpacing: '-0.035em',
               color: 'var(--color-ink)',
               lineHeight: 1.05,
             }}
@@ -45,7 +45,7 @@ export function Hero() {
           <motion.p
             className="font-bold leading-[1.3] mb-10 relative"
             style={{
-              fontSize: 'clamp(22px, 3.2vw, 38px)',
+              fontSize: 'clamp(22px, 3vw, 34px)',
               letterSpacing: '-0.02em',
               color: 'var(--color-ink-muted)',
             }}
