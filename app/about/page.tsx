@@ -18,21 +18,81 @@ export default function About() {
           <section className="relative px-6 min-h-[calc(100vh-80px)] flex items-center justify-center">
             <div className="max-w-[1160px] mx-auto w-full">
               <ScrollReveal>
-                {/* Asymmetric Bento Grid */}
+                {/* Bento Grid - 3 columns */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-[1160px]">
 
-                  {/* Education Card - Berkeley colors with logo cursor on hover */}
+                  {/* Profile Photo Card - Top Left */}
                   <motion.div
-                    className="md:col-span-2 p-8 rounded-3xl group relative overflow-hidden"
+                    className="p-0 rounded-3xl overflow-hidden"
+                    whileHover={{ scale: 1.05, y: -4 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    style={{
+                      boxShadow: '0 8px 24px -12px rgba(0, 0, 0, 0.15)',
+                      aspectRatio: '1',
+                    }}
+                  >
+                    <img
+                      src="/photos/profile.jpg"
+                      alt="Profile"
+                      className="w-full h-full object-cover"
+                    />
+                  </motion.div>
+
+                  {/* Education Card - Berkeley logo appears on hover */}
+                  <motion.div
+                    className="p-6 rounded-3xl group relative"
                     onMouseEnter={() => setHoveredCard('education')}
                     onMouseLeave={() => setHoveredCard(null)}
                     style={{
                       background: 'linear-gradient(135deg, #003262 0%, #004A8F 100%)',
                       border: '1px solid rgba(253, 181, 21, 0.3)',
                       boxShadow: '0 20px 40px -20px rgba(0, 50, 98, 0.4)',
-                      cursor: hoveredCard === 'education' ? 'url(/berkeley-logo.svg) 32 32, auto' : 'default',
+                      overflow: 'visible',
                     }}
                   >
+                    {/* Berkeley Logo appears on hover */}
+                    {hoveredCard === 'education' && (
+                      <motion.div
+                        className="absolute pointer-events-none z-50"
+                        initial={{
+                          opacity: 0,
+                          scale: 0.5,
+                          rotate: -15,
+                        }}
+                        animate={{
+                          opacity: 1,
+                          scale: 1,
+                          rotate: 8,
+                          y: [0, -10, 0],
+                        }}
+                        transition={{
+                          opacity: { duration: 0.3 },
+                          scale: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+                          rotate: { duration: 0.3 },
+                          y: {
+                            duration: 2.5,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                          },
+                        }}
+                        style={{
+                          top: '-15%',
+                          right: '-20%',
+                          width: '160px',
+                          height: '160px',
+                        }}
+                      >
+                        <img
+                          src="/berkeley-logo.svg"
+                          alt="Berkeley Logo"
+                          className="w-full h-full object-contain"
+                          style={{
+                            filter: 'drop-shadow(0 12px 30px rgba(0, 0, 0, 0.4))',
+                          }}
+                        />
+                      </motion.div>
+                    )}
+
                     {/* Animated gold hue overlay */}
                     <div
                       className="absolute inset-0 opacity-20"
@@ -44,7 +104,7 @@ export default function About() {
 
                     <div className="relative z-10">
                       <p
-                        className="text-xs font-bold mb-4 tracking-wider"
+                        className="text-xs font-bold mb-3 tracking-wider"
                         style={{
                           fontFamily: 'var(--font-plex)',
                           color: '#FDB515',
@@ -53,9 +113,9 @@ export default function About() {
                         EDUCATION
                       </p>
                       <h3
-                        className="font-extrabold mb-3"
+                        className="font-extrabold mb-2"
                         style={{
-                          fontSize: 'clamp(28px, 3vw, 40px)',
+                          fontSize: 'clamp(20px, 2.5vw, 28px)',
                           letterSpacing: '-0.02em',
                           color: '#FFFFFF',
                         }}
@@ -63,7 +123,7 @@ export default function About() {
                         University of California, Berkeley
                       </h3>
                       <p
-                        className="font-semibold mb-2 text-lg"
+                        className="font-semibold mb-1 text-base"
                         style={{
                           color: 'rgba(255, 255, 255, 0.9)',
                         }}
@@ -71,7 +131,7 @@ export default function About() {
                         B.A. Computer Science & Data Science
                       </p>
                       <p
-                        className="text-[15px] leading-relaxed"
+                        className="text-sm leading-relaxed"
                         style={{ color: 'rgba(255, 255, 255, 0.7)' }}
                       >
                         Emphasis in Computational Methods in Molecular & Genomic Biology
@@ -83,7 +143,7 @@ export default function About() {
                   <motion.a
                     href="/resume.pdf"
                     download
-                    className="p-8 rounded-3xl flex flex-col no-underline group"
+                    className="p-6 rounded-3xl flex flex-col no-underline group"
                     whileHover={{ y: -6 }}
                     whileTap={{ scale: 0.98 }}
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
@@ -94,7 +154,7 @@ export default function About() {
                     }}
                   >
                     <p
-                      className="text-xs font-bold mb-8 tracking-wider"
+                      className="text-xs font-bold mb-6 tracking-wider"
                       style={{
                         fontFamily: 'var(--font-plex)',
                         color: 'var(--color-ink-muted)',
@@ -104,7 +164,7 @@ export default function About() {
                     </p>
                     <div className="flex-1 flex items-center justify-center">
                       <motion.div
-                        className="flex items-center gap-3 px-6 py-3 rounded-full"
+                        className="flex items-center gap-3 px-5 py-2.5 rounded-full"
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.3 }}
                         style={{
@@ -115,8 +175,8 @@ export default function About() {
                         }}
                       >
                         <svg
-                          width="18"
-                          height="18"
+                          width="16"
+                          height="16"
                           viewBox="0 0 24 24"
                           fill="none"
                           stroke="var(--color-cobalt)"
@@ -137,7 +197,7 @@ export default function About() {
 
                   {/* Hobbies Card - Photos appear on hover */}
                   <motion.div
-                    className="p-8 rounded-3xl md:col-span-1 relative"
+                    className="p-6 rounded-3xl md:col-span-1 relative"
                     onMouseEnter={() => setHoveredCard('hobbies')}
                     onMouseLeave={() => setHoveredCard(null)}
                     whileHover={{ scale: 1.05, y: -4 }}
@@ -270,9 +330,9 @@ export default function About() {
                     </div>
                   </motion.div>
 
-                  {/* Focus Card - Text overlay on hover */}
+                  {/* Focus Card - Text overlay on hover - Spans 2 columns */}
                   <motion.div
-                    className="p-8 rounded-3xl group relative overflow-hidden md:col-span-2"
+                    className="p-6 rounded-3xl group relative overflow-hidden md:col-span-2"
                     onMouseEnter={() => setHoveredCard('focus')}
                     onMouseLeave={() => setHoveredCard(null)}
                     whileHover={{ scale: 1.02, y: -6 }}
@@ -333,7 +393,7 @@ export default function About() {
 
                     <div className="relative z-10">
                       <p
-                        className="text-xs font-bold mb-4 tracking-wider text-right"
+                        className="text-xs font-bold mb-3 tracking-wider text-right"
                         style={{
                           fontFamily: 'var(--font-plex)',
                           color: 'rgba(255, 255, 255, 0.8)',
@@ -342,41 +402,23 @@ export default function About() {
                         FOCUS
                       </p>
                       <h3
-                        className="font-extrabold mb-4 text-white text-right"
+                        className="font-extrabold mb-3 text-white text-right"
                         style={{
-                          fontSize: 'clamp(28px, 3vw, 42px)',
+                          fontSize: 'clamp(24px, 2.5vw, 36px)',
                           letterSpacing: '-0.02em',
                         }}
                       >
                         Machine Learning &<br/>Computational Biology
                       </h3>
                       <p
-                        className="leading-relaxed text-right"
+                        className="leading-relaxed text-right text-sm"
                         style={{
                           color: 'rgba(255, 255, 255, 0.9)',
-                          fontSize: '16px',
                         }}
                       >
                         Leveraging AI and statistical modeling to explore complex biological systems and molecular data.
                       </p>
                     </div>
-                  </motion.div>
-
-                  {/* Profile Photo Card */}
-                  <motion.div
-                    className="p-0 rounded-3xl overflow-hidden md:col-span-1"
-                    whileHover={{ scale: 1.05, y: -4 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    style={{
-                      boxShadow: '0 8px 24px -12px rgba(0, 0, 0, 0.15)',
-                      aspectRatio: '1',
-                    }}
-                  >
-                    <img
-                      src="/photos/profile.jpg"
-                      alt="Profile"
-                      className="w-full h-full object-cover"
-                    />
                   </motion.div>
 
                 </div>
