@@ -76,10 +76,10 @@ export default function About() {
                           },
                         }}
                         style={{
-                          top: '-45%',
-                          right: '-10%',
-                          width: '180px',
-                          height: '180px',
+                          bottom: '20px',
+                          right: '20px',
+                          width: '120px',
+                          height: '120px',
                           zIndex: 200,
                         }}
                       >
@@ -212,12 +212,12 @@ export default function About() {
                     {hoveredCard === 'hobbies' && (
                       <>
                         {[
-                          { src: '/photos/london.jpg', top: '-30%', left: '-45%', rotate: -6, delay: 0 },
-                          { src: '/photos/parthenon.jpg', top: '-25%', right: '-50%', rotate: 5, delay: 0.05 },
-                          { src: '/photos/beach.jpg', top: '45%', left: '-50%', rotate: -7, delay: 0.1 },
-                          { src: '/photos/coast2.jpg', top: '40%', right: '-55%', rotate: 7, delay: 0.15 },
-                          { src: '/photos/istanbul1.jpg', bottom: '-30%', left: '-40%', rotate: 4, delay: 0.2 },
-                          { src: '/photos/coast1.jpg', bottom: '-25%', right: '-45%', rotate: -5, delay: 0.25 },
+                          { src: '/photos/london.jpg', top: '-20%', left: '-25%', rotate: -6, delay: 0 },
+                          { src: '/photos/parthenon.jpg', top: '-15%', right: '-30%', rotate: 5, delay: 0.05 },
+                          { src: '/photos/beach.jpg', top: '35%', left: '-30%', rotate: -7, delay: 0.1 },
+                          { src: '/photos/coast2.jpg', top: '30%', right: '-35%', rotate: 7, delay: 0.15 },
+                          { src: '/photos/istanbul1.jpg', bottom: '-20%', left: '-20%', rotate: 4, delay: 0.2 },
+                          { src: '/photos/coast1.jpg', bottom: '-15%', right: '-25%', rotate: -5, delay: 0.25 },
                         ].map((photo, idx) => (
                           <motion.div
                             key={idx}
@@ -249,8 +249,8 @@ export default function About() {
                               bottom: photo.bottom,
                               left: photo.left,
                               right: photo.right,
-                              width: '180px',
-                              height: '130px',
+                              width: '140px',
+                              height: '100px',
                             }}
                           >
                             <img
@@ -339,6 +339,7 @@ export default function About() {
                       boxShadow: '0 20px 40px -20px rgba(45, 95, 78, 0.5)',
                       cursor: hoveredCard === 'focus' ? 'pointer' : 'default',
                       overflow: 'hidden',
+                      minHeight: '200px',
                     }}
                   >
                     {/* Grid overlay */}
