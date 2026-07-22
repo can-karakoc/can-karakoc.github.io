@@ -98,7 +98,8 @@ function ProjectMockup({ type }: { type: NonNullable<Project['mockup']> }) {
         className="relative w-full overflow-hidden rounded-[10px] flex items-center justify-center"
         style={{ ...frame, background: 'linear-gradient(150deg, #eef2f8 0%, #dde5f0 100%)' }}
       >
-        {/* A4 paper - title page only */}
+        {/* A4 paper - title page only. Text sized in container-query units
+            (cqw) so it scales with the paper and never overflows on mobile. */}
         <div
           className="relative bg-white"
           style={{
@@ -107,19 +108,20 @@ function ProjectMockup({ type }: { type: NonNullable<Project['mockup']> }) {
             boxShadow: '0 10px 30px -10px rgba(10, 37, 64, 0.35), 0 1px 3px rgba(10, 37, 64, 0.12)',
             padding: '7% 6%',
             fontFamily: 'Georgia, serif',
+            containerType: 'inline-size',
           }}
         >
           <div className="h-full flex flex-col items-center justify-center text-center">
-            <p className="text-[8px] mb-3" style={{ color: '#555' }}>
+            <p style={{ fontSize: '3.6cqw', marginBottom: '4cqw', color: '#555' }}>
               December 2024
             </p>
-            <h3 className="font-bold leading-snug mb-3" style={{ fontSize: '11px', color: '#000' }}>
+            <h3 className="font-bold leading-snug" style={{ fontSize: '5cqw', marginBottom: '4cqw', color: '#000' }}>
               Predictive and Inferential Models for Carbon Emissions and Renewable Energy Production
             </h3>
-            <p className="text-[9px] mb-0.5" style={{ color: '#222' }}>
+            <p style={{ fontSize: '4cqw', marginBottom: '0.6cqw', color: '#222' }}>
               University of California, Berkeley
             </p>
-            <p className="text-[8px] font-bold" style={{ color: '#333' }}>
+            <p className="font-bold" style={{ fontSize: '3.6cqw', color: '#333' }}>
               Data 102: Data, Inference, and Decisions
             </p>
           </div>
@@ -261,6 +263,7 @@ function ProjectMockup({ type }: { type: NonNullable<Project['mockup']> }) {
           aspectRatio: '1 / 1',
           background: 'rgba(255, 255, 255, 0.16)',
           backdropFilter: 'blur(6px)',
+          WebkitBackdropFilter: 'blur(6px)',
           border: '1px solid rgba(255, 255, 255, 0.35)',
         }}
       >

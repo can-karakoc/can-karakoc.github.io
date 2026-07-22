@@ -22,6 +22,7 @@ export function Contact() {
                 style={{
                   background: 'rgba(255, 255, 255, 0.7)',
                   backdropFilter: 'blur(10px)',
+                  WebkitBackdropFilter: 'blur(10px)',
                   border: '1px solid rgba(124, 185, 232, 0.3)',
                   color: 'var(--color-ink)',
                 }}

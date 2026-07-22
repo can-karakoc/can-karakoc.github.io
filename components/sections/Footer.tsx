@@ -106,6 +106,7 @@ export function Footer() {
             style={{
               background: 'rgba(255, 255, 255, 0.85)',
               backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
               border: '1px solid rgba(10, 37, 64, 0.1)',
               boxShadow: '0 6px 16px -8px rgba(10, 37, 64, 0.25)',
               color: 'var(--color-ink)',
@@ -121,6 +122,7 @@ export function Footer() {
             style={{
               background: 'rgba(255, 255, 255, 0.85)',
               backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
               border: '1px solid rgba(10, 37, 64, 0.1)',
               boxShadow: '0 6px 16px -8px rgba(10, 37, 64, 0.25)',
               color: 'var(--color-ink)',
@@ -136,6 +138,7 @@ export function Footer() {
             style={{
               background: 'rgba(255, 255, 255, 0.85)',
               backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
               border: '1px solid rgba(10, 37, 64, 0.1)',
               boxShadow: '0 6px 16px -8px rgba(10, 37, 64, 0.25)',
               color: 'var(--color-ink)',
