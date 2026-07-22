@@ -437,7 +437,7 @@ export function Projects() {
             "Featured works" treatment and spacing */}
         <ScrollReveal>
           <h2
-            className="font-extrabold mb-10"
+            className="font-extrabold mb-6"
             style={{
               fontSize: '18px',
               letterSpacing: '-0.01em',
