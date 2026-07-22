@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
+import { LocationIndicator } from "@/components/ui/LocationIndicator";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-TTWS5D5KRN";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
     >
       <body>
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
+        <LocationIndicator />
       </body>
       <GoogleAnalytics gaId={GA_ID} />
     </html>
