@@ -39,8 +39,8 @@ export function Navigation() {
         className="relative w-full max-w-[1160px] flex items-center justify-between px-6 sm:px-8 py-2.5 rounded-[var(--radius-pill)] overflow-hidden"
         style={{
           background: 'rgba(255, 255, 255, 0.45)',
-          backdropFilter: 'blur(28px) saturate(1.8) brightness(1.05)',
-          WebkitBackdropFilter: 'blur(28px) saturate(1.8) brightness(1.05)',
+          backdropFilter: 'blur(16px) saturate(1.5) brightness(1.03)',
+          WebkitBackdropFilter: 'blur(16px) saturate(1.5) brightness(1.03)',
           border: '1px solid rgba(255,255,255,0.7)',
           boxShadow:
             '0 12px 30px -16px rgba(23,70,184,0.4), inset 0 1px 0 rgba(255,255,255,0.9)',
@@ -102,8 +102,8 @@ export function Navigation() {
               transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 background: 'rgba(255, 255, 255, 0.45)',
-                backdropFilter: 'blur(28px) saturate(1.8) brightness(1.05)',
-                WebkitBackdropFilter: 'blur(28px) saturate(1.8) brightness(1.05)',
+                backdropFilter: 'blur(16px) saturate(1.5) brightness(1.03)',
+                WebkitBackdropFilter: 'blur(16px) saturate(1.5) brightness(1.03)',
                 border: '1px solid rgba(255,255,255,0.7)',
                 boxShadow: '0 16px 34px -16px rgba(23,70,184,0.4), inset 0 1px 0 rgba(255,255,255,0.9)',
               }}
