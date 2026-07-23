@@ -38,7 +38,7 @@ export function Navigation() {
       <nav
         className="relative w-full max-w-[1160px] flex items-center justify-between px-6 sm:px-8 py-2.5 rounded-[var(--radius-pill)]"
         style={{
-          background: 'var(--color-glass-55)',
+          background: 'rgba(249, 247, 243, 0.35)',
           backdropFilter: 'blur(32px) saturate(1.5)',
           WebkitBackdropFilter: 'blur(32px) saturate(1.5)',
           border: '1px solid rgba(255,255,255,0.62)',
@@ -101,7 +101,7 @@ export function Navigation() {
               exit={{ opacity: 0, y: -8, scale: 0.96 }}
               transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               style={{
-                background: 'var(--color-glass-55)',
+                background: 'rgba(249, 247, 243, 0.35)',
                 backdropFilter: 'blur(32px) saturate(1.5)',
                 WebkitBackdropFilter: 'blur(32px) saturate(1.5)',
                 border: '1px solid rgba(255,255,255,0.62)',
