@@ -36,11 +36,11 @@ export function Navigation() {
   return (
     <div className="sticky top-4 z-[9999] px-6 flex justify-center">
       <nav
-        className="relative w-full max-w-[1160px] flex items-center justify-between px-5 sm:px-6 py-2.5 rounded-[var(--radius-pill)]"
+        className="relative w-full max-w-[1160px] flex items-center justify-between px-6 sm:px-8 py-2.5 rounded-[var(--radius-pill)]"
         style={{
           background: 'var(--color-glass-55)',
-          backdropFilter: 'blur(24px) saturate(1.5)',
-          WebkitBackdropFilter: 'blur(24px) saturate(1.5)',
+          backdropFilter: 'blur(32px) saturate(1.5)',
+          WebkitBackdropFilter: 'blur(32px) saturate(1.5)',
           border: '1px solid rgba(255,255,255,0.62)',
           boxShadow:
             '0 12px 30px -16px rgba(23,70,184,0.4), inset 0 1px 0 rgba(255,255,255,0.9)',
@@ -102,8 +102,8 @@ export function Navigation() {
               transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 background: 'var(--color-glass-55)',
-                backdropFilter: 'blur(24px) saturate(1.5)',
-                WebkitBackdropFilter: 'blur(24px) saturate(1.5)',
+                backdropFilter: 'blur(32px) saturate(1.5)',
+                WebkitBackdropFilter: 'blur(32px) saturate(1.5)',
                 border: '1px solid rgba(255,255,255,0.62)',
                 boxShadow: '0 16px 34px -16px rgba(23,70,184,0.4), inset 0 1px 0 rgba(255,255,255,0.9)',
               }}
