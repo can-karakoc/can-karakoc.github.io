@@ -4,6 +4,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { LocationIndicator } from "@/components/ui/LocationIndicator";
+import { SpotifyNowPlaying } from "@/components/ui/SpotifyNowPlaying";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-TTWS5D5KRN";
 
@@ -43,9 +44,10 @@ export default function RootLayout({
       lang="en"
       className={`${jakarta.variable} ${plexMono.variable}`}
     >
-      <body>
+      <body suppressHydrationWarning>
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
         <LocationIndicator />
+        <SpotifyNowPlaying />
       </body>
       <GoogleAnalytics gaId={GA_ID} />
     </html>

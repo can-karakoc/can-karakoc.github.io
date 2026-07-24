@@ -554,7 +554,7 @@ export function LocationIndicator() {
   const theme = skyTheme(cat, isDay, golden);
 
   return (
-    <div className="block fixed bottom-4 right-4 sm:bottom-6 sm:right-6" style={{ zIndex: 2147483000 }}>
+    <div className="block fixed bottom-6 right-6" style={{ zIndex: 2147483000 }}>
       {/* SVG grain filter — applied to the gradient background */}
       <svg width="0" height="0" style={{ position: 'absolute' }}>
         <defs>

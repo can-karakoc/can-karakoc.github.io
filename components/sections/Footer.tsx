@@ -148,31 +148,6 @@ export function Footer() {
           </a>
         </div>
 
-        {/* Footer bar - logo left, copyright right */}
-        <div className="flex items-center justify-between gap-4 pt-4 border-t border-gray-200/50">
-          {/* Left: Logo + Name */}
-          <div className="flex items-center gap-3">
-            <OrbLogo size={28} />
-            <span
-              className="font-bold text-base"
-              style={{
-                color: 'var(--color-ink)',
-              }}
-            >
-              Can
-            </span>
-          </div>
-
-          {/* Right: Copyright */}
-          <p
-            className="text-sm"
-            style={{
-              color: 'var(--color-ink-muted)',
-            }}
-          >
-            © {currentYear}
-          </p>
-        </div>
       </div>
     </footer>
   );
