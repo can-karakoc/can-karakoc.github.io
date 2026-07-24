@@ -107,7 +107,7 @@ export function CodingActivity() {
         border: '1px solid rgba(255,255,255,0.6)',
         boxShadow: '0 12px 32px -12px rgba(10, 37, 64, 0.18), inset 0 1px 0 rgba(255,255,255,0.8)',
         padding: '20px',
-        width: '100%',
+        maxWidth: '100%',
       }}
     >
       {/* Header */}

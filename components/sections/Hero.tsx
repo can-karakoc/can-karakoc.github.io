@@ -25,7 +25,7 @@ export function Hero() {
     >
       {/* Content */}
       <div className="max-w-[1160px] mx-auto px-6 pt-[200px]">
-        <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 items-start">
           {/* Left: Hero Text */}
           <div>
           {/* Greeting - primary headline (larger size, generous spacing) */}
@@ -89,7 +89,7 @@ export function Hero() {
           </div>
 
           {/* Right: Coding Activity Widget */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:block" style={{ overflow: 'hidden', minWidth: 0 }}>
             <CodingActivity />
           </div>
         </div>
