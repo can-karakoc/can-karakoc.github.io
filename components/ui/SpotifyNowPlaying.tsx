@@ -91,8 +91,7 @@ export function SpotifyNowPlaying() {
     };
   }, []);
 
-  if (!mounted || error) return null;
-  if (!track.title) return null;
+  if (!mounted) return null;
 
   // Spotify icon component
   const SpotifyIcon = ({ size = 18 }: { size?: number }) => (
@@ -282,13 +281,13 @@ export function SpotifyNowPlaying() {
                     className="text-[10px] font-medium leading-tight truncate mb-0.5"
                     style={{ color: 'var(--color-ink-muted)' }}
                   >
-                    {track.isPlaying ? 'Now Playing' : 'Last Played'}
+                    {track.title ? (track.isPlaying ? 'Now Playing' : 'Last Played') : 'Spotify'}
                   </p>
                   <p
                     className="text-[12px] font-bold leading-tight truncate"
                     style={{ color: 'var(--color-ink)' }}
                   >
-                    {track.title}
+                    {track.title || 'No recent activity'}
                   </p>
                 </div>
               </motion.button>
