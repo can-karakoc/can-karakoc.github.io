@@ -125,24 +125,19 @@ export function CodingActivity() {
       {/* Contribution Heatmap */}
       <div className="mb-3 relative">
         {/* Month Labels */}
-        <div className="flex justify-between mb-2">
-          {activityData.map((_, weekIndex) => {
-            const label = monthLabels.find((m) => m.weekIndex === weekIndex);
-            return (
-              <div key={weekIndex} style={{ flex: 1 }}>
-                {label && (
-                  <span className="text-[9px] font-semibold" style={{ color: 'var(--color-ink-muted)' }}>
-                    {label.month}
-                  </span>
-                )}
-              </div>
-            );
-          })}
+        <div className="flex justify-between mb-2 px-[1px]">
+          {monthLabels.map((label, i) => (
+            <div key={i} style={{ position: 'absolute', left: `${(label.weekIndex / 11) * 100}%` }}>
+              <span className="text-[9px] font-semibold" style={{ color: 'var(--color-ink-muted)' }}>
+                {label.month}
+              </span>
+            </div>
+          ))}
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex justify-between" style={{ gap: '2px' }}>
           {activityData.map((week, weekIndex) => (
-            <div key={weekIndex} className="flex flex-col gap-[2.5px]" style={{ flex: 1 }}>
+            <div key={weekIndex} className="flex flex-col" style={{ gap: '2px' }}>
               {week.map((day, dayIndex) => (
                 <motion.div
                   key={`${weekIndex}-${dayIndex}`}
@@ -161,9 +156,9 @@ export function CodingActivity() {
                   onMouseLeave={() => setHoveredDay(null)}
                   whileHover={{ scale: 1.4, zIndex: 10 }}
                   style={{
-                    width: '100%',
-                    aspectRatio: '1',
-                    borderRadius: 2.5,
+                    width: 11,
+                    height: 11,
+                    borderRadius: 2,
                     background: getColor(day.count),
                     border: '1px solid rgba(255,255,255,0.4)',
                     cursor: 'pointer',

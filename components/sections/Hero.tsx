@@ -21,10 +21,10 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative -mt-[80px] flex items-start overflow-hidden"
+      className="relative -mt-[80px] overflow-hidden"
     >
-      {/* Content - full width */}
-      <div className="relative z-10 w-full max-w-[1160px] mx-auto px-6 pt-[200px]">
+      {/* Content */}
+      <div className="max-w-[1160px] mx-auto px-6 pt-[200px]">
         <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-12 items-start">
           {/* Left: Hero Text */}
           <div>
