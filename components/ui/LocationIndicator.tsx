@@ -726,8 +726,8 @@ export function LocationIndicator() {
               aria-label={`${LOCATION.city} — ${clock} ${period}. Expand for weather`}
               className="flex items-center gap-2.5 pl-3.5 pr-4 py-2.5 cursor-pointer"
             >
-              <span style={{ color: theme.fg }}>
-                <WeatherIcon cat={cat} isDay={isDay} size={22} />
+              <span style={{ color: theme.fg }} className="shrink-0">
+                <WeatherIcon cat={cat} isDay={isDay} size={44} />
               </span>
               <span className="text-left leading-tight">
                 {/* location + live green dot */}
