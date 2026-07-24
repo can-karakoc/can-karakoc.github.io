@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CodingActivity } from '@/components/ui/CodingActivity';
 
 const WORDS = ['purposeful.', 'engaging.', 'human-centered.'];
 
@@ -25,9 +24,7 @@ export function Hero() {
     >
       {/* Content */}
       <div className="max-w-[1160px] mx-auto px-6 pt-[200px]">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.85fr_1fr] gap-12 items-start">
-          {/* Left: Hero Text */}
-          <div>
+        <div>
           {/* Greeting - primary headline (larger size, generous spacing) */}
           <motion.h1
             className="font-extrabold mb-5"
@@ -86,12 +83,6 @@ export function Hero() {
               </span>
             </span>
           </motion.p>
-          </div>
-
-          {/* Right: Coding Activity Widget */}
-          <div className="hidden lg:block" style={{ overflow: 'hidden', minWidth: 0 }}>
-            <CodingActivity />
-          </div>
         </div>
       </div>
     </section>
