@@ -53,43 +53,34 @@ export function CodingActivity() {
 
   if (!mounted || error || !stats) return null;
 
-  // Build 12 weeks of activity grid
+  // Build 12 weeks of activity data
   const weeks = 12;
-  const activityData: { date: string; count: number }[][] = [];
-  const monthLabels: { month: string; weekIndex: number }[] = [];
+  const weeklyData: { weekStart: Date; weekEnd: Date; total: number }[] = [];
   const today = new Date();
-  let lastMonth = -1;
 
   for (let week = weeks - 1; week >= 0; week--) {
-    const weekData: { date: string; count: number }[] = [];
-    for (let day = 6; day >= 0; day--) {
-      const date = new Date(today);
-      date.setDate(date.getDate() - (week * 7 + day));
-      const dateKey = date.toISOString().split('T')[0];
-      const count = stats.contributionsByDate[dateKey] || 0;
-      weekData.unshift({ date: dateKey, count });
+    const weekStart = new Date(today);
+    weekStart.setDate(weekStart.getDate() - (week * 7 + 6));
+    const weekEnd = new Date(today);
+    weekEnd.setDate(weekEnd.getDate() - (week * 7));
 
-      // Track month changes for labels
-      if (day === 0) {
-        const month = date.getMonth();
-        if (month !== lastMonth) {
-          monthLabels.push({
-            month: date.toLocaleDateString('en-US', { month: 'short' }),
-            weekIndex: weeks - 1 - week,
-          });
-          lastMonth = month;
-        }
-      }
+    let weekTotal = 0;
+    for (let day = 0; day < 7; day++) {
+      const date = new Date(weekStart);
+      date.setDate(date.getDate() + day);
+      const dateKey = date.toISOString().split('T')[0];
+      weekTotal += stats.contributionsByDate[dateKey] || 0;
     }
-    activityData.push(weekData);
+
+    weeklyData.push({ weekStart, weekEnd, total: weekTotal });
   }
 
-  // Get color for contribution count
-  const getColor = (count: number) => {
-    if (count === 0) return 'rgba(10, 37, 64, 0.08)';
-    if (count <= 2) return 'rgba(124, 185, 232, 0.3)';
-    if (count <= 5) return 'rgba(124, 185, 232, 0.5)';
-    if (count <= 10) return 'rgba(124, 185, 232, 0.7)';
+  // Get color for weekly total
+  const getColor = (total: number) => {
+    if (total === 0) return 'rgba(10, 37, 64, 0.08)';
+    if (total <= 5) return 'rgba(124, 185, 232, 0.3)';
+    if (total <= 15) return 'rgba(124, 185, 232, 0.5)';
+    if (total <= 30) return 'rgba(124, 185, 232, 0.7)';
     return 'rgba(124, 185, 232, 0.9)';
   };
 
@@ -98,7 +89,7 @@ export function CodingActivity() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.3 }}
-      className="relative"
+      className="relative w-full"
       style={{
         background: 'rgba(255,255,255,0.45)',
         backdropFilter: 'blur(20px) saturate(1.4)',
@@ -107,8 +98,6 @@ export function CodingActivity() {
         border: '1px solid rgba(255,255,255,0.6)',
         boxShadow: '0 12px 32px -12px rgba(10, 37, 64, 0.18), inset 0 1px 0 rgba(255,255,255,0.8)',
         padding: '20px',
-        width: '100%',
-        maxWidth: 340,
       }}
     >
       {/* Header */}
@@ -123,52 +112,99 @@ export function CodingActivity() {
         </div>
       </div>
 
-      {/* Contribution Heatmap */}
-      <div className="mb-3 relative">
-        {/* Month Labels */}
-        <div className="flex justify-between mb-2 px-[1px]">
-          {monthLabels.map((label, i) => (
-            <div key={i} style={{ position: 'absolute', left: `${(label.weekIndex / 11) * 100}%` }}>
-              <span className="text-[9px] font-semibold" style={{ color: 'var(--color-ink-muted)' }}>
-                {label.month}
-              </span>
-            </div>
-          ))}
-        </div>
+      {/* Weekly Activity Line Chart */}
+      <div className="mb-4 relative" style={{ height: 100 }}>
+        {/* Grid background */}
+        <svg className="absolute inset-0 w-full h-full" style={{ opacity: 0.15 }}>
+          <defs>
+            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="var(--color-ink)" strokeWidth="0.5" opacity="0.3" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
 
-        <div className="flex justify-between" style={{ gap: '2px' }}>
-          {activityData.map((week, weekIndex) => (
-            <div key={weekIndex} className="flex flex-col" style={{ gap: '2px' }}>
-              {week.map((day, dayIndex) => (
-                <motion.div
-                  key={`${weekIndex}-${dayIndex}`}
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: (weekIndex * 7 + dayIndex) * 0.005, duration: 0.2 }}
-                  onMouseEnter={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    setHoveredDay({
-                      date: day.date,
-                      count: day.count,
-                      x: rect.left + rect.width / 2,
-                      y: rect.top,
-                    });
-                  }}
-                  onMouseLeave={() => setHoveredDay(null)}
-                  whileHover={{ scale: 1.4, zIndex: 10 }}
-                  style={{
-                    width: 11,
-                    height: 11,
-                    borderRadius: 2,
-                    background: getColor(day.count),
-                    border: '1px solid rgba(255,255,255,0.4)',
-                    cursor: 'pointer',
-                  }}
+        {/* Line chart */}
+        <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
+          <defs>
+            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="rgba(124, 185, 232, 0.3)" />
+              <stop offset="100%" stopColor="rgba(124, 185, 232, 0)" />
+            </linearGradient>
+          </defs>
+
+          {(() => {
+            const maxContributions = Math.max(...weeklyData.map(w => w.total), 1);
+            const padding = 10;
+            const width = 100;
+            const height = 100;
+            const chartWidth = width - padding * 2;
+            const chartHeight = height - padding * 2;
+
+            const points = weeklyData.map((week, i) => {
+              const x = padding + (i / (weeklyData.length - 1)) * chartWidth;
+              const y = padding + chartHeight - (week.total / maxContributions) * chartHeight;
+              return { x: `${x}%`, y: `${y}%`, total: week.total, week };
+            });
+
+            const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+            const areaD = `${pathD} L ${points[points.length - 1].x} ${padding + chartHeight}% L ${points[0].x} ${padding + chartHeight}% Z`;
+
+            return (
+              <>
+                {/* Area under curve */}
+                <motion.path
+                  d={areaD}
+                  fill="url(#lineGradient)"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
                 />
-              ))}
-            </div>
-          ))}
-        </div>
+
+                {/* Line */}
+                <motion.path
+                  d={pathD}
+                  fill="none"
+                  stroke="rgba(124, 185, 232, 0.9)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                />
+
+                {/* Data points */}
+                {points.map((point, i) => (
+                  <motion.circle
+                    key={i}
+                    cx={point.x}
+                    cy={point.y}
+                    r="4"
+                    fill="rgba(124, 185, 232, 0.9)"
+                    stroke="rgba(255,255,255,0.8)"
+                    strokeWidth="2"
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.8 + i * 0.05, duration: 0.3 }}
+                    whileHover={{ scale: 1.5, r: 5 }}
+                    style={{ cursor: 'pointer' }}
+                    onMouseEnter={(e) => {
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      setHoveredDay({
+                        date: point.week.weekStart.toISOString().split('T')[0],
+                        count: point.total,
+                        x: rect.left + rect.width / 2,
+                        y: rect.top,
+                      });
+                    }}
+                    onMouseLeave={() => setHoveredDay(null)}
+                  />
+                ))}
+              </>
+            );
+          })()}
+        </svg>
 
         {/* Hover Tooltip */}
         <AnimatePresence>
@@ -199,8 +235,7 @@ export function CodingActivity() {
                   boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
                 }}
               >
-                {hoveredDay.count} contribution{hoveredDay.count !== 1 ? 's' : ''} on{' '}
-                {new Date(hoveredDay.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                {hoveredDay.count} contribution{hoveredDay.count !== 1 ? 's' : ''}
               </div>
             </motion.div>
           )}
