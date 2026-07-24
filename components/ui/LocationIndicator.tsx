@@ -578,7 +578,7 @@ export function LocationIndicator() {
           boxShadow:
             '0 18px 44px -14px rgba(10, 37, 64, 0.38), inset 0 1px 0 rgba(255,255,255,0.6)',
           overflow: 'hidden',
-          width: open ? 'min(328px, calc(100vw - 2rem))' : 'auto',
+          width: open ? 'min(328px, calc(100vw - 2rem))' : '160px',
           position: 'relative',
           background: 'rgba(255,255,255,0.05)',
           backdropFilter: 'blur(24px) saturate(1.5)',
