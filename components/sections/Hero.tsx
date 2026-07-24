@@ -89,7 +89,7 @@ export function Hero() {
           </div>
 
           {/* Right: Coding Activity Widget */}
-          <div className="hidden lg:flex items-start justify-end">
+          <div className="hidden lg:block">
             <CodingActivity />
           </div>
         </div>
