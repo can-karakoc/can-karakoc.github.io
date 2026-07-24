@@ -83,9 +83,9 @@ interface SkyTheme {
   panel: string; // translucent panel over the gradient
 }
 
-// Sunset/sunrise "golden hour" gradient echoing the reference art.
+// Sunset/sunrise "golden hour" gradient — richer orange/pink tones.
 const GOLDEN: SkyTheme = {
-  bg: 'linear-gradient(180deg, #9fb3e6 0%, #f3c38f 55%, #f4a05f 100%)',
+  bg: 'linear-gradient(180deg, #e8a87c 0%, #f39c5f 40%, #f77b4e 70%, #ff6b6b 100%)',
   fg: '#2c2436',
   sub: 'rgba(44, 36, 54, 0.62)',
   panel: 'rgba(255, 255, 255, 0.5)',
@@ -106,35 +106,34 @@ const dark = (bg: string): SkyTheme => ({
 
 function skyTheme(cat: WeatherCat, isDay: boolean, golden: boolean): SkyTheme {
   if (golden && (cat === 'clear' || cat === 'partly')) return GOLDEN;
-  // Richer 3-stop gradients: bright sky up top fading toward the horizon
-  // by day, deep-to-lighter by night — a stronger light→dark range that
-  // reads as the sun's height.
+  // Richer 3-stop gradients with enhanced sun tones: warmer yellow-orange by
+  // day to reflect sunlight, darker blues at night.
   switch (cat) {
     case 'clear':
       return isDay
-        ? light('linear-gradient(180deg, #3e97ec 0%, #8ec6f4 50%, #d6ecfb 100%)')
-        : dark('linear-gradient(180deg, #070c28 0%, #1c2559 58%, #454c88 100%)');
+        ? light('linear-gradient(180deg, #52a8f7 0%, #ffcc5c 45%, #ffd98f 75%, #fff4d6 100%)')
+        : dark('linear-gradient(180deg, #020510 0%, #0a1228 58%, #1f2750 100%)');
     case 'partly':
       return isDay
-        ? light('linear-gradient(180deg, #5ba2e2 0%, #a2cae9 50%, #dbe7f2 100%)')
-        : dark('linear-gradient(180deg, #0e1438 0%, #262f5c 58%, #4a5182 100%)');
+        ? light('linear-gradient(180deg, #5ba2e2 0%, #ffc56e 48%, #ffd494 75%, #ffe5bc 100%)')
+        : dark('linear-gradient(180deg, #080f20 0%, #151d38 58%, #2e3658 100%)');
     case 'cloudy':
       return isDay
-        ? light('linear-gradient(180deg, #7890a8 0%, #a8b6c7 52%, #d7dee7 100%)')
-        : dark('linear-gradient(180deg, #161d33 0%, #313a56 58%, #545c78 100%)');
+        ? light('linear-gradient(180deg, #7890a8 0%, #c9b89a 52%, #e6ddc7 100%)')
+        : dark('linear-gradient(180deg, #0d1320 0%, #1f2838 58%, #3a4258 100%)');
     case 'fog':
       return isDay
-        ? light('linear-gradient(180deg, #909aa8 0%, #bcc4ce 52%, #e2e6ec 100%)')
-        : dark('linear-gradient(180deg, #212734 0%, #434a5b 58%, #656d7e 100%)');
+        ? light('linear-gradient(180deg, #909aa8 0%, #d4cab0 52%, #ebe5d0 100%)')
+        : dark('linear-gradient(180deg, #161c28 0%, #333b48 58%, #525a68 100%)');
     case 'drizzle':
     case 'rain':
       return isDay
         ? dark('linear-gradient(180deg, #445a6e 0%, #6d8194 52%, #a2b0bf 100%)')
-        : dark('linear-gradient(180deg, #131b28 0%, #2c3746 58%, #4a5464 100%)');
+        : dark('linear-gradient(180deg, #080e15 0%, #1a2330 58%, #323d4a 100%)');
     case 'snow':
       return light('linear-gradient(180deg, #93a8c4 0%, #c6d4e6 52%, #eff5fc 100%)');
     case 'storm':
-      return dark('linear-gradient(180deg, #1a2032 0%, #363f56 58%, #565f79 100%)');
+      return dark('linear-gradient(180deg, #0e1318 0%, #252e40 58%, #404858 100%)');
     default:
       return light('linear-gradient(180deg, #7890a8 0%, #a8b6c7 52%, #d7dee7 100%)');
   }
@@ -556,6 +555,19 @@ export function LocationIndicator() {
 
   return (
     <div className="block fixed bottom-4 right-4 sm:bottom-6 sm:right-6" style={{ zIndex: 2147483000 }}>
+      {/* SVG grain filter — applied to the gradient background */}
+      <svg width="0" height="0" style={{ position: 'absolute' }}>
+        <defs>
+          <filter id="liGrainFilter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="3" stitchTiles="stitch" />
+            <feColorMatrix type="saturate" values="0" />
+            <feComponentTransfer>
+              <feFuncA type="discrete" tableValues="0 0.12" />
+            </feComponentTransfer>
+            <feBlend mode="soft-light" in="SourceGraphic" />
+          </filter>
+        </defs>
+      </svg>
       <motion.div
         layout
         transition={{ type: 'spring', stiffness: 320, damping: 32 }}
@@ -573,8 +585,8 @@ export function LocationIndicator() {
           WebkitBackdropFilter: 'blur(24px) saturate(1.5)',
         }}
       >
-        {/* Translucent weather-gradient tint — glassy, so the blurred page
-            behind shows through instead of a solid fill. */}
+        {/* Translucent weather-gradient tint with grain — glassy, so the blurred
+            page behind shows through instead of a solid fill. */}
         <div
           aria-hidden
           style={{
@@ -583,6 +595,7 @@ export function LocationIndicator() {
             background: theme.bg,
             opacity: 0.42,
             pointerEvents: 'none',
+            filter: 'url(#liGrainFilter)',
           }}
         />
         <div style={{ position: 'relative' }}>
