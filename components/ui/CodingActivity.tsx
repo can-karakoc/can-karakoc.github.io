@@ -125,11 +125,11 @@ export function CodingActivity() {
       {/* Contribution Heatmap */}
       <div className="mb-3 relative">
         {/* Month Labels */}
-        <div className="flex gap-[2.5px] mb-2">
+        <div className="flex justify-between mb-2">
           {activityData.map((_, weekIndex) => {
             const label = monthLabels.find((m) => m.weekIndex === weekIndex);
             return (
-              <div key={weekIndex} style={{ width: 12 }}>
+              <div key={weekIndex} style={{ flex: 1 }}>
                 {label && (
                   <span className="text-[9px] font-semibold" style={{ color: 'var(--color-ink-muted)' }}>
                     {label.month}
@@ -140,9 +140,9 @@ export function CodingActivity() {
           })}
         </div>
 
-        <div className="flex gap-[2.5px]">
+        <div className="flex justify-between">
           {activityData.map((week, weekIndex) => (
-            <div key={weekIndex} className="flex flex-col gap-[2.5px]">
+            <div key={weekIndex} className="flex flex-col gap-[2.5px]" style={{ flex: 1 }}>
               {week.map((day, dayIndex) => (
                 <motion.div
                   key={`${weekIndex}-${dayIndex}`}
@@ -161,8 +161,8 @@ export function CodingActivity() {
                   onMouseLeave={() => setHoveredDay(null)}
                   whileHover={{ scale: 1.4, zIndex: 10 }}
                   style={{
-                    width: 12,
-                    height: 12,
+                    width: '100%',
+                    aspectRatio: '1',
                     borderRadius: 2.5,
                     background: getColor(day.count),
                     border: '1px solid rgba(255,255,255,0.4)',
