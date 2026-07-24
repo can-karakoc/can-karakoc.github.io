@@ -152,15 +152,6 @@ export function CodingActivity() {
 
             return (
               <>
-                {/* Area under curve */}
-                <motion.path
-                  d={areaD}
-                  fill="url(#lineGradient)"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                />
-
                 {/* Line */}
                 <motion.path
                   d={pathD}
