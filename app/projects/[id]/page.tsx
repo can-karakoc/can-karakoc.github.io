@@ -430,6 +430,6 @@ export default function ProjectDetailPage() {
           </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
