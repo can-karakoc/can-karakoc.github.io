@@ -432,13 +432,14 @@ body {
   }
 }
 
-/* GPU acceleration for common animated elements */
+/* GPU acceleration for common animated elements
+   Safari optimization: Only use will-change during active animations,
+   not persistently. Persistent will-change can cause memory issues. */
 .mag,
 [class*="motion-"],
 .reveal,
 .grain,
 .aero-grid {
-  will-change: auto;
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;

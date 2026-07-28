@@ -91,12 +91,12 @@ export function CodingActivity() {
       transition={{ duration: 0.6, delay: 0.3 }}
       className="relative w-full"
       style={{
-        background: 'rgba(255,255,255,0.45)',
+        background: 'rgba(255,255,255,0.7)',
         backdropFilter: 'blur(20px) saturate(1.4)',
         WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
         borderRadius: 20,
-        border: '1px solid rgba(255,255,255,0.6)',
-        boxShadow: '0 12px 32px -12px rgba(10, 37, 64, 0.18), inset 0 1px 0 rgba(255,255,255,0.8)',
+        border: '1px solid rgba(255,255,255,0.8)',
+        boxShadow: '0 12px 32px -12px rgba(10, 37, 64, 0.18), inset 0 1px 0 rgba(255,255,255,0.9)',
         padding: '20px',
       }}
     >
@@ -125,14 +125,7 @@ export function CodingActivity() {
         </svg>
 
         {/* Line chart */}
-        <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
-          <defs>
-            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="rgba(124, 185, 232, 0.3)" />
-              <stop offset="100%" stopColor="rgba(124, 185, 232, 0)" />
-            </linearGradient>
-          </defs>
-
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" style={{ overflow: 'visible' }}>
           {(() => {
             const maxContributions = Math.max(...weeklyData.map(w => w.total), 1);
             const padding = 10;
@@ -144,7 +137,7 @@ export function CodingActivity() {
             const points = weeklyData.map((week, i) => {
               const x = padding + (i / (weeklyData.length - 1)) * chartWidth;
               const y = padding + chartHeight - (week.total / maxContributions) * chartHeight;
-              return { x: `${x}%`, y: `${y}%`, total: week.total, week };
+              return { x, y, total: week.total, week };
             });
 
             const pathD = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');

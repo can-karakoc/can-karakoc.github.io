@@ -19,12 +19,28 @@ interface SpotifyTrack {
 
 export function SpotifyNowPlaying() {
   const [mounted, setMounted] = React.useState(false);
+  const [isDesktop, setIsDesktop] = React.useState(false);
+  const [isProjectPage, setIsProjectPage] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [track, setTrack] = React.useState<SpotifyTrack>({ isPlaying: false });
   const [error, setError] = React.useState(false);
   const [dominantColor, setDominantColor] = React.useState<string>('rgba(29, 185, 84, 0.25)');
 
   React.useEffect(() => setMounted(true), []);
+
+  // Hide on mobile (same breakpoint as AuroraBackground for consistency)
+  React.useEffect(() => {
+    const mq = window.matchMedia('(min-width: 768px)');
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  // Hide on project detail pages
+  React.useEffect(() => {
+    setIsProjectPage(window.location.pathname.startsWith('/projects/'));
+  }, []);
 
   // Extract dominant color from album art
   React.useEffect(() => {
@@ -91,7 +107,7 @@ export function SpotifyNowPlaying() {
     };
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted || !isDesktop || isProjectPage) return null;
 
   // Spotify icon component
   const SpotifyIcon = ({ size = 18 }: { size?: number }) => (
@@ -101,7 +117,13 @@ export function SpotifyNowPlaying() {
   );
 
   return (
-    <div className="fixed bottom-6 left-6 pointer-events-none" style={{ zIndex: 100 }}>
+    <div
+      className="fixed left-6 pointer-events-none"
+      style={{
+        zIndex: 100,
+        bottom: 'max(1.5rem, env(safe-area-inset-bottom, 1.5rem))',
+      }}
+    >
       <motion.div
         layout
         transition={{ type: 'spring', stiffness: 320, damping: 32 }}

@@ -19,7 +19,16 @@ export interface Project {
   screenshot?: string;
   size?: 'large' | 'medium' | 'tall';
   /** Stylized fallback mockup shown when there's no screenshot. */
-  mockup?: 'paper' | 'genome' | 'inbox' | 'arcade';
+  mockup?: 'paper' | 'genome' | 'inbox' | 'arcade' | 'confidential';
+  /** Project timeline (e.g., "June 2026 - Present") */
+  timeline?: string;
+  /** Additional project details for detail page */
+  details?: {
+    role?: string;
+    tech?: string[];
+    highlights?: string[];
+    images?: string[]; // Additional screenshots for detail page
+  };
 }
 
 interface ProjectCardProps {

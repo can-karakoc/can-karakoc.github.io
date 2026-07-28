@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, IBM_Plex_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
+import "@/css/safari-optimizations.css";
 import { SmoothScrollProvider } from "@/components/SmoothScrollProvider";
 import { LocationIndicator } from "@/components/ui/LocationIndicator";
 import { SpotifyNowPlaying } from "@/components/ui/SpotifyNowPlaying";
@@ -31,6 +32,14 @@ export const metadata: Metadata = {
     title: "Can's Portfolio",
     description: "Product engineer building human-centered software",
     type: "website",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+    // iOS Safari safe area insets
+    viewportFit: "cover",
   },
 };
 

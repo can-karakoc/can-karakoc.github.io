@@ -3,77 +3,10 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { Project } from './ProjectCard';
 import { ScrollReveal } from '@/components/animations';
-
-const projects: Project[] = [
-  {
-    id: 'protein-explorer',
-    title: 'Protein Interaction Explorer',
-    category: 'Full-stack',
-    categoryColor: 'var(--color-cobalt)',
-    description:
-      'Parse, visualize & compare protein structures — AlphaFold coloring, contact detection, exportable reports.',
-    link: 'https://protein-io.vercel.app/',
-    gradientBg: 'linear-gradient(150deg, #4f7dff, #38bdf8)',
-    screenshot: '/protein-interaction-explorer.png',
-  },
-  {
-    id: 'embedding-search',
-    title: 'Embedding Similarity Search',
-    category: 'Machine Learning',
-    categoryColor: 'var(--color-aqua-teal)',
-    description:
-      'Find biologically similar proteins from a sequence via embeddings and vector search.',
-    link: 'https://frontend-five-dusky-60.vercel.app/',
-    gradientBg: 'linear-gradient(150deg, #38bdf8, #0891b2)',
-    screenshot: '/protein-embedding-workbench.png',
-  },
-  {
-    id: 'energy-emissions',
-    title: 'Energy & Carbon Emissions',
-    category: 'Data Science',
-    categoryColor: 'var(--color-cobalt-deep)',
-    description:
-      'Predicting renewable output and estimating price→emissions causal impact.',
-    link: 'https://github.com/can-karakoc/data102-final-proj',
-    gradientBg: 'linear-gradient(150deg, #4f7dff, #6d5ef0)',
-    mockup: 'paper',
-  },
-  {
-    id: 'lentivirus-search',
-    title: 'Lentivirus Gene Search Tool',
-    category: 'Genomics',
-    categoryColor: 'var(--color-teal)',
-    description:
-      'Interactive genome browser for HIV-1/2 & SIV — gene annotations, conserved regions, 3D protein models.',
-    link: 'https://github.com/JORDANKLANFER/jbrowse2_project',
-    gradientBg: 'linear-gradient(150deg, #5C9A92, #6BB2BC)',
-    mockup: 'genome',
-  },
-  {
-    id: 'email-classification',
-    title: 'Email Classification',
-    category: 'Machine Learning',
-    categoryColor: 'var(--color-green)',
-    description:
-      'Logistic regression spam classifier — 40+ engineered features, L1/L2-regularized cross-validation.',
-    link: 'https://github.com/can-karakoc/spam-ham.git',
-    gradientBg: 'linear-gradient(150deg, #6FAF85, #8BC99F)',
-    mockup: 'inbox',
-  },
-  {
-    id: 'world-game-design',
-    title: 'World Game Design',
-    category: 'Software Engineering',
-    categoryColor: 'var(--color-indigo-purple)',
-    description:
-      'Procedurally generated Java game world with mini-worlds and persistent save/load state.',
-    link: 'https://youtu.be/xaQWofbBags',
-    gradientBg: 'linear-gradient(150deg, #95B1EE, #A89FD9)',
-    mockup: 'arcade',
-  },
-];
+import { projects } from '@/lib/projectsData';
 
 function getDomain(link: string): string {
   try {
@@ -112,16 +45,16 @@ function ProjectMockup({ type }: { type: NonNullable<Project['mockup']> }) {
           }}
         >
           <div className="h-full flex flex-col items-center justify-center text-center">
-            <p style={{ fontSize: '3.6cqw', marginBottom: '4cqw', color: '#555' }}>
+            <p style={{ fontSize: 'clamp(8px, 3.6cqw, 14px)', marginBottom: 'clamp(6px, 4cqw, 16px)', color: '#555' }}>
               December 2024
             </p>
-            <h3 className="font-bold leading-snug" style={{ fontSize: '5cqw', marginBottom: '4cqw', color: '#000' }}>
+            <h3 className="font-bold leading-snug" style={{ fontSize: 'clamp(11px, 5cqw, 20px)', marginBottom: 'clamp(6px, 4cqw, 16px)', color: '#000' }}>
               Predictive and Inferential Models for Carbon Emissions and Renewable Energy Production
             </h3>
-            <p style={{ fontSize: '4cqw', marginBottom: '0.6cqw', color: '#222' }}>
+            <p style={{ fontSize: 'clamp(9px, 4cqw, 16px)', marginBottom: 'clamp(2px, 0.6cqw, 4px)', color: '#222' }}>
               University of California, Berkeley
             </p>
-            <p className="font-bold" style={{ fontSize: '3.6cqw', color: '#333' }}>
+            <p className="font-bold" style={{ fontSize: 'clamp(8px, 3.6cqw, 14px)', color: '#333' }}>
               Data 102: Data, Inference, and Decisions
             </p>
           </div>
@@ -241,6 +174,37 @@ function ProjectMockup({ type }: { type: NonNullable<Project['mockup']> }) {
     );
   }
 
+  if (type === 'confidential') {
+    return (
+      <div
+        className="relative w-full overflow-hidden rounded-[10px] flex items-center justify-center"
+        style={{ ...frame, background: 'linear-gradient(150deg, #f5e6eb 0%, #fce8ec 100%)' }}
+      >
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 opacity-20">
+          <svg width="100%" height="100%">
+            <defs>
+              <pattern id="confidential-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+                <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#E8A5BB" strokeWidth="0.5" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#confidential-grid)" />
+          </svg>
+        </div>
+        {/* Lock icon */}
+        <div className="relative flex flex-col items-center gap-2">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#E8A5BB" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" fill="rgba(232, 165, 187, 0.15)" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          <span className="text-[9px] font-bold uppercase tracking-[0.12em]" style={{ fontFamily: 'var(--font-plex)', color: '#E8A5BB' }}>
+            Confidential
+          </span>
+        </div>
+      </div>
+    );
+  }
+
   // arcade
   return (
     <div
@@ -283,11 +247,12 @@ function ProjectMockup({ type }: { type: NonNullable<Project['mockup']> }) {
 }
 
 /* Minimal card: screenshot, category, title, description.
-   The cursor becomes an "Explore" pill while hovering. */
+   Clicking navigates to project detail page. */
 function ProjectGridCard({ project }: { project: Project }) {
+  const router = useRouter();
   const [hovered, setHovered] = React.useState(false);
   const [pos, setPos] = React.useState({ x: 0, y: 0 });
-  const ref = React.useRef<HTMLAnchorElement>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = ref.current?.getBoundingClientRect();
@@ -295,27 +260,24 @@ function ProjectGridCard({ project }: { project: Project }) {
     setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
+  const handleClick = () => {
+    router.push(`/projects/${project.id}`);
+  };
+
   return (
-    <motion.a
+    <motion.div
       ref={ref}
-      href={project.link}
-      target="_blank"
-      rel="noopener noreferrer"
+      onClick={handleClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-      className="relative block no-underline rounded-[20px]"
+      className="relative flex flex-col no-underline rounded-[20px] cursor-none h-full"
       style={{
-        // No backdrop-filter here on purpose: a nested backdrop-filter
-        // inside the Explore pill below is what should visibly blur this
-        // card's own content on hover, and nesting two backdrop-filters
-        // is a known source of browsers only letting the outer one apply.
         background: 'rgba(255, 255, 255, 0.94)',
         border: '1px solid rgba(255, 255, 255, 0.9)',
         boxShadow: '0 20px 44px -28px rgba(23, 70, 184, 0.3), inset 0 1px 0 rgba(255,255,255,0.9)',
-        cursor: 'none',
       }}
     >
       {/* Mockup: browser window for web apps, A4 research paper otherwise */}
@@ -376,14 +338,15 @@ function ProjectGridCard({ project }: { project: Project }) {
           backdrop-filter actually samples it (backdrop-filter is unreliable
           over plain text sharing a paint layer with its ancestors, but
           works fine once the content is layer-promoted like this) */}
-      <div className="p-6" style={{ transform: 'translateZ(0)' }}>
+      <div className="p-6 flex-1 flex flex-col" style={{ transform: 'translateZ(0)' }}>
         <span
           className="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase mb-3"
           style={{
             fontFamily: 'var(--font-plex)',
-            background: `color-mix(in srgb, ${project.categoryColor} 8%, transparent)`,
+            // Safari <16.2 fallback: hex color with opacity suffix (8% = 14 in hex, 20% = 33 in hex)
+            background: `${project.categoryColor}14`,
             color: project.categoryColor,
-            border: `1px solid color-mix(in srgb, ${project.categoryColor} 20%, transparent)`,
+            border: `1px solid ${project.categoryColor}33`,
           }}
         >
           {project.category}
@@ -395,14 +358,14 @@ function ProjectGridCard({ project }: { project: Project }) {
           {project.title}
         </h3>
         <p
-          className="text-[14.5px] leading-relaxed"
+          className="text-[14.5px] leading-relaxed flex-1"
           style={{ color: 'var(--color-ink-muted)' }}
         >
-          {project.description}
+          {project.description.split('—')[0]}—{project.description.split('—')[1]?.split('.')[0]}.
         </p>
       </div>
 
-      {/* Explore pill following the cursor */}
+      {/* View pill following the cursor */}
       <AnimatePresence>
         {hovered && (
           <motion.div
@@ -424,11 +387,11 @@ function ProjectGridCard({ project }: { project: Project }) {
               boxShadow: '0 8px 24px -10px rgba(23, 70, 184, 0.45), inset 0 1px 0 rgba(255,255,255,0.95)',
             }}
           >
-            Explore →
+            View Details →
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.a>
+    </motion.div>
   );
 }
 

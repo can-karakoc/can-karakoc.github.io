@@ -457,11 +457,17 @@ function to12h(hhmm: string): string {
 
 export function LocationIndicator() {
   const [mounted, setMounted] = React.useState(false);
+  const [isProjectPage, setIsProjectPage] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [now, setNow] = React.useState<Date>(() => new Date());
   const [weather, setWeather] = React.useState<Weather | null>(null);
 
   React.useEffect(() => setMounted(true), []);
+
+  // Hide on project detail pages
+  React.useEffect(() => {
+    setIsProjectPage(window.location.pathname.startsWith('/projects/'));
+  }, []);
 
   // Live clock
   React.useEffect(() => {
@@ -506,7 +512,7 @@ export function LocationIndicator() {
   }, []);
 
   // Avoid SSR/client time mismatch: render only after mount.
-  if (!mounted) return null;
+  if (!mounted || isProjectPage) return null;
 
   const timeParts = new Intl.DateTimeFormat('en-US', {
     timeZone: LOCATION.timeZone,
@@ -554,7 +560,13 @@ export function LocationIndicator() {
   const theme = skyTheme(cat, isDay, golden);
 
   return (
-    <div className="block fixed bottom-6 right-6" style={{ zIndex: 2147483000 }}>
+    <div
+      className="block fixed right-6"
+      style={{
+        zIndex: 200,
+        bottom: 'max(1.5rem, env(safe-area-inset-bottom, 1.5rem))',
+      }}
+    >
       {/* SVG grain filter — applied to the gradient background */}
       <svg width="0" height="0" style={{ position: 'absolute' }}>
         <defs>
