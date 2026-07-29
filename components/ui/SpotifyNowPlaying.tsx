@@ -206,33 +206,52 @@ export function SpotifyNowPlaying() {
                 {/* Album art */}
                 <div className="mb-3 relative">
                   {track.albumImageUrl && (
-                    <>
-                      <motion.img
-                        key={track.albumImageUrl}
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3 }}
-                        src={track.albumImageUrl}
-                        alt={`${track.album} cover`}
-                        className="rounded-xl w-full"
-                        style={{
-                          aspectRatio: '1',
-                          objectFit: 'cover',
-                          boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
-                          filter: track.isPlaying ? 'none' : 'grayscale(0.5) brightness(0.8)',
-                          opacity: track.isPlaying ? 1 : 0.7,
-                        }}
-                      />
-                      {/* Overlay for last played state */}
-                      {!track.isPlaying && (
-                        <div
-                          className="absolute inset-0 rounded-xl pointer-events-none"
+                    <motion.img
+                      key={track.albumImageUrl}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                      src={track.albumImageUrl}
+                      alt={`${track.album} cover`}
+                      className="rounded-xl w-full"
+                      style={{
+                        aspectRatio: '1',
+                        objectFit: 'cover',
+                        boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+                      }}
+                    />
+                  )}
+
+                  {/* Audio visualizer (only when playing) - positioned on album art */}
+                  {track.isPlaying && (
+                    <div
+                      className="absolute bottom-3 right-3 flex items-end gap-0.5"
+                      style={{
+                        background: 'rgba(0,0,0,0.65)',
+                        borderRadius: 6,
+                        padding: '4px 5px',
+                      }}
+                    >
+                      {[0, 1, 2].map((i) => (
+                        <motion.div
+                          key={i}
                           style={{
-                            background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%)',
+                            width: 3,
+                            background: '#22c55e',
+                            borderRadius: 1.5,
+                          }}
+                          animate={{
+                            height: [6, 14, 6],
+                          }}
+                          transition={{
+                            duration: 0.6,
+                            repeat: Infinity,
+                            delay: i * 0.15,
+                            ease: 'easeInOut',
                           }}
                         />
-                      )}
-                    </>
+                      ))}
+                    </div>
                   )}
                 </div>
 
