@@ -83,6 +83,11 @@ export const projects: Project[] = [
         'REST API serving 100+ queries/minute with sub-500ms p95 latency',
         'Functional annotation transfer based on homology-independent similarity scores',
       ],
+      images: [
+        { src: '/embedding-compare.png', description: 'Side-by-side protein comparison with cosine similarity scoring' },
+        { src: '/embedding-search.png', description: 'Similarity search interface returning top-K ranked matches' },
+        { src: '/embedding-cache.png', description: 'Cache statistics showing embedding storage and model backend' },
+      ],
     },
   },
   {
