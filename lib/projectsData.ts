@@ -23,6 +23,7 @@ export const projects: Project[] = [
         'Side-by-side structure comparison tool for analyzing conformational changes',
         'CSV/JSON export functionality for downstream computational analysis',
       ],
+      images: ['/protein-chains.png', '/protein-ligands.png', '/protein-sequence.png', '/protein-dark.png'],
     },
   },
   {
