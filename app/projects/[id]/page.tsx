@@ -238,152 +238,132 @@ export default function ProjectDetailPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Category badge */}
-          <span
-            className="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase mb-4"
-            style={{
-              fontFamily: 'var(--font-plex)',
-              background: `${project.categoryColor}14`,
-              color: project.categoryColor,
-              border: `1px solid ${project.categoryColor}33`,
-            }}
-          >
-            {project.category}
-          </span>
-
-          {/* Big Title */}
-          <h1
-            className="font-extrabold leading-[1.1] mb-3"
-            style={{
-              fontSize: 'clamp(32px, 5vw, 56px)',
-              letterSpacing: '-0.04em',
-              color: 'var(--color-ink)',
-              maxWidth: '1000px',
-            }}
-          >
-            {project.title}
-          </h1>
-
-          {/* Timeline - Polished design */}
-          {project.timeline && (
-            <div className="inline-flex items-center gap-2 mt-2 px-3 py-1.5 rounded-full" style={{
-              background: 'linear-gradient(135deg, rgba(79, 125, 255, 0.08) 0%, rgba(79, 125, 255, 0.04) 100%)',
-              border: '1px solid rgba(79, 125, 255, 0.2)',
-            }}>
-              <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#4f7dff' }} />
+          <div className="flex items-start justify-between gap-8">
+            {/* Left side - Title and category */}
+            <div className="flex-1">
+              {/* Category badge */}
               <span
-                className="text-[13px] font-semibold tracking-tight"
+                className="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase mb-4"
                 style={{
                   fontFamily: 'var(--font-plex)',
-                  color: '#4f7dff',
+                  background: `${project.categoryColor}14`,
+                  color: project.categoryColor,
+                  border: `1px solid ${project.categoryColor}33`,
                 }}
               >
-                {project.timeline}
+                {project.category}
               </span>
+
+              {/* Big Title */}
+              <h1
+                className="font-extrabold leading-[1.1] mb-3"
+                style={{
+                  fontSize: 'clamp(32px, 5vw, 56px)',
+                  letterSpacing: '-0.04em',
+                  color: '#2D3340',
+                  maxWidth: '800px',
+                }}
+              >
+                {project.title}
+              </h1>
+
+              {/* Timeline - Polished design */}
+              {project.timeline && (
+                <div className="inline-flex items-center gap-2 mt-2 px-3 py-1.5 rounded-full" style={{
+                  background: 'linear-gradient(135deg, rgba(79, 125, 255, 0.08) 0%, rgba(79, 125, 255, 0.04) 100%)',
+                  border: '1px solid rgba(79, 125, 255, 0.2)',
+                }}>
+                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#4f7dff' }} />
+                  <span
+                    className="text-[13px] font-semibold tracking-tight"
+                    style={{
+                      fontFamily: 'var(--font-plex)',
+                      color: '#4f7dff',
+                    }}
+                  >
+                    {project.timeline}
+                  </span>
+                </div>
+              )}
             </div>
-          )}
+
+            {/* Right side - Key stats callouts */}
+            {project.details?.highlights && project.details.highlights.length > 0 && (
+              <div className="hidden lg:flex gap-4">
+                {project.details.highlights.slice(0, 2).map((highlight, i) => {
+                  // Extract number from highlight (e.g., "42,213" from "processing 42,213 raw operators")
+                  const numberMatch = highlight.match(/[\d,]+/);
+                  const number = numberMatch ? numberMatch[0] : null;
+                  const label = number ? highlight.split(number)[1]?.trim().split(' ').slice(0, 2).join(' ') : highlight.split(' ').slice(0, 2).join(' ');
+
+                  return number ? (
+                    <div
+                      key={i}
+                      className="px-4 py-3 rounded-2xl min-w-[120px]"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.7)',
+                        backdropFilter: 'blur(12px)',
+                        WebkitBackdropFilter: 'blur(12px)',
+                        border: '1px solid rgba(255, 255, 255, 0.9)',
+                        boxShadow: '0 4px 16px -4px rgba(0, 0, 0, 0.1)',
+                      }}
+                    >
+                      <div
+                        className="text-[24px] font-extrabold leading-none mb-1"
+                        style={{ color: '#4f7dff', letterSpacing: '-0.02em' }}
+                      >
+                        {number}
+                      </div>
+                      <div
+                        className="text-[11px] font-medium uppercase tracking-wide"
+                        style={{ color: '#6B7280', fontFamily: 'var(--font-plex)' }}
+                      >
+                        {label}
+                      </div>
+                    </div>
+                  ) : null;
+                })}
+              </div>
+            )}
+          </div>
         </motion.div>
       </div>
 
       {/* Main content */}
       <div className="max-w-[1400px] mx-auto px-6 pb-16">
         <div className="grid lg:grid-cols-[420px_1fr] gap-12 items-start">
-          {/* Left column - Sticky text content */}
+          {/* Left column - Sticky text content with card background */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:sticky lg:top-24 space-y-4"
+            className="lg:sticky lg:top-24"
           >
-            {/* Description */}
-            <p
-              className="text-[15px] leading-relaxed"
-              style={{ color: 'var(--color-ink-muted)' }}
+            <div
+              className="p-6 rounded-2xl space-y-5"
+              style={{
+                background: 'rgba(255, 255, 255, 0.75)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                border: '1px solid rgba(255, 255, 255, 0.95)',
+                boxShadow: '0 8px 32px -8px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1)',
+              }}
             >
-              {project.description}
-            </p>
+              {/* Description */}
+              <p
+                className="text-[16px] leading-relaxed"
+                style={{ color: '#2D3340' }}
+              >
+                {project.description}
+              </p>
 
-            {/* Role */}
-            {project.details?.role && (
-              <div className="pt-1">
-                <h3
-                  className="text-[11px] font-bold uppercase tracking-[0.12em] mb-1.5"
-                  style={{ fontFamily: 'var(--font-plex)', color: 'var(--color-ink-muted)' }}
-                >
-                  Role
-                </h3>
-                <p
-                  className="text-[14px] font-semibold"
-                  style={{ color: 'var(--color-ink)' }}
-                >
-                  {project.details.role}
-                </p>
-              </div>
-            )}
-
-            {/* Technologies */}
-            {project.details?.tech && project.details.tech.length > 0 && (
-              <div className="pt-1">
-                <h3
-                  className="text-[11px] font-bold uppercase tracking-[0.12em] mb-2"
-                  style={{ fontFamily: 'var(--font-plex)', color: 'var(--color-ink-muted)' }}
-                >
-                  Technologies
-                </h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {project.details.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-2.5 py-1 rounded-full text-[11px] font-semibold"
-                      style={{
-                        background: 'rgba(79, 125, 255, 0.08)',
-                        color: '#4f7dff',
-                        border: '1px solid rgba(79, 125, 255, 0.2)',
-                      }}
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Highlights */}
-            {project.details?.highlights && project.details.highlights.length > 0 && (
-              <div className="pt-1">
-                <h3
-                  className="text-[11px] font-bold uppercase tracking-[0.12em] mb-2.5"
-                  style={{ fontFamily: 'var(--font-plex)', color: 'var(--color-ink-muted)' }}
-                >
-                  Key Highlights
-                </h3>
-                <ul className="space-y-2">
-                  {project.details.highlights.map((highlight, i) => (
-                    <li key={i} className="flex items-start gap-2.5">
-                      <span
-                        className="shrink-0 w-1.5 h-1.5 rounded-full mt-1.5"
-                        style={{ background: '#4f7dff' }}
-                      />
-                      <span
-                        className="text-[13.5px] leading-relaxed"
-                        style={{ color: 'var(--color-ink)' }}
-                      >
-                        {highlight}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* Links */}
-            {!isConfidential && project.link && (
-              <div className="pt-3">
+              {/* CTA Button - Moved to top */}
+              {!isConfidential && project.link && (
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-[13px] transition-all hover:scale-105"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-[14px] transition-all hover:scale-105"
                   style={{
                     background: '#4f7dff',
                     color: 'white',
@@ -391,14 +371,90 @@ export default function ProjectDetailPage() {
                   }}
                 >
                   View Project
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                     <polyline points="15 3 21 3 21 9" />
                     <line x1="10" y1="14" x2="21" y2="3" />
                   </svg>
                 </a>
-              </div>
-            )}
+              )}
+
+              {/* Divider */}
+              <div style={{ height: '1px', background: 'rgba(0, 0, 0, 0.06)' }} />
+
+              {/* Role */}
+              {project.details?.role && (
+                <div>
+                  <h3
+                    className="text-[11px] font-bold uppercase tracking-[0.12em] mb-1.5"
+                    style={{ fontFamily: 'var(--font-plex)', color: '#6B7280' }}
+                  >
+                    Role
+                  </h3>
+                  <p
+                    className="text-[15px] font-semibold"
+                    style={{ color: '#2D3340' }}
+                  >
+                    {project.details.role}
+                  </p>
+                </div>
+              )}
+
+              {/* Technologies */}
+              {project.details?.tech && project.details.tech.length > 0 && (
+                <div>
+                  <h3
+                    className="text-[11px] font-bold uppercase tracking-[0.12em] mb-2"
+                    style={{ fontFamily: 'var(--font-plex)', color: '#6B7280' }}
+                  >
+                    Technologies
+                  </h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.details.tech.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="px-2.5 py-1 rounded-full text-[11px] font-semibold"
+                        style={{
+                          background: 'rgba(79, 125, 255, 0.1)',
+                          color: '#4f7dff',
+                          border: '1px solid rgba(79, 125, 255, 0.25)',
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Highlights */}
+              {project.details?.highlights && project.details.highlights.length > 0 && (
+                <div>
+                  <h3
+                    className="text-[11px] font-bold uppercase tracking-[0.12em] mb-2.5"
+                    style={{ fontFamily: 'var(--font-plex)', color: '#6B7280' }}
+                  >
+                    Key Highlights
+                  </h3>
+                  <ul className="space-y-2.5">
+                    {project.details.highlights.map((highlight, i) => (
+                      <li key={i} className="flex items-start gap-2.5">
+                        <span
+                          className="shrink-0 w-1.5 h-1.5 rounded-full mt-2"
+                          style={{ background: '#4f7dff' }}
+                        />
+                        <span
+                          className="text-[14px] leading-relaxed"
+                          style={{ color: '#2D3340' }}
+                        >
+                          {highlight}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
           </motion.div>
 
           {/* Right column - Scrollable images with desktop mockups */}
