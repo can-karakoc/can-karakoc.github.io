@@ -5,7 +5,7 @@ export const projects: Project[] = [
     id: 'protein-explorer',
     title: 'Protein Interaction Explorer',
     category: 'Full-stack',
-    categoryColor: 'var(--color-cobalt)',
+    categoryColor: '#4f7dff',
     description:
       'An interactive web application for parsing, visualizing, and comparing protein structures with AlphaFold coloring schemes, automated contact detection, and exportable analysis reports. Built to streamline structural biology research workflows.',
     link: 'https://protein-io.vercel.app/',
@@ -35,7 +35,7 @@ export const projects: Project[] = [
     id: 'gtm-engine',
     title: 'GTM Engine',
     category: 'Contract Work',
-    categoryColor: 'var(--color-pink)',
+    categoryColor: '#4f7dff',
     description:
       'Enterprise-grade go-to-market intelligence platform combining AI-powered lead discovery, multi-stage enrichment pipelines, and automated outreach orchestration. Processes raw operator data into qualified, ICP-matched leads with automated Smartlead campaign deployment.',
     link: '#', // Confidential - no public link
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     id: 'embedding-search',
     title: 'Embedding Similarity Search',
     category: 'Machine Learning',
-    categoryColor: 'var(--color-aqua-teal)',
+    categoryColor: '#4f7dff',
     description:
       'Machine learning-powered protein similarity search engine using transformer-based embeddings and vector databases. Enables researchers to discover biologically similar proteins from sequence data, bypassing traditional BLAST alignment limitations.',
     link: 'https://frontend-five-dusky-60.vercel.app/',
@@ -94,7 +94,7 @@ export const projects: Project[] = [
     id: 'energy-emissions',
     title: 'Energy & Carbon Emissions',
     category: 'Data Science',
-    categoryColor: 'var(--color-cobalt-deep)',
+    categoryColor: '#4f7dff',
     description:
       'Statistical modeling project predicting renewable energy output and estimating causal impact of electricity pricing on carbon emissions. Combines time-series forecasting with causal inference to inform energy policy decisions.',
     link: 'https://github.com/can-karakoc/data102-final-proj',
@@ -118,7 +118,7 @@ export const projects: Project[] = [
     id: 'lentivirus-search',
     title: 'Lentivirus Gene Search Tool',
     category: 'Genomics',
-    categoryColor: 'var(--color-teal)',
+    categoryColor: '#4f7dff',
     description:
       'Specialized genome browser for lentivirus research, enabling interactive exploration of HIV-1, HIV-2, and SIV genomes. Features gene annotations, conserved region identification, and integrated 3D protein structure visualization for virological research.',
     link: 'https://github.com/JORDANKLANFER/jbrowse2_project',
@@ -142,7 +142,7 @@ export const projects: Project[] = [
     id: 'email-classification',
     title: 'Email Classification',
     category: 'Machine Learning',
-    categoryColor: 'var(--color-green)',
+    categoryColor: '#4f7dff',
     description:
       'Binary classification system for spam email detection using logistic regression with extensive feature engineering. Implements L1/L2 regularization and k-fold cross-validation to achieve robust generalization on unseen email data.',
     link: 'https://github.com/can-karakoc/spam-ham.git',
@@ -166,7 +166,7 @@ export const projects: Project[] = [
     id: 'world-game-design',
     title: 'World Game Design',
     category: 'Software Engineering',
-    categoryColor: 'var(--color-indigo-purple)',
+    categoryColor: '#4f7dff',
     description:
       '2D tile-based exploration game featuring procedurally generated worlds with deterministic seeding. Implements A* pathfinding, room-corridor dungeon generation, and serialization-based save/load system for persistent game state.',
     link: 'https://youtu.be/xaQWofbBags',
