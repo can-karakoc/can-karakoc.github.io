@@ -55,9 +55,9 @@ export const projects: Project[] = [
         'Cost-optimized architecture processing 5,917 name-enriched leads at $0.00 ceiling cost',
       ],
       images: [
-        { src: '/gtm-smartlead.png', description: 'Smartlead campaign integration with automated lead deployment' },
-        { src: '/gtm-operators.png', description: 'Operator pipeline showing 6-stage enrichment workflow' },
-        { src: '/gtm-funnel.png', description: 'Analytics dashboard tracking funnel metrics and conversion rates' },
+        { src: '/gtm-funnel.png', description: 'Different stages of the enrichment pipeline depicting each stage funnel metrics' },
+        { src: '/gtm-operators.png', description: 'Enriched operators in the pipeline with filtering and search options' },
+        { src: '/gtm-smartlead.png', description: 'Smartlead integration tracking page with different campaigns' },
       ],
     },
   },
