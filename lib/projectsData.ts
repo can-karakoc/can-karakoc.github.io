@@ -11,7 +11,7 @@ export const projects: Project[] = [
     link: 'https://protein-io.vercel.app/',
     gradientBg: 'linear-gradient(150deg, #4f7dff, #38bdf8)',
     screenshot: '/protein-interaction-explorer.png',
-    timeline: 'December 2024',
+    timeline: 'June 2026 – August 2026',
     details: {
       role: 'Full-Stack Developer',
       tech: ['Next.js', 'React', 'TypeScript', 'Three.js', 'Mol*', 'Python', 'BioPython', 'Tailwind CSS'],
