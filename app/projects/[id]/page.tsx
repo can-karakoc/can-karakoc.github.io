@@ -231,104 +231,56 @@ export default function ProjectDetailPage() {
         </div>
       </div>
 
-      {/* Header Section - Full width, above grid */}
-      <div className="max-w-[1400px] mx-auto px-6 pt-24 pb-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="flex items-start justify-between gap-12">
-            {/* Left side - Title and category */}
-            <div className="flex-1">
-              {/* Category badge */}
-              <span
-                className="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase mb-4"
-                style={{
-                  fontFamily: 'var(--font-plex)',
-                  background: `${project.categoryColor}14`,
-                  color: project.categoryColor,
-                  border: `1px solid ${project.categoryColor}33`,
-                }}
-              >
-                {project.category}
-              </span>
-
-              {/* Big Title */}
-              <h1
-                className="font-extrabold leading-[1.1]"
-                style={{
-                  fontSize: 'clamp(32px, 5vw, 56px)',
-                  letterSpacing: '-0.04em',
-                  color: '#2D3340',
-                  maxWidth: '800px',
-                }}
-              >
-                {project.title}
-              </h1>
-            </div>
-
-            {/* Right side - Meta info (timeline, role) */}
-            <div className="hidden lg:block space-y-4 pt-8">
-              {/* Timeline */}
-              {project.timeline && (
-                <div>
-                  <h3
-                    className="text-[11px] font-bold uppercase tracking-[0.12em] mb-2"
-                    style={{ fontFamily: 'var(--font-plex)', color: '#6B7280' }}
-                  >
-                    Timeline
-                  </h3>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full" style={{
-                    background: 'linear-gradient(135deg, rgba(79, 125, 255, 0.08) 0%, rgba(79, 125, 255, 0.04) 100%)',
-                    border: '1px solid rgba(79, 125, 255, 0.2)',
-                  }}>
-                    <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#4f7dff' }} />
-                    <span
-                      className="text-[13px] font-semibold tracking-tight"
-                      style={{
-                        fontFamily: 'var(--font-plex)',
-                        color: '#4f7dff',
-                      }}
-                    >
-                      {project.timeline}
-                    </span>
-                  </div>
-                </div>
-              )}
-
-              {/* Role */}
-              {project.details?.role && (
-                <div>
-                  <h3
-                    className="text-[11px] font-bold uppercase tracking-[0.12em] mb-2"
-                    style={{ fontFamily: 'var(--font-plex)', color: '#6B7280' }}
-                  >
-                    Role
-                  </h3>
-                  <p
-                    className="text-[15px] font-semibold"
-                    style={{ color: '#2D3340' }}
-                  >
-                    {project.details.role}
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Main content */}
-      <div className="max-w-[1400px] mx-auto px-6 pb-16">
-        <div className="grid lg:grid-cols-[420px_1fr] gap-12 items-start">
-          {/* Left column - Sticky text content (no card) */}
+      {/* Main content - Two columns from the top */}
+      <div className="max-w-[1400px] mx-auto px-6 pt-24 pb-16">
+        <div className="grid lg:grid-cols-[480px_1fr] gap-16 items-start">
+          {/* Left column - All project info from top */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="lg:sticky lg:top-24 space-y-6"
           >
+            {/* Category badge */}
+            <span
+              className="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase"
+              style={{
+                fontFamily: 'var(--font-plex)',
+                background: `${project.categoryColor}14`,
+                color: project.categoryColor,
+                border: `1px solid ${project.categoryColor}33`,
+              }}
+            >
+              {project.category}
+            </span>
+
+            {/* Title */}
+            <h1
+              className="font-extrabold leading-[1.1]"
+              style={{
+                fontSize: 'clamp(28px, 4vw, 48px)',
+                letterSpacing: '-0.04em',
+                color: '#2D3340',
+              }}
+            >
+              {project.title}
+            </h1>
+
+            {/* Timeline & Role - Less emphasis */}
+            <div className="flex flex-wrap gap-4 text-[13px]" style={{ color: '#6B7280' }}>
+              {project.timeline && (
+                <span style={{ fontFamily: 'var(--font-plex)' }}>
+                  {project.timeline}
+                </span>
+              )}
+              {project.details?.role && (
+                <>
+                  {project.timeline && <span>·</span>}
+                  <span>{project.details.role}</span>
+                </>
+              )}
+            </div>
+
             {/* Description */}
             <p
               className="text-[17px] leading-relaxed"
@@ -337,7 +289,7 @@ export default function ProjectDetailPage() {
               {project.description}
             </p>
 
-            {/* CTA Button */}
+            {/* CTA Button - Black */}
             {!isConfidential && project.link && (
               <a
                 href={project.link}
@@ -345,9 +297,9 @@ export default function ProjectDetailPage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-[14px] transition-all hover:scale-105"
                 style={{
-                  background: '#4f7dff',
+                  background: '#2D3340',
                   color: 'white',
-                  boxShadow: '0 8px 24px -10px rgba(79, 125, 255, 0.5)',
+                  boxShadow: '0 8px 24px -10px rgba(0, 0, 0, 0.4)',
                 }}
               >
                 View Project
@@ -358,52 +310,6 @@ export default function ProjectDetailPage() {
                 </svg>
               </a>
             )}
-
-            {/* Timeline & Role - Mobile only (desktop shows in header) */}
-            <div className="lg:hidden space-y-4">
-              {project.timeline && (
-                <div>
-                  <h3
-                    className="text-[11px] font-bold uppercase tracking-[0.12em] mb-2"
-                    style={{ fontFamily: 'var(--font-plex)', color: '#6B7280' }}
-                  >
-                    Timeline
-                  </h3>
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full" style={{
-                    background: 'linear-gradient(135deg, rgba(79, 125, 255, 0.08) 0%, rgba(79, 125, 255, 0.04) 100%)',
-                    border: '1px solid rgba(79, 125, 255, 0.2)',
-                  }}>
-                    <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#4f7dff' }} />
-                    <span
-                      className="text-[13px] font-semibold tracking-tight"
-                      style={{
-                        fontFamily: 'var(--font-plex)',
-                        color: '#4f7dff',
-                      }}
-                    >
-                      {project.timeline}
-                    </span>
-                  </div>
-                </div>
-              )}
-
-              {project.details?.role && (
-                <div>
-                  <h3
-                    className="text-[11px] font-bold uppercase tracking-[0.12em] mb-2"
-                    style={{ fontFamily: 'var(--font-plex)', color: '#6B7280' }}
-                  >
-                    Role
-                  </h3>
-                  <p
-                    className="text-[15px] font-semibold"
-                    style={{ color: '#2D3340' }}
-                  >
-                    {project.details.role}
-                  </p>
-                </div>
-              )}
-            </div>
 
             {/* Technologies */}
             {project.details?.tech && project.details.tech.length > 0 && (
