@@ -6,6 +6,8 @@ import {
   Projects,
 } from '@/components/sections';
 import { PageTransition } from '@/components/PageTransition';
+import { SpotifyNowPlaying } from '@/components/ui/SpotifyNowPlaying';
+import { LocationIndicator } from '@/components/ui/LocationIndicator';
 
 export default function Home() {
   return (
@@ -21,6 +23,8 @@ export default function Home() {
           <Footer />
         </div>
       </PageTransition>
+      <SpotifyNowPlaying />
+      <LocationIndicator />
     </>
   );
 }
