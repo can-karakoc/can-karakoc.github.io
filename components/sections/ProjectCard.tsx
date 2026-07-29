@@ -27,7 +27,7 @@ export interface Project {
     role?: string;
     tech?: string[];
     highlights?: string[];
-    images?: string[]; // Additional screenshots for detail page
+    images?: Array<{ src: string; description: string } | string>; // Additional screenshots for detail page
   };
 }
 
