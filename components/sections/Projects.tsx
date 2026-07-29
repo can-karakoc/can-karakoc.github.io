@@ -352,17 +352,11 @@ function ProjectGridCard({ project }: { project: Project }) {
           {project.category}
         </span>
         <h3
-          className="font-extrabold text-[21px] leading-tight mb-2"
+          className="font-extrabold text-[21px] leading-tight"
           style={{ color: 'var(--color-ink)', letterSpacing: '-0.02em' }}
         >
           {project.title}
         </h3>
-        <p
-          className="text-[14.5px] leading-relaxed flex-1"
-          style={{ color: 'var(--color-ink-muted)' }}
-        >
-          {project.description.split('—')[0]}—{project.description.split('—')[1]?.split('.')[0]}.
-        </p>
       </div>
 
       {/* View pill following the cursor */}
@@ -379,12 +373,12 @@ function ProjectGridCard({ project }: { project: Project }) {
               top: pos.y,
               translateX: '-50%',
               translateY: '-50%',
-              color: 'var(--color-ink)',
-              background: 'rgba(255, 255, 255, 0.35)',
-              backdropFilter: 'blur(28px) saturate(1.6)',
-              WebkitBackdropFilter: 'blur(28px) saturate(1.6)',
-              border: '1px solid rgba(255, 255, 255, 0.95)',
-              boxShadow: '0 8px 24px -10px rgba(23, 70, 184, 0.45), inset 0 1px 0 rgba(255,255,255,0.95)',
+              color: 'rgb(23, 37, 84)',
+              background: 'rgba(255, 255, 255, 0.96)',
+              backdropFilter: 'blur(20px) saturate(1.4)',
+              WebkitBackdropFilter: 'blur(20px) saturate(1.4)',
+              border: '1px solid rgba(255, 255, 255, 1)',
+              boxShadow: '0 10px 32px -8px rgba(23, 70, 184, 0.5), inset 0 1px 0 rgba(255,255,255,1)',
             }}
           >
             View Details →
