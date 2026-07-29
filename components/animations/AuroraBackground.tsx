@@ -252,8 +252,8 @@ export function AuroraBackground() {
           }}
         />
 
-        {/* Rising bubbles with scroll parallax (desktop only, disabled on Safari) */}
-        {enableParallax && backBubbles.map((b, i) => (
+        {/* Rising bubbles with scroll parallax (desktop only, static on Safari) */}
+        {isDesktop && backBubbles.map((b, i) => (
           <ParallaxBubble
             key={i}
             lag={lag}
@@ -275,12 +275,12 @@ export function AuroraBackground() {
         ))}
       </div>
 
-      {/* ===== Front layer - distortion bubbles above the content (desktop only, disabled on Safari) ===== */}
+      {/* ===== Front layer - distortion bubbles above the content (desktop only, static on Safari) ===== */}
       <div
         aria-hidden="true"
         className="fixed inset-0 overflow-clip pointer-events-none z-30"
       >
-        {enableParallax && frontBubbles.map((b, i) => (
+        {isDesktop && frontBubbles.map((b, i) => (
           <ParallaxBubble
             key={i}
             lag={lag}
