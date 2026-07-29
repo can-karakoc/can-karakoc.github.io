@@ -300,24 +300,53 @@ function ProjectGridCard({ project }: { project: Project }) {
           {project.category}
         </span>
 
-        {/* Screenshot/Image in the middle */}
+        {/* Screenshot/Image with browser mockup in the middle */}
         {project.screenshot ? (
           <div
-            className="relative w-full overflow-hidden mb-4"
+            className="rounded-[10px] overflow-hidden mb-4"
             style={{
-              borderRadius: '10px',
-              aspectRatio: '1.84 / 1',
-              background: project.gradientBg,
+              border: '1px solid rgba(10, 37, 64, 0.08)',
+              boxShadow: '0 12px 28px -18px rgba(10, 37, 64, 0.35)',
             }}
           >
-            <Image
-              src={project.screenshot}
-              alt={project.title}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              priority={project.screenshot === '/protein-interaction-explorer.png'}
-              className="object-cover"
-            />
+            {/* Chrome bar */}
+            <div
+              className="flex items-center gap-1.5 px-3 h-8"
+              style={{
+                background: 'rgba(240, 245, 252, 0.95)',
+                borderBottom: '1px solid rgba(10, 37, 64, 0.06)',
+              }}
+            >
+              <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#f87171' }} />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#fbbf24' }} />
+              <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#34d399' }} />
+              <span
+                className="ml-3 px-2.5 py-0.5 rounded-full text-[10px] truncate"
+                style={{
+                  fontFamily: 'var(--font-plex)',
+                  color: 'var(--color-ink-muted)',
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  border: '1px solid rgba(10, 37, 64, 0.05)',
+                }}
+              >
+                {getDomain(project.link)}
+              </span>
+            </div>
+
+            {/* Viewport */}
+            <div
+              className="relative w-full overflow-hidden"
+              style={{ aspectRatio: '1.84 / 1' }}
+            >
+              <Image
+                src={project.screenshot}
+                alt={project.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                priority={project.screenshot === '/protein-interaction-explorer.png'}
+                className="object-cover"
+              />
+            </div>
           </div>
         ) : (
           <div className="mb-4">
