@@ -230,7 +230,7 @@ export default function ProjectDetailPage() {
       </div>
 
       {/* Header Section - Full width, above grid */}
-      <div className="max-w-[1400px] mx-auto px-6 pt-32 pb-12">
+      <div className="max-w-[1400px] mx-auto px-6 pt-24 pb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -238,7 +238,7 @@ export default function ProjectDetailPage() {
         >
           {/* Category badge */}
           <span
-            className="inline-block px-3 py-1.5 rounded-full text-[11px] font-bold tracking-[0.14em] uppercase mb-6"
+            className="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase mb-4"
             style={{
               fontFamily: 'var(--font-plex)',
               background: `${project.categoryColor}14`,
@@ -251,12 +251,12 @@ export default function ProjectDetailPage() {
 
           {/* Big Title */}
           <h1
-            className="font-extrabold leading-[1.1] mb-4"
+            className="font-extrabold leading-[1.1] mb-3"
             style={{
-              fontSize: 'clamp(36px, 6vw, 72px)',
+              fontSize: 'clamp(32px, 5vw, 56px)',
               letterSpacing: '-0.04em',
               color: 'var(--color-ink)',
-              maxWidth: '1200px',
+              maxWidth: '1000px',
             }}
           >
             {project.title}
@@ -264,13 +264,13 @@ export default function ProjectDetailPage() {
 
           {/* Timeline - Polished design */}
           {project.timeline && (
-            <div className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-full" style={{
+            <div className="inline-flex items-center gap-2 mt-2 px-3 py-1.5 rounded-full" style={{
               background: 'linear-gradient(135deg, rgba(124, 185, 232, 0.08) 0%, rgba(124, 185, 232, 0.04) 100%)',
               border: '1px solid rgba(124, 185, 232, 0.15)',
             }}>
               <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--color-cobalt)' }} />
               <span
-                className="text-[15px] font-semibold tracking-tight"
+                className="text-[13px] font-semibold tracking-tight"
                 style={{
                   fontFamily: 'var(--font-plex)',
                   color: 'var(--color-cobalt)',
@@ -284,18 +284,18 @@ export default function ProjectDetailPage() {
       </div>
 
       {/* Main content */}
-      <div className="max-w-[1400px] mx-auto px-6 pb-24">
-        <div className="grid lg:grid-cols-[520px_1fr] gap-20 items-start">
+      <div className="max-w-[1400px] mx-auto px-6 pb-16">
+        <div className="grid lg:grid-cols-[420px_1fr] gap-12 items-start">
           {/* Left column - Sticky text content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:sticky lg:top-32 space-y-6"
+            className="lg:sticky lg:top-24 space-y-4"
           >
             {/* Description */}
             <p
-              className="text-[17px] leading-relaxed"
+              className="text-[15px] leading-relaxed"
               style={{ color: 'var(--color-ink-muted)' }}
             >
               {project.description}
@@ -303,15 +303,15 @@ export default function ProjectDetailPage() {
 
             {/* Role */}
             {project.details?.role && (
-              <div className="pt-2">
+              <div className="pt-1">
                 <h3
-                  className="text-[12px] font-bold uppercase tracking-[0.12em] mb-2"
+                  className="text-[11px] font-bold uppercase tracking-[0.12em] mb-1.5"
                   style={{ fontFamily: 'var(--font-plex)', color: 'var(--color-ink-muted)' }}
                 >
                   Role
                 </h3>
                 <p
-                  className="text-[16px] font-semibold"
+                  className="text-[14px] font-semibold"
                   style={{ color: 'var(--color-ink)' }}
                 >
                   {project.details.role}
@@ -321,18 +321,18 @@ export default function ProjectDetailPage() {
 
             {/* Technologies */}
             {project.details?.tech && project.details.tech.length > 0 && (
-              <div className="pt-2">
+              <div className="pt-1">
                 <h3
-                  className="text-[12px] font-bold uppercase tracking-[0.12em] mb-3"
+                  className="text-[11px] font-bold uppercase tracking-[0.12em] mb-2"
                   style={{ fontFamily: 'var(--font-plex)', color: 'var(--color-ink-muted)' }}
                 >
                   Technologies
                 </h3>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {project.details.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1.5 rounded-full text-[12px] font-semibold"
+                      className="px-2.5 py-1 rounded-full text-[11px] font-semibold"
                       style={{
                         background: 'rgba(124, 185, 232, 0.08)',
                         color: 'var(--color-cobalt)',
@@ -348,22 +348,22 @@ export default function ProjectDetailPage() {
 
             {/* Highlights */}
             {project.details?.highlights && project.details.highlights.length > 0 && (
-              <div className="pt-2">
+              <div className="pt-1">
                 <h3
-                  className="text-[12px] font-bold uppercase tracking-[0.12em] mb-4"
+                  className="text-[11px] font-bold uppercase tracking-[0.12em] mb-2.5"
                   style={{ fontFamily: 'var(--font-plex)', color: 'var(--color-ink-muted)' }}
                 >
                   Key Highlights
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                   {project.details.highlights.map((highlight, i) => (
-                    <li key={i} className="flex items-start gap-3">
+                    <li key={i} className="flex items-start gap-2.5">
                       <span
-                        className="shrink-0 w-1.5 h-1.5 rounded-full mt-2"
+                        className="shrink-0 w-1.5 h-1.5 rounded-full mt-1.5"
                         style={{ background: project.categoryColor }}
                       />
                       <span
-                        className="text-[15px] leading-relaxed"
+                        className="text-[13.5px] leading-relaxed"
                         style={{ color: 'var(--color-ink)' }}
                       >
                         {highlight}
@@ -376,12 +376,12 @@ export default function ProjectDetailPage() {
 
             {/* Links */}
             {!isConfidential && project.link && (
-              <div className="pt-4">
+              <div className="pt-3">
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-[14px]"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-[13px]"
                   style={{
                     background: project.categoryColor,
                     color: 'white',
@@ -389,7 +389,7 @@ export default function ProjectDetailPage() {
                   }}
                 >
                   View Project
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                     <polyline points="15 3 21 3 21 9" />
                     <line x1="10" y1="14" x2="21" y2="3" />
@@ -404,7 +404,7 @@ export default function ProjectDetailPage() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="space-y-6"
+            className="space-y-4"
           >
             {/* Main thumbnail with desktop mockup */}
             <DesktopMockup
