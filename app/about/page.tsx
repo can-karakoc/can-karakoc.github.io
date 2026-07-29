@@ -144,7 +144,7 @@ export default function About() {
 
                   {/* Resume Download Card - 1 column (smallest) */}
                   <motion.a
-                    href="/resume.pdf"
+                    href="/Can-Karakoc-Resume.pdf"
                     download="Can-Karakoc-Resume.pdf"
                     className="md:col-span-1 p-6 rounded-3xl flex flex-col no-underline group"
                     onMouseEnter={() => setHoveredCard('resume')}
@@ -546,7 +546,7 @@ export default function About() {
                             My interest bridges data-driven computational approaches with biological research, with a particular emphasis on leveraging machine learning and statistical modeling to explore complex biological systems and molecular data.
                           </p>
                         </div>,
-                        <a key="resume" href="/resume.pdf" download="Can-Karakoc-Resume.pdf" className="rounded-3xl p-6 flex flex-col no-underline" style={{ minHeight: 420, background: '#fff', border: '2px solid rgba(0,0,0,0.08)', boxShadow: '0 4px 20px -8px rgba(0,0,0,0.1)' }}>
+                        <a key="resume" href="/Can-Karakoc-Resume.pdf" download="Can-Karakoc-Resume.pdf" className="rounded-3xl p-6 flex flex-col no-underline" style={{ minHeight: 420, background: '#fff', border: '2px solid rgba(0,0,0,0.08)', boxShadow: '0 4px 20px -8px rgba(0,0,0,0.1)' }}>
                           <p className="text-xs font-bold mb-6 tracking-wider" style={{ fontFamily: 'var(--font-plex)', color: 'var(--color-ink-muted)' }}>RÉSUMÉ</p>
                           <div className="flex-1 flex items-center justify-center">
                             <div className="flex items-center gap-3 px-6 py-3 rounded-full" style={{ background: 'rgba(124,185,232,0.15)', border: '1px solid rgba(124,185,232,0.3)' }}>
