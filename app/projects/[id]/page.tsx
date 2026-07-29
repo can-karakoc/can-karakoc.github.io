@@ -378,20 +378,24 @@ export default function ProjectDetailPage() {
               image={project.screenshot}
               alt={project.title}
               priority
-              projectId={project.id}
+              description="Main interface"
             />
 
             {/* Additional images with desktop mockups */}
             {project.details?.images && project.details.images.length > 0 && (
               <>
-                {project.details.images.map((image, i) => (
-                  <DesktopMockup
-                    key={i}
-                    image={image}
-                    alt={`${project.title} screenshot ${i + 2}`}
-                    projectId={project.id}
-                  />
-                ))}
+                {project.details.images.map((img, i) => {
+                  const imageSrc = typeof img === 'string' ? img : img.src;
+                  const imageDesc = typeof img === 'string' ? undefined : img.description;
+                  return (
+                    <DesktopMockup
+                      key={i}
+                      image={imageSrc}
+                      alt={imageDesc || `${project.title} - View ${i + 1}`}
+                      description={imageDesc}
+                    />
+                  );
+                })}
               </>
             )}
           </motion.div>
