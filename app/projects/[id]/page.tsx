@@ -311,14 +311,14 @@ export default function ProjectDetailPage() {
               </a>
             )}
 
-            {/* Technologies */}
+            {/* Tech Stack */}
             {project.details?.tech && project.details.tech.length > 0 && (
               <div>
                 <h3
                   className="text-[11px] font-bold uppercase tracking-[0.12em] mb-3"
                   style={{ fontFamily: 'var(--font-plex)', color: '#6B7280' }}
                 >
-                  Technologies
+                  Tech Stack
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {project.details.tech.map((tech, i) => (
