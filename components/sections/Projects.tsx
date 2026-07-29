@@ -280,77 +280,52 @@ function ProjectGridCard({ project }: { project: Project }) {
         boxShadow: '0 20px 44px -28px rgba(23, 70, 184, 0.3), inset 0 1px 0 rgba(255,255,255,0.9)',
       }}
     >
-      {/* Mockup: browser window for web apps, A4 research paper otherwise */}
-      <div className="px-5 pt-5">
-        {project.screenshot ? (
-          <div
-            className="rounded-[10px] overflow-hidden"
-            style={{
-              border: '1px solid rgba(10, 37, 64, 0.08)',
-              boxShadow: '0 12px 28px -18px rgba(10, 37, 64, 0.35)',
-            }}
-          >
-            {/* Chrome bar */}
-            <div
-              className="flex items-center gap-1.5 px-3 h-8"
-              style={{
-                background: 'rgba(240, 245, 252, 0.95)',
-                borderBottom: '1px solid rgba(10, 37, 64, 0.06)',
-              }}
-            >
-              <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#f87171' }} />
-              <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#fbbf24' }} />
-              <span className="w-2.5 h-2.5 rounded-full" style={{ background: '#34d399' }} />
-              <span
-                className="ml-3 px-2.5 py-0.5 rounded-full text-[10px] truncate"
-                style={{
-                  fontFamily: 'var(--font-plex)',
-                  color: 'var(--color-ink-muted)',
-                  background: 'rgba(255, 255, 255, 0.8)',
-                  border: '1px solid rgba(10, 37, 64, 0.05)',
-                }}
-              >
-                {getDomain(project.link)}
-              </span>
-            </div>
-
-            {/* Viewport */}
-            <div
-              className="relative w-full overflow-hidden"
-              style={{ aspectRatio: '1.84 / 1' }}
-            >
-              <Image
-                src={project.screenshot}
-                alt={project.title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                priority={project.screenshot === '/protein-interaction-explorer.png'}
-                className="object-cover"
-              />
-            </div>
-          </div>
-        ) : (
-          <ProjectMockup type={project.mockup ?? 'paper'} />
-        )}
-      </div>
-
       {/* Text - forced onto its own compositing layer so the Explore pill's
           backdrop-filter actually samples it (backdrop-filter is unreliable
           over plain text sharing a paint layer with its ancestors, but
           works fine once the content is layer-promoted like this) */}
       <div className="p-6 flex-1 flex flex-col" style={{ transform: 'translateZ(0)' }}>
+        {/* Category badge at top */}
         <span
-          className="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase mb-3"
+          className="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase mb-4"
           style={{
             fontFamily: 'var(--font-plex)',
             // Safari <16.2 fallback: hex color with opacity suffix (8% = 14 in hex, 20% = 33 in hex)
             background: `${project.categoryColor}14`,
             color: project.categoryColor,
             border: `1px solid ${project.categoryColor}33`,
+            width: 'fit-content',
           }}
         >
           {project.category}
         </span>
+
+        {/* Screenshot/Image in the middle */}
+        {project.screenshot ? (
+          <div
+            className="relative w-full overflow-hidden mb-4"
+            style={{
+              borderRadius: '10px',
+              aspectRatio: '1.84 / 1',
+              background: project.gradientBg,
+            }}
+          >
+            <Image
+              src={project.screenshot}
+              alt={project.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              priority={project.screenshot === '/protein-interaction-explorer.png'}
+              className="object-cover"
+            />
+          </div>
+        ) : (
+          <div className="mb-4">
+            <ProjectMockup type={project.mockup ?? 'paper'} />
+          </div>
+        )}
+
+        {/* Title at bottom */}
         <h3
           className="font-extrabold text-[21px] leading-tight"
           style={{ color: 'var(--color-ink)', letterSpacing: '-0.02em' }}
