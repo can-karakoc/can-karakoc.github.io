@@ -75,15 +75,27 @@ export function AuroraBackground() {
   // Bubbles + scroll parallax are disabled on mobile — the per-scroll motion
   // updates are heavy on phones and make the page feel laggy.
   const [isDesktop, setIsDesktop] = React.useState(false);
+  const [isSafari, setIsSafari] = React.useState(false);
+
   React.useEffect(() => {
     const mq = window.matchMedia('(min-width: 768px)');
     const update = () => setIsDesktop(mq.matches);
     update();
     mq.addEventListener('change', update);
+
+    // Detect Safari
+    const ua = navigator.userAgent.toLowerCase();
+    const safari = ua.includes('safari') && !ua.includes('chrome') && !ua.includes('chromium');
+    setIsSafari(safari);
+
     return () => mq.removeEventListener('change', update);
   }, []);
 
   const { scrollY } = useScroll();
+
+  // Disable parallax and distortion on Safari for better performance
+  const enableParallax = isDesktop && !isSafari;
+  const enableDistortion = !isSafari;
 
   // Smoothed copy of scroll position; the difference to the real position is
   // the parallax lag. It is non-zero while scrolling and springs back to 0 at rest.
@@ -91,18 +103,20 @@ export function AuroraBackground() {
   // 0.45 dampens the overall parallax strength; raise/lower to taste
   const lag = useTransform<number, number>(
     [scrollY, smoothY],
-    ([current, smooth]) => ((smooth as number) - (current as number)) * 0.45
+    ([current, smooth]) => enableParallax ? ((smooth as number) - (current as number)) * 0.45 : 0
   );
 
   // Water distortion strength follows scroll velocity
   const velocity = useVelocity(scrollY);
   const distortion = useSpring(
-    useTransform(velocity, (v) => Math.min(Math.abs(v) / 60, 22)),
+    useTransform(velocity, (v) => enableDistortion ? Math.min(Math.abs(v) / 60, 22) : 0),
     { stiffness: 80, damping: 25 }
   );
   const displacementRef = React.useRef<SVGFEDisplacementMapElement>(null);
   useMotionValueEvent(distortion, 'change', (v) => {
-    displacementRef.current?.setAttribute('scale', String(3 + v));
+    if (enableDistortion) {
+      displacementRef.current?.setAttribute('scale', String(3 + v));
+    }
   });
 
   return (
@@ -139,7 +153,7 @@ export function AuroraBackground() {
       <div
         aria-hidden="true"
         className="fixed inset-0 overflow-clip pointer-events-none z-0"
-        style={{ filter: 'url(#water-distortion)' }}
+        style={{ filter: enableDistortion ? 'url(#water-distortion)' : 'none' }}
       >
         {/* Base surface gradient */}
         <div
@@ -238,8 +252,8 @@ export function AuroraBackground() {
           }}
         />
 
-        {/* Rising bubbles with scroll parallax (desktop only) */}
-        {isDesktop && backBubbles.map((b, i) => (
+        {/* Rising bubbles with scroll parallax (desktop only, disabled on Safari) */}
+        {enableParallax && backBubbles.map((b, i) => (
           <ParallaxBubble
             key={i}
             lag={lag}
@@ -261,12 +275,12 @@ export function AuroraBackground() {
         ))}
       </div>
 
-      {/* ===== Front layer - distortion bubbles above the content (desktop only) ===== */}
+      {/* ===== Front layer - distortion bubbles above the content (desktop only, disabled on Safari) ===== */}
       <div
         aria-hidden="true"
         className="fixed inset-0 overflow-clip pointer-events-none z-30"
       >
-        {isDesktop && frontBubbles.map((b, i) => (
+        {enableParallax && frontBubbles.map((b, i) => (
           <ParallaxBubble
             key={i}
             lag={lag}
