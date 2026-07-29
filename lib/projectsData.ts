@@ -23,7 +23,12 @@ export const projects: Project[] = [
         'Side-by-side structure comparison tool for analyzing conformational changes',
         'CSV/JSON export functionality for downstream computational analysis',
       ],
-      images: ['/protein-chains.png', '/protein-ligands.png', '/protein-sequence.png', '/protein-dark.png'],
+      images: [
+        { src: '/protein-chains.png', description: 'Chain analysis with residue and atom counts per chain' },
+        { src: '/protein-ligands.png', description: 'Ligand binding analysis with contact detection and chemistry validation' },
+        { src: '/protein-sequence.png', description: 'Secondary structure visualization with helix, sheet, and coil percentages' },
+        { src: '/protein-dark.png', description: 'Dark mode interface with structure quality verification' },
+      ],
     },
   },
   {
@@ -49,7 +54,11 @@ export const projects: Project[] = [
         'Smartlead integration auto-deploying 10,323 qualified leads across segmented campaigns',
         'Cost-optimized architecture processing 5,917 name-enriched leads at $0.00 ceiling cost',
       ],
-      images: ['/gtm-smartlead.png', '/gtm-operators.png', '/gtm-funnel.png'],
+      images: [
+        { src: '/gtm-smartlead.png', description: 'Smartlead campaign integration with automated lead deployment' },
+        { src: '/gtm-operators.png', description: 'Operator pipeline showing 6-stage enrichment workflow' },
+        { src: '/gtm-funnel.png', description: 'Analytics dashboard tracking funnel metrics and conversion rates' },
+      ],
     },
   },
   {

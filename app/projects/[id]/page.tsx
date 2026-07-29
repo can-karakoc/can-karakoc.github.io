@@ -11,29 +11,28 @@ function DesktopMockup({
   image,
   alt,
   priority = false,
-  projectId,
+  description,
 }: {
   image?: string;
   alt: string;
   priority?: boolean;
-  projectId?: string;
+  description?: string;
 }) {
   if (!image) return null;
 
   return (
     <div className="space-y-3">
-      {/* Project identifier label */}
-      {projectId && (
+      {/* Image description label */}
+      {description && (
         <div className="flex items-center gap-2 px-1">
           <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#4ade80' }} />
           <span
-            className="text-[12px] font-medium"
+            className="text-[13px] font-medium"
             style={{
-              fontFamily: 'var(--font-plex)',
-              color: 'var(--color-ink-muted)',
+              color: '#2D3340',
             }}
           >
-            {projectId}
+            {description}
           </span>
         </div>
       )}
