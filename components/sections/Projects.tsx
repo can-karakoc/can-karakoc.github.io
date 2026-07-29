@@ -287,14 +287,10 @@ function ProjectGridCard({ project }: { project: Project }) {
       <div className="p-6 flex-1 flex flex-col" style={{ transform: 'translateZ(0)' }}>
         {/* Category badge at top */}
         <span
-          className="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase mb-4"
+          className="inline-block text-[10px] font-bold tracking-[0.14em] uppercase mb-4"
           style={{
             fontFamily: 'var(--font-plex)',
-            // Safari <16.2 fallback: hex color with opacity suffix (8% = 14 in hex, 20% = 33 in hex)
-            background: `${project.categoryColor}14`,
-            color: project.categoryColor,
-            border: `1px solid ${project.categoryColor}33`,
-            width: 'fit-content',
+            color: '#4f7dff',
           }}
         >
           {project.category}

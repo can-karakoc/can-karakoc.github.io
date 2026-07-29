@@ -242,12 +242,10 @@ export default function ProjectDetailPage() {
           >
             {/* Category badge */}
             <span
-              className="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold tracking-[0.14em] uppercase"
+              className="inline-block text-[10px] font-bold tracking-[0.14em] uppercase"
               style={{
                 fontFamily: 'var(--font-plex)',
-                background: `${project.categoryColor}14`,
-                color: project.categoryColor,
-                border: `1px solid ${project.categoryColor}33`,
+                color: '#4f7dff',
               }}
             >
               {project.category}
