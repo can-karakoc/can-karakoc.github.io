@@ -122,7 +122,9 @@ export default function ProjectDetailPage() {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       className="min-h-screen"
-      style={{ background: '#F9F7F3' }}
+      style={{
+        background: 'linear-gradient(180deg, #F3F2E8 0%, #E8F2F7 100%)'
+      }}
     >
       {/* Navigation controls */}
       <div className="fixed top-6 left-6 right-6 z-50 flex items-center justify-between">
@@ -265,15 +267,15 @@ export default function ProjectDetailPage() {
           {/* Timeline - Polished design */}
           {project.timeline && (
             <div className="inline-flex items-center gap-2 mt-2 px-3 py-1.5 rounded-full" style={{
-              background: 'linear-gradient(135deg, rgba(124, 185, 232, 0.08) 0%, rgba(124, 185, 232, 0.04) 100%)',
-              border: '1px solid rgba(124, 185, 232, 0.15)',
+              background: 'linear-gradient(135deg, rgba(79, 125, 255, 0.08) 0%, rgba(79, 125, 255, 0.04) 100%)',
+              border: '1px solid rgba(79, 125, 255, 0.2)',
             }}>
-              <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'var(--color-cobalt)' }} />
+              <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#4f7dff' }} />
               <span
                 className="text-[13px] font-semibold tracking-tight"
                 style={{
                   fontFamily: 'var(--font-plex)',
-                  color: 'var(--color-cobalt)',
+                  color: '#4f7dff',
                 }}
               >
                 {project.timeline}
@@ -334,9 +336,9 @@ export default function ProjectDetailPage() {
                       key={i}
                       className="px-2.5 py-1 rounded-full text-[11px] font-semibold"
                       style={{
-                        background: 'rgba(124, 185, 232, 0.08)',
-                        color: 'var(--color-cobalt)',
-                        border: '1px solid rgba(124, 185, 232, 0.2)',
+                        background: 'rgba(79, 125, 255, 0.08)',
+                        color: '#4f7dff',
+                        border: '1px solid rgba(79, 125, 255, 0.2)',
                       }}
                     >
                       {tech}
@@ -360,7 +362,7 @@ export default function ProjectDetailPage() {
                     <li key={i} className="flex items-start gap-2.5">
                       <span
                         className="shrink-0 w-1.5 h-1.5 rounded-full mt-1.5"
-                        style={{ background: project.categoryColor }}
+                        style={{ background: '#4f7dff' }}
                       />
                       <span
                         className="text-[13.5px] leading-relaxed"
@@ -381,11 +383,11 @@ export default function ProjectDetailPage() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-[13px]"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-[13px] transition-all hover:scale-105"
                   style={{
-                    background: project.categoryColor,
+                    background: '#4f7dff',
                     color: 'white',
-                    boxShadow: '0 8px 24px -10px rgba(23, 70, 184, 0.4)',
+                    boxShadow: '0 8px 24px -10px rgba(79, 125, 255, 0.5)',
                   }}
                 >
                   View Project
