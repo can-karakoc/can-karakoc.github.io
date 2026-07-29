@@ -58,6 +58,9 @@ async function getRecentlyPlayed() {
   return response.json();
 }
 
+// Cache the last known track to always have something to show
+let lastKnownTrack: any = null;
+
 export async function GET() {
   try {
     // First try to get currently playing
@@ -71,14 +74,19 @@ export async function GET() {
       const albumImageUrl = nowPlayingResponse.item.album.images[0]?.url;
       const songUrl = nowPlayingResponse.item.external_urls.spotify;
 
-      return NextResponse.json({
+      const trackData = {
         isPlaying,
         title,
         artist,
         album,
         albumImageUrl,
         songUrl,
-      });
+      };
+
+      // Cache this track
+      lastKnownTrack = trackData;
+
+      return NextResponse.json(trackData);
     }
 
     // If nothing is playing, get the last played track
@@ -92,19 +100,35 @@ export async function GET() {
       const albumImageUrl = track.album.images[0]?.url;
       const songUrl = track.external_urls.spotify;
 
-      return NextResponse.json({
+      const trackData = {
         isPlaying: false,
         title,
         artist,
         album,
         albumImageUrl,
         songUrl,
-      });
+      };
+
+      // Cache this track
+      lastKnownTrack = trackData;
+
+      return NextResponse.json(trackData);
+    }
+
+    // If API fails but we have a cached track, return it
+    if (lastKnownTrack) {
+      return NextResponse.json({ ...lastKnownTrack, isPlaying: false });
     }
 
     return NextResponse.json({ isPlaying: false });
   } catch (error) {
     console.error('Error fetching Spotify data:', error);
+
+    // Return cached track on error
+    if (lastKnownTrack) {
+      return NextResponse.json({ ...lastKnownTrack, isPlaying: false });
+    }
+
     return NextResponse.json({ isPlaying: false, error: 'Failed to fetch data' });
   }
 }

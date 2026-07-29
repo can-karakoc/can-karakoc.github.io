@@ -80,6 +80,18 @@ export function SpotifyNowPlaying() {
     };
   }, [track.albumImageUrl]);
 
+  // Load cached track from localStorage on mount
+  React.useEffect(() => {
+    const cached = localStorage.getItem('spotify-last-track');
+    if (cached) {
+      try {
+        setTrack(JSON.parse(cached));
+      } catch (e) {
+        console.error('Failed to parse cached track:', e);
+      }
+    }
+  }, []);
+
   // Fetch now playing data every 5 seconds
   React.useEffect(() => {
     let cancelled = false;
@@ -90,7 +102,13 @@ export function SpotifyNowPlaying() {
         if (!res.ok) throw new Error('Failed to fetch');
         const data = await res.json();
         if (cancelled) return;
-        setTrack(data);
+
+        // Only update if we got track data
+        if (data.title) {
+          setTrack(data);
+          // Save to localStorage
+          localStorage.setItem('spotify-last-track', JSON.stringify(data));
+        }
         setError(false);
       } catch {
         if (cancelled) return;
